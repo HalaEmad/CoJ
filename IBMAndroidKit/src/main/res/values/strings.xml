@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Utils</string>
+
+    <!-- general -->
+    <string name="failed">Failed!</string>
+    <string name="new_orders_notification">%s New Orders</string>
+    <string name="updated_orders_notification">%s Updated Orders</string>
+    <string name="filter">Filter</string>
+    <string name="directions">Directions</string>
+    <string name="refresh">Refresh</string>
+    <string name="logout">Logout</string>
+    <string name="all">All</string>
+    <string name="request">Pending</string>
+    <string name="in_progress">In Progress</string>
+    <string name="complete">Complete</string>
+    <string name="error">Error</string>
+    <string name="warning">Warning</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit">Submit</string>
+    <string name="please_wait">Please wait …</string>
+    <string name="no_network">No network!</string>
+</resources>
