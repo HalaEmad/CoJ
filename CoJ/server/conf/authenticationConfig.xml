@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <tns:loginConfiguration xmlns:tns="http://www.worklight.com/auth/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
 		<!-- Licensed Materials - Property of IBM
@@ -53,23 +53,23 @@
        	</customSecurityTest>
        	-->
        	<customSecurityTest name="SubscribeServlet">
-       		<test realm="SubscribeServlet" isInternalUserID="true"/>
+       		<test isInternalUserID="true" realm="SubscribeServlet"/>
        	</customSecurityTest>    		
 
 	</securityTests> 
 	
 	<realms>
-		<realm name="SampleAppRealm" loginModule="StrongDummy">
+		<realm loginModule="StrongDummy" name="SampleAppRealm">
 			<className>com.worklight.core.auth.ext.FormBasedAuthenticator</className>
 		</realm>
 		
-		<realm name="SubscribeServlet" loginModule="rejectAll">
+		<realm loginModule="rejectAll" name="SubscribeServlet">
 			<className>com.worklight.core.auth.ext.HeaderAuthenticator</className>			
 		</realm>
 		
-		<realm name="IOCAuthRealm" loginModule="NonValidatingLoginModule"> 
+		<realm loginModule="NonValidatingLoginModule" name="IOCAuthRealm"> 
 		<className>com.worklight.integration.auth.AdapterAuthenticator</className>
-		 <parameter name="login-function" value="AuthenticationAdapter.authenticateUser" /> 
+		 <parameter name="login-function" value="AuthenticationAdapter.authenticateUser"/> 
 		 </realm>
 		<!-- For client logger -->
 		<!-- <realm name="LogUploadServlet" loginModule="StrongDummy">

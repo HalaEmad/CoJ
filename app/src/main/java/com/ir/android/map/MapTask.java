@@ -20,7 +20,7 @@ public class MapTask extends Task {
 
     @Override
     protected Result onTaskWork() {
-        ArrayList<Incident> incidents = new ArrayList<Incident>();
+        ArrayList<Incident> incidents = new ArrayList<>();
         incidents.add(new Incident(30.0444, 31.2357, "Cairo"));
         incidents.add(new Incident(31.205753, 29.924526, "Alexandria"));
         incidents.add(new Incident(24.09082, 32.89942, "Aswan"));

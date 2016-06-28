@@ -5,6 +5,12 @@ import android.content.Context;
 import com.ibm.android.kit.models.Result;
 import com.ibm.android.kit.tasks.ITask;
 import com.ibm.android.kit.tasks.Task;
+import com.worklight.utils.Base64;
+import com.worklight.wlclient.api.WLClient;
+import com.worklight.wlclient.api.WLProcedureInvocationData;
+import com.worklight.wlclient.api.WLRequestOptions;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * Created by emanhassan on 6/12/16.
@@ -12,24 +18,56 @@ import com.ibm.android.kit.tasks.Task;
 public class LoginTask extends Task {
     private String username;
     private String password;
+    private LoginResponseListener loginResponseListener;
 
     public LoginTask(ITask listener, Context context, String username, String password) {
 
         super(listener, context);
         this.username = username;
         this.password = password;
-        // TODO Start login request
 
     }
 
 
     @Override
     protected Result onTaskWork() {
-        if (username.equalsIgnoreCase("eman"))
-            return new Result(0);
 
-        else
+        try {
+            String authorizationInput=
+                    Base64.encode((this.username+":"+this.password).getBytes(),"UTF-8");
+            //TODO call WL Adapter
+
+            loginResponseListener=new LoginResponseListener();
+            WLClient client=WLClient.createInstance(context);
+
+            String adapterName = "Authentication";
+            String procedureName = "authenticateUser";
+            WLProcedureInvocationData invocationData =
+                    new WLProcedureInvocationData(adapterName, procedureName);
+
+            //Parameters
+            Object[] parameters = new Object[] {authorizationInput};
+            invocationData.setParameters(parameters);
+            WLRequestOptions options = new WLRequestOptions();
+            options.setTimeout(30000);
+
+            client.invokeProcedure(invocationData,loginResponseListener , options);
+
+            /*WLResponse response=*/loginResponseListener.getLoginResponse();
+            if (loginResponseListener.status==ResponseStatus.FAIL){
+                return new Result(1);
+            }else{
+                return new Result(0);
+            }
+        } catch (LoginFailedException|UnsupportedEncodingException e) {
             return new Result(1);
+        }
+
+//        if (username.equalsIgnoreCase("eman"))
+//            return new Result(0);
+//
+//        else
+//            return new Result(1);
     }
 
 }
