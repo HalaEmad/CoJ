@@ -27,6 +27,7 @@ import com.esri.android.map.MapView;
 import com.esri.core.geometry.Envelope;
 import com.esri.core.geometry.Geometry;
 import com.esri.core.geometry.GeometryEngine;
+import com.esri.core.geometry.MultiPoint;
 import com.esri.core.geometry.Point;
 import com.esri.core.geometry.SpatialReference;
 import com.esri.core.map.Feature;
@@ -99,13 +100,14 @@ public class IncidentActivity extends Activity implements OnSingleTapListener {
                 if (status == STATUS.LAYER_LOADED) {
                     if (incidentsLocs != null) {
 
+                        MultiPoint multipoint = new MultiPoint();
                         for (int i = 0; i < incidentsLocs.size(); i++) {
                             Incident incident = incidentsLocs.get(i);
                             BitmapDrawable pinStarBlueDrawable = (BitmapDrawable) ContextCompat.getDrawable(context, incident.getDrawableId());
                             PictureMarkerSymbol pinStarBlueSymbol = new PictureMarkerSymbol(pinStarBlueDrawable);
 
                             Point point = GeometryEngine.project(incident.getLongitude(), incident.getLatitude(), mapView.getSpatialReference());
-
+                            multipoint.add(point);
                             Map<String, Object> attributes = new HashMap<String, Object>();
                             attributes.put(ATTR_INDEX, i);
 
@@ -116,9 +118,9 @@ public class IncidentActivity extends Activity implements OnSingleTapListener {
                             graphicsLayer.addGraphic(g);
 
                             mapView.addLayer(graphicsLayer);
-
-
                         }
+
+                        mapView.setExtent(multipoint, 100, true);
 
                     }
                 }
@@ -147,9 +149,9 @@ public class IncidentActivity extends Activity implements OnSingleTapListener {
 
         Feature result = null;
         Layer[] layers = mapView.getLayers();
-        Log.i("ir", "layers: "+layers.length);
+        Log.i("ir", "layers: " + layers.length);
 
-        for (int i = 0;i < layers.length ; i++) {
+        for (int i = 0; i < layers.length; i++) {
             Layer layer = layers[i];
             if (layer instanceof GraphicsLayer) {
 
@@ -166,14 +168,14 @@ public class IncidentActivity extends Activity implements OnSingleTapListener {
         if (null != result) {
             Object id = result.getAttributeValue(ATTR_INDEX);
             if (null != id) {
-                if (incidentsLocs != null && incidentsLocs.size()>((int)id)){
-                Incident selectedIncident = incidentsLocs.get((int)id);
-                    ((IncidentListener)controller).onMarkerClicked(selectedIncident);}
-           }
+                if (incidentsLocs != null && incidentsLocs.size() > ((int) id)) {
+                    Incident selectedIncident = incidentsLocs.get((int) id);
+                    ((IncidentListener) controller).onMarkerClicked(selectedIncident);
+                }
+            }
 
         }
     }
-
 
 
 }
