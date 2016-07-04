@@ -91,7 +91,8 @@ public class MapFragment extends Fragment implements OnSingleTapListener {
                         for (int i = 0; i < incidentsLocs.size(); i++) {
                             Incident incident = incidentsLocs.get(i);
 //                            incident.getDrawableId()
-                            BitmapDrawable pinStarBlueDrawable = (BitmapDrawable) ContextCompat.getDrawable(context,incident.getDrawableId() );
+                            BitmapDrawable pinStarBlueDrawable = (BitmapDrawable) ContextCompat.getDrawable(context,R.mipmap.your_location );
+                            pinStarBlueDrawable.setBounds(5, 5, 5, 5);
                             Bitmap b = pinStarBlueDrawable.getBitmap();
                             Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 36, 36  , false);
 
