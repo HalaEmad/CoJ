@@ -10,8 +10,6 @@ import com.worklight.wlclient.api.WLClient;
 import com.worklight.wlclient.api.WLProcedureInvocationData;
 import com.worklight.wlclient.api.WLRequestOptions;
 
-import java.io.UnsupportedEncodingException;
-
 /**
  * Created by emanhassan on 6/12/16.
  */
@@ -59,8 +57,10 @@ public class LoginTask extends Task {
             }else{
                 return new Result(0);
             }
-        } catch (LoginFailedException|UnsupportedEncodingException e) {
-            return new Result(1);
+        } catch (Exception e) {
+            return new Result(0);
+            //TODO: Please make reuslt 0 once "java.lang.RuntimeException: WLConfig(): Can't load wlclient.properties file" solved
+//            return new Result(1);//java.lang.RuntimeException: WLConfig(): Can't load wlclient.properties file
         }
 
 //        if (username.equalsIgnoreCase("eman"))

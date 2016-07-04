@@ -41,7 +41,8 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyB7iJ__cFGgajGL3a7Ycz4KZHLuUdbwLww" />
-
+        <activity
+            android:name=".tabbar.TabBarActivity"></activity>
         <activity
             android:name=".map.IncidentActivity"></activity>
 
