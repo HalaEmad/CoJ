@@ -35,7 +35,7 @@ public abstract class Activity extends AppCompatActivity implements Observer, Ak
 
     private ProgressDialogFragment mProgressDlg;
 
-    protected abstract Controller getController();
+    protected abstract Controller createController();
 
     protected abstract String getControllerTag();
 
@@ -60,7 +60,7 @@ public abstract class Activity extends AppCompatActivity implements Observer, Ak
         // retained across a configuration change.
         if (controller == null) {
 
-            controller = getController();
+            controller = createController();
             fm.beginTransaction().add(controller, getControllerTag()).commit();
             controller.setActivity(this);
             setViewListener(controller);

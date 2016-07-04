@@ -22,7 +22,7 @@ public class LoginScreen extends Activity {
 
 
     @Override
-    protected Controller getController() {
+    protected Controller createController() {
         return new LoginCtrl();
     }
 

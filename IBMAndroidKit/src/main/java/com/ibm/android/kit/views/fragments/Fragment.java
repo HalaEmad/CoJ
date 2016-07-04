@@ -27,7 +27,7 @@ public abstract class Fragment extends android.support.v4.app.Fragment implement
 
 	protected IViewListener viewListener;
 
-	protected abstract Controller getController();
+	protected abstract Controller createController();
 
 	protected abstract String getControllerTag();
 
@@ -48,7 +48,7 @@ public abstract class Fragment extends android.support.v4.app.Fragment implement
 		// retained across a configuration change.
 		if (controller == null) {
 
-			controller = getController();
+			controller = createController();
 			fm.beginTransaction().add(controller, getControllerTag()).commit();
 			controller.setActivity((Activity) getActivity());
 			setViewListener(controller);

@@ -9,5 +9,6 @@ import com.ir.android.model.Incident;
  */
 public interface IncidentListener {
     void onMarkerClicked (Incident clickedIncident);
+    void onMarkerClicked (int position);
 
 }
