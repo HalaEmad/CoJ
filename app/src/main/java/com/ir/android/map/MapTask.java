@@ -21,6 +21,7 @@ public class MapTask extends Task {
 
     @Override
     protected Result onTaskWork() {
+
         ArrayList<Incident> incidents = new ArrayList<Incident>();
 
         Incident i1 = new Incident(30.0444, 31.2357, "Cairo");
@@ -63,7 +64,6 @@ public class MapTask extends Task {
         i4.setType("Fire Incident");
         i4.setWeapons("Suspect with knife");
         incidents.add(i4);
-
 
         //TODO load locations from database or from server
         return new Result(0, incidents);
