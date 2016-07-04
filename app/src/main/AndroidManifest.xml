@@ -43,7 +43,8 @@
             android:value="AIzaSyB7iJ__cFGgajGL3a7Ycz4KZHLuUdbwLww" />
 
         <activity
-            android:name=".map.IncidentActivity"></activity>
+            android:name=".map.IncidentActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
             android:name=".login.LoginScreen">
