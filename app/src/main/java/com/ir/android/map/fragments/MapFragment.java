@@ -92,21 +92,20 @@ public class MapFragment extends Fragment implements OnSingleTapListener {
                             Incident incident = incidentsLocs.get(i);
 //                            incident.getDrawableId()
                             BitmapDrawable pinStarBlueDrawable = (BitmapDrawable) ContextCompat.getDrawable(context,R.mipmap.your_location );
-                            pinStarBlueDrawable.setBounds(5, 5, 5, 5);
+//
                             Bitmap b = pinStarBlueDrawable.getBitmap();
-                            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 36, 36  , false);
+                            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 25, 25  , false);
 
                             PictureMarkerSymbol pinStarBlueSymbol = new PictureMarkerSymbol(new BitmapDrawable(getResources(), bitmapResized));
-
                             Point point = GeometryEngine.project(incident.getLongitude(), incident.getLatitude(), mapView.getSpatialReference());
                             multipoint.add(point);
                             Map<String, Object> attributes = new HashMap<String, Object>();
                             attributes.put(ATTR_INDEX, i);
 
-                            Graphic g = new Graphic(point, new SimpleMarkerSymbol(Color.RED, 10, SimpleMarkerSymbol.STYLE.CIRCLE), attributes);
-//                            Graphic g = new Graphic(point, pinStarBlueSymbol);
+//                            Graphic g = new Graphic(point, new SimpleMarkerSymbol(Color.RED, 10, SimpleMarkerSymbol.STYLE.CIRCLE), attributes);
+                            Graphic g = new Graphic(point, pinStarBlueSymbol, attributes);
                             Log.i("log", incident.getInfo());
-
+//
                             graphicsLayer.addGraphic(g);
 
                             mapView.addLayer(graphicsLayer);
@@ -140,7 +139,6 @@ public class MapFragment extends Fragment implements OnSingleTapListener {
 
         Feature result = null;
         Layer[] layers = mapView.getLayers();
-        Log.i("ir", "layers: " + layers.length);
 
         for (int i = 0; i < layers.length; i++) {
             Layer layer = layers[i];
