@@ -55,9 +55,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".login.LoginActivity_test"
-            android:label="@string/title_activity_login_activity_test" />
         <activity android:name="com.worklight.wlclient.ui.UIActivity"/>
     <service android:name=".service.LocationService" />
     </application>
