@@ -38,7 +38,6 @@ public class SplashCtrl extends Controller {
         super.onTaskFinished(task, result);
 
         finish();
-//        NavigationHelper.showHome(getContext());
         NavigationHelper.showLogin(getContext());
     }
 }

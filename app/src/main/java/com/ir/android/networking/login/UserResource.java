@@ -4,14 +4,16 @@ import android.content.Context;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ir.android.R;
 import com.ir.android.networking.basicimplementation.WLResource;
 import com.worklight.utils.Base64;
 import com.worklight.wlclient.api.WLResponse;
 
-import org.apache.commons.beanutils.BeanUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -41,6 +43,10 @@ public class UserResource extends WLResource {
 
     @JsonProperty("groups")
     private ArrayList<UserGroup> groups;
+
+    private UserResource(){
+
+    }
 
     public UserResource(String username, String password){
         this.username=username;
@@ -207,24 +213,41 @@ public class UserResource extends WLResource {
             WLResponse response=process(context);
             if(response.getStatus()== 200) {
                 ObjectMapper objectMapper = new ObjectMapper();
-                UserResource userResource = objectMapper.readValue(response.getResponseText(), this.getClass());
-
-                BeanUtils.copyProperties(this, userResource);
+                JSONArray jsonArray=new JSONArray(response.getResponseText());
+                objectMapper.readerForUpdating(this).readValue(jsonArray.getString(0));
             }else{
                 throw new LoginFailedException(response.getResponseText());
             }
 
         }catch (Exception e){
-            if(e instanceof RuntimeException){
+            //TODO:remove stub
 
-//                InputStream is = context.getResources().openRawResource(R.);
-                //read from stub
-                ObjectMapper objectMapper = new ObjectMapper();
-                UserResource userResource = objectMapper.readValue(response.getResponseText(), this.getClass());
+                try {
+                    InputStream inputStream = context.getAssets().open("Login-Success.octet-stream");
 
-//                BeanUtils.copyProperties(this, userResource);
-            }
+                    BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
+                    StringBuilder string = new StringBuilder();
+                    String line;
+                    while ((line = r.readLine()) != null) {
+                        string.append(line).append('\n');
+                    }
 
+
+                    //read from stub
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    JSONObject jsonObject=new JSONObject(string.toString());
+                    String array=jsonObject.getString("text");
+                    JSONArray jsonArray=new JSONArray(array);
+
+
+                    objectMapper.readerForUpdating(this).readValue(jsonArray.getString(0));
+
+                    return;
+                }catch(Exception e1){
+                    /*it's stub please don't handle this*/
+                    e1.printStackTrace();
+                }
+    //Stub end
             throw new LoginFailedException(e);
         }
     }
