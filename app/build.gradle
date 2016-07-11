@@ -37,5 +37,10 @@ dependencies {
     compile 'com.esri.arcgis.android:arcgis-android:10.2.8'
     compile 'com.android.support:multidex:1.0.0'
 
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+
+    // https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils
+    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.2'
 
 }
