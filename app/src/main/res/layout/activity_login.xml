@@ -1,16 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    >
+    android:orientation="vertical">
 
-=
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
@@ -22,15 +15,29 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="40dp"
+                android:paddingTop="40dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/signin_header" />
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:paddingTop="32dp">
 
                 <EditText
                     android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_username"
+                    android:drawableLeft="@mipmap/signin_force_number_icon"
+                    android:drawablePadding="16dp"
+                    android:hint="@string/sign_in_prompt_force_number"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -38,13 +45,19 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:paddingTop="16dp">
 
                 <EditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_password"
+                    android:drawableLeft="@mipmap/signin_password_icon"
+                    android:drawablePadding="16dp"
+                    android:hint="@string/sign_in_prompt_password"
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -56,11 +69,13 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_login"
                 android:background="#FF1A9011"
-                android:textStyle="bold"
-                android:textColor="#FFFFFFFF" />
+                android:text="@string/sign_in_action_submit"
+                android:textColor="#FFFFFFFF"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
