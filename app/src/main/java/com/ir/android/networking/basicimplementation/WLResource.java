@@ -1,12 +1,15 @@
 package com.ir.android.networking.basicimplementation;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.ir.android.networking.basicimplementation.exceptions.ProcessingFailedException;
 import com.worklight.wlclient.api.WLClient;
 import com.worklight.wlclient.api.WLProcedureInvocationData;
 import com.worklight.wlclient.api.WLRequestOptions;
 import com.worklight.wlclient.api.WLResponse;
+
+import org.apache.http.Header;
 
 import java.util.ArrayList;
 
@@ -15,20 +18,32 @@ import java.util.ArrayList;
  */
 public abstract class WLResource implements Resource {
 
+    private final static String SHARED_PREFERNCES_NAME="WLResource";
+    private final static String LTPA_TOKEN2_SHARED_PREFERNCES_NAME="ltpaToken2";
     private ArrayList<Object> parameters;
+    private Context context;
 
+    private String ltpaToken2;
 
-    public WLResource(){
+    public WLResource(Context context){
         super();
+        this.context=context;
         parameters=new ArrayList<>();
     }
 
-    protected WLResponse process(Context context) throws ProcessingFailedException {
+    protected String getLtpaToken2() {
+        SharedPreferences prefs = context.getSharedPreferences(SHARED_PREFERNCES_NAME, context.MODE_PRIVATE);
+        String ltpaToken2 = prefs.getString(LTPA_TOKEN2_SHARED_PREFERNCES_NAME, null);
+
+        return ltpaToken2;
+    }
+
+    protected WLResponse process() throws ProcessingFailedException {
         try {
 
             BasicWLResponseListener responseListener=new BasicWLResponseListener();
 
-            WLClient client=WLClient.createInstance(context);
+            final WLClient client=WLClient.createInstance(context);
 
             String adapterName = getAdapterName();
             String procedureName = getProcedureName();
@@ -46,6 +61,18 @@ public abstract class WLResource implements Resource {
 
             WLResponse response = responseListener.getResponseSync();
 
+            Header cookie=response.getHeader("Set-Cookie");
+            if(cookie!=null) {
+                String cookieValue = cookie.getValue();
+                int startIndex = cookieValue.indexOf("LtpaToken2=");
+                int endIndex = cookieValue.indexOf(";", startIndex);
+                ltpaToken2 = cookieValue.substring(startIndex, endIndex);
+
+                SharedPreferences.Editor editor = context.getSharedPreferences(SHARED_PREFERNCES_NAME, Context.MODE_PRIVATE).edit();
+                editor.putString(LTPA_TOKEN2_SHARED_PREFERNCES_NAME, ltpaToken2);
+                editor.commit();
+            }
+
             return response;
 
         } catch (Exception e) {
@@ -57,7 +84,12 @@ public abstract class WLResource implements Resource {
 
     public abstract String getProcedureName();
 
+    public Context getContext() {
+        return context;
+    }
+
     public void addParameter(Object object){
         parameters.add(object);
     }
+
 }

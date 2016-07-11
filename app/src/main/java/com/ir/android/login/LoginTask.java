@@ -25,8 +25,8 @@ public class LoginTask extends Task {
     protected Result onTaskWork() {
 
         try {
-            UserResource loginResource=new UserResource(username,password);
-            loginResource.retrieve(context);
+            UserResource loginResource=new UserResource(username,password,context);
+            loginResource.retrieve();
             return new Result(0,loginResource);
         } catch (Exception e) {
             return new Result(1,e);

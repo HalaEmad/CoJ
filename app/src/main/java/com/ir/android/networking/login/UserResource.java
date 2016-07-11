@@ -5,6 +5,7 @@ import android.content.Context;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ir.android.networking.basicimplementation.WLResource;
+import com.ir.android.networking.basicimplementation.exceptions.SavingFailedException;
 import com.worklight.utils.Base64;
 import com.worklight.wlclient.api.WLResponse;
 
@@ -44,11 +45,12 @@ public class UserResource extends WLResource {
     @JsonProperty("groups")
     private ArrayList<UserGroup> groups;
 
-    private UserResource(){
-
+    private UserResource(Context context){
+        super(context);
     }
 
-    public UserResource(String username, String password){
+    public UserResource(String username, String password,Context context){
+        this(context);
         this.username=username;
         this.password=password;
     }
@@ -200,17 +202,17 @@ public class UserResource extends WLResource {
     }
 
     @Override
-    public void save(Context context) {
+    public void save() throws SavingFailedException {
 
     }
 
     @Override
-    public void retrieve(Context context) throws LoginFailedException{
+    public void retrieve() throws LoginFailedException{
         try {
             String authorizationInput =
                     Base64.encode((username + ":" + password).getBytes(), "UTF-8");
             addParameter(authorizationInput);
-            WLResponse response=process(context);
+            WLResponse response=process();
             if(response.getStatus()== 200) {
                 ObjectMapper objectMapper = new ObjectMapper();
                 JSONArray jsonArray=new JSONArray(response.getResponseText());
@@ -223,7 +225,7 @@ public class UserResource extends WLResource {
             //TODO:remove stub
 
                 try {
-                    InputStream inputStream = context.getAssets().open("Login-Success.octet-stream");
+                    InputStream inputStream = getContext().getAssets().open("Login-Success.octet-stream");
 
                     BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
                     StringBuilder string = new StringBuilder();

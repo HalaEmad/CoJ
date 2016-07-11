@@ -1,7 +1,5 @@
 package com.ir.android.networking.basicimplementation;
 
-import android.content.Context;
-
 import com.ir.android.networking.basicimplementation.exceptions.RetrivingFailedException;
 import com.ir.android.networking.basicimplementation.exceptions.SavingFailedException;
 
@@ -9,7 +7,7 @@ import com.ir.android.networking.basicimplementation.exceptions.SavingFailedExce
  * Created by Henawey on 7/11/16.
  */
 public interface Resource {
-    void save(Context context) throws SavingFailedException;
+    void save() throws SavingFailedException;
 
-    void retrieve(Context context) throws RetrivingFailedException;
+    void retrieve() throws RetrivingFailedException;
 }
