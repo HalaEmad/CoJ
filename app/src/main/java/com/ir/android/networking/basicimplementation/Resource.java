@@ -1,9 +1,9 @@
-package com.ir.android.networking.basicImplemenation;
+package com.ir.android.networking.basicimplementation;
 
 import android.content.Context;
 
-import com.ir.android.networking.exceptions.RetrivingFailedException;
-import com.ir.android.networking.exceptions.SavingFailedException;
+import com.ir.android.networking.basicimplementation.exceptions.RetrivingFailedException;
+import com.ir.android.networking.basicimplementation.exceptions.SavingFailedException;
 
 /**
  * Created by Henawey on 7/11/16.

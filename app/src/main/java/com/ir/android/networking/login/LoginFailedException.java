@@ -1,6 +1,6 @@
 package com.ir.android.networking.login;
 
-import com.ir.android.networking.exceptions.RetrivingFailedException;
+import com.ir.android.networking.basicimplementation.exceptions.RetrivingFailedException;
 
 /**
  * Created by Henawey on 6/26/16.

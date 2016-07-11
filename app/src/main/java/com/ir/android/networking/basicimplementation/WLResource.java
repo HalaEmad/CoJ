@@ -1,8 +1,8 @@
-package com.ir.android.networking.basicImplemenation;
+package com.ir.android.networking.basicimplementation;
 
 import android.content.Context;
 
-import com.ir.android.networking.exceptions.ProcessingFailedException;
+import com.ir.android.networking.basicimplementation.exceptions.ProcessingFailedException;
 import com.worklight.wlclient.api.WLClient;
 import com.worklight.wlclient.api.WLProcedureInvocationData;
 import com.worklight.wlclient.api.WLRequestOptions;
@@ -49,7 +49,6 @@ public abstract class WLResource implements Resource {
             return response;
 
         } catch (Exception e) {
-            //read from stubs
             throw new ProcessingFailedException(e);
         }
     }

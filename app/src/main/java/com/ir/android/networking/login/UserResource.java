@@ -4,12 +4,14 @@ import android.content.Context;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ir.android.networking.basicImplemenation.WLResource;
+import com.ir.android.R;
+import com.ir.android.networking.basicimplementation.WLResource;
 import com.worklight.utils.Base64;
 import com.worklight.wlclient.api.WLResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -45,8 +47,16 @@ public class UserResource extends WLResource {
         this.password=password;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getUsername() {
         return username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPassword() {
@@ -205,6 +215,16 @@ public class UserResource extends WLResource {
             }
 
         }catch (Exception e){
+            if(e instanceof RuntimeException){
+
+//                InputStream is = context.getResources().openRawResource(R.);
+                //read from stub
+                ObjectMapper objectMapper = new ObjectMapper();
+                UserResource userResource = objectMapper.readValue(response.getResponseText(), this.getClass());
+
+//                BeanUtils.copyProperties(this, userResource);
+            }
+
             throw new LoginFailedException(e);
         }
     }

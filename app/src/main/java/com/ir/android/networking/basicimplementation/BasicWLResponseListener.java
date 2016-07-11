@@ -1,4 +1,4 @@
-package com.ir.android.networking.basicImplemenation;
+package com.ir.android.networking.basicimplementation;
 
 import com.worklight.wlclient.api.WLFailResponse;
 import com.worklight.wlclient.api.WLResponse;
