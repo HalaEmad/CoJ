@@ -25,15 +25,11 @@ public class LoginTask extends Task {
     protected Result onTaskWork() {
 
         try {
-            UserResource loginResource=new UserResource(username,password);
-            loginResource.retrieve(context);
-//            if (loginResponseListener.status== ResponseStatus.FAIL){
-                return new Result(1,loginResource);
-//            }else{
-//                return new Result(0);
-//            }
+            UserResource loginResource=new UserResource(username,password,context);
+            loginResource.retrieve();
+            return new Result(0,loginResource);
         } catch (Exception e) {
-            return new Result(0,e);
+            return new Result(1,e);
             //TODO: Please make reuslt 0 once "java.lang.RuntimeException: WLConfig(): Can't load wlclient.properties file" solved
 //            return new Result(1);//java.lang.RuntimeException: WLConfig(): Can't load wlclient.properties file
         }

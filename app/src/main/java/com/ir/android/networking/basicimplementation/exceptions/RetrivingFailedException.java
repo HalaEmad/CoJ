@@ -1,4 +1,4 @@
-package com.ir.android.networking.exceptions;
+package com.ir.android.networking.basicimplementation.exceptions;
 
 /**
  * Created by Henawey on 7/11/16.

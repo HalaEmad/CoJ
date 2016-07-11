@@ -4,12 +4,17 @@ import android.content.Context;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ir.android.networking.basicImplemenation.WLResource;
+import com.ir.android.networking.basicimplementation.WLResource;
+import com.ir.android.networking.basicimplementation.exceptions.SavingFailedException;
 import com.worklight.utils.Base64;
 import com.worklight.wlclient.api.WLResponse;
 
-import org.apache.commons.beanutils.BeanUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -40,13 +45,26 @@ public class UserResource extends WLResource {
     @JsonProperty("groups")
     private ArrayList<UserGroup> groups;
 
-    public UserResource(String username, String password){
+    private UserResource(Context context){
+        super(context);
+    }
+
+    public UserResource(String username, String password,Context context){
+        this(context);
         this.username=username;
         this.password=password;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getUsername() {
         return username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPassword() {
@@ -184,27 +202,54 @@ public class UserResource extends WLResource {
     }
 
     @Override
-    public void save(Context context) {
+    public void save() throws SavingFailedException {
 
     }
 
     @Override
-    public void retrieve(Context context) throws LoginFailedException{
+    public void retrieve() throws LoginFailedException{
         try {
             String authorizationInput =
                     Base64.encode((username + ":" + password).getBytes(), "UTF-8");
             addParameter(authorizationInput);
-            WLResponse response=process(context);
+            WLResponse response=process();
             if(response.getStatus()== 200) {
                 ObjectMapper objectMapper = new ObjectMapper();
-                UserResource userResource = objectMapper.readValue(response.getResponseText(), this.getClass());
-
-                BeanUtils.copyProperties(this, userResource);
+                JSONArray jsonArray=new JSONArray(response.getResponseText());
+                objectMapper.readerForUpdating(this).readValue(jsonArray.getString(0));
             }else{
                 throw new LoginFailedException(response.getResponseText());
             }
 
         }catch (Exception e){
+            //TODO:remove stub
+
+                try {
+                    InputStream inputStream = getContext().getAssets().open("Login-Success.octet-stream");
+
+                    BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
+                    StringBuilder string = new StringBuilder();
+                    String line;
+                    while ((line = r.readLine()) != null) {
+                        string.append(line).append('\n');
+                    }
+
+
+                    //read from stub
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    JSONObject jsonObject=new JSONObject(string.toString());
+                    String array=jsonObject.getString("text");
+                    JSONArray jsonArray=new JSONArray(array);
+
+
+                    objectMapper.readerForUpdating(this).readValue(jsonArray.getString(0));
+
+                    return;
+                }catch(Exception e1){
+                    /*it's stub please don't handle this*/
+                    e1.printStackTrace();
+                }
+    //Stub end
             throw new LoginFailedException(e);
         }
     }
