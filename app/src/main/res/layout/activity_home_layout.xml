@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/home_background"
+    android:orientation="vertical">
+    <!-- welcome / surname-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/home_welcome"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/surname_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Name Surname"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Logo -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/fr_logo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="15dp"
+        android:background="#f4ad1f"></LinearLayout>
+    <!-- Info -->
+    <LinearLayout
+        android:id="@+id/info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:layout_weight="0.75"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <!-- Shift Details Layout-->
+        <LinearLayout
+            android:id="@+id/shift_details_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/shift_details_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_shift_details"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <!-- Date -->
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_Date"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <!-- Shift -->
+            <TextView
+                android:id="@+id/shift"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_shift_label"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <!-- Area -->
+            <TextView
+                android:id="@+id/area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_area"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+
+        <!-- Vehicle Details Layout-->
+        <LinearLayout
+            android:id="@+id/vehicle_details_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/veihcle_details_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_vehicle_details"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <!-- Driver -->
+            <TextView
+                android:id="@+id/driver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_driver"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <!-- Reg -->
+            <TextView
+                android:id="@+id/reg_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_reg"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <!-- Occ -->
+            <TextView
+                android:id="@+id/occ_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_occ"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--Footer -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#FFFFFFFF"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+
+        <Button
+            android:id="@+id/home_onduty_btn"
+            style="?android:textAppearanceSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="16dp"
+            android:background="#FF1A9011"
+            android:text="@string/home_onduty"
+            android:textColor="#FFFFFFFF"
+
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/home_onbreak_btn"
+            style="?android:textAppearanceSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/home_onduty_btn"
+            android:layout_margin="1dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="16dp"
+            android:background="#FFFFFFFF"
+            android:text="@string/home_onbreak"
+            android:textColor="#FF1A9011"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</LinearLayout>

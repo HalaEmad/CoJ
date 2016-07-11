@@ -6,6 +6,7 @@ import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.Result;
 import com.ibm.android.kit.models.ViewModel;
 import com.ibm.android.kit.tasks.Task;
+import com.ir.android.home.HomeScreen;
 import com.ir.android.map.IncidentActivity;
 
 /**
@@ -36,7 +37,7 @@ public class LoginCtrl extends Controller {
         if (result.getError() != 0) {
             showOkErrorDialog("Login Failed");
         } else {
-            Intent intent = new Intent(getContext(), IncidentActivity.class);
+            Intent intent = new Intent(getContext(), HomeScreen.class);
             startActivity(intent);
             getActivity().finish();
         }
