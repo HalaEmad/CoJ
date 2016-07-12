@@ -24,14 +24,15 @@ public class LoginTask extends Task {
     @Override
     protected Result onTaskWork() {
 
-        try {
-            UserResource loginResource=new UserResource(username,password,context);
-            loginResource.retrieve();
-            return new Result(0,loginResource);
-        } catch (Exception e) {
-            return new Result(1,e);
-        }
-
+//        try {
+//            UserResource loginResource=new UserResource(username,password,context);
+//            loginResource.retrieve();
+//            return new Result(0,loginResource);
+//        } catch (Exception e) {
+//            return new Result(1,e);
+//        }
+        return new Result(0
+        );
     }
 
 }
