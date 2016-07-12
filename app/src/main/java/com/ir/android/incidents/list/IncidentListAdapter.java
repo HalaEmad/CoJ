@@ -1,29 +1,26 @@
-package com.ir.android.map.fragments;
+package com.ir.android.incidents.list;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ibm.android.kit.models.ListItemViewModel;
 import com.ibm.android.kit.views.adapters.AbstractViewHolder;
 import com.ibm.android.kit.views.adapters.ListAdapter;
 import com.ir.android.R;
-import com.ir.android.map.IncidentListener;
+import com.ir.android.incidents.list.ItemListener;
 import com.ir.android.model.Incident;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by emanhassan on 7/4/16.
  */
-public class IncidentAdapter extends ListAdapter {
+public class IncidentListAdapter extends com.ibm.android.kit.views.adapters.ListAdapter {
     private ArrayList<Incident> incidents;
     private ItemListener listener ;
-    public IncidentAdapter(Context context, ArrayList<Incident> incidents, ItemListener listener) {
+    public IncidentListAdapter(Context context, ArrayList<Incident> incidents, ItemListener listener) {
         super(context);
         this.incidents = incidents;
         this.listener = listener;

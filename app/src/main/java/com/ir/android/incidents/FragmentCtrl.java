@@ -1,11 +1,10 @@
-package com.ir.android.map.fragments;
+package com.ir.android.incidents;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,8 +16,7 @@ import com.ibm.android.kit.tasks.Task;
 import com.ibm.android.kit.utils.GeneralUtility;
 import com.ibm.android.kit.utils.LocationUtility;
 import com.ir.android.R;
-import com.ir.android.map.IncidentListener;
-import com.ir.android.map.MapTask;
+import com.ir.android.incidents.map.IncidentMapListener;
 
 import com.ir.android.model.Incident;
 import com.ir.android.service.LocationService;
@@ -28,7 +26,7 @@ import java.util.ArrayList;
 /**
  * Created by emanhassan on 7/4/16.
  */
-public class IncidentFrgmtCtrl extends Controller implements IncidentListener {
+public class FragmentCtrl extends Controller implements IncidentMapListener {
 
 
     private static final String LOC_DLG = "loc.dlg";
@@ -52,7 +50,7 @@ public class IncidentFrgmtCtrl extends Controller implements IncidentListener {
 
         LocationService.start(getScreen());
 
-        MapTask task = new MapTask(this, getContext()
+        IncidentTask task = new IncidentTask(this, getContext()
         );
         task.execute();
     }

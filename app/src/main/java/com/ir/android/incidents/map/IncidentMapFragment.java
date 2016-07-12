@@ -1,8 +1,7 @@
-package com.ir.android.map.fragments;
+package com.ir.android.incidents.map;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -20,14 +19,13 @@ import com.esri.core.geometry.Point;
 import com.esri.core.map.Feature;
 import com.esri.core.map.Graphic;
 import com.esri.core.symbol.PictureMarkerSymbol;
-import com.esri.core.symbol.SimpleMarkerSymbol;
 import com.esri.core.tasks.identify.IdentifyParameters;
 import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.ViewModel;
 import com.ibm.android.kit.views.fragments.Fragment;
 import com.ir.android.R;
-import com.ir.android.map.IncidentListener;
-import com.ir.android.map.MapViewModel;
+import com.ir.android.incidents.FragmentViewModel;
+import com.ir.android.incidents.FragmentCtrl;
 import com.ir.android.model.Incident;
 
 import java.util.ArrayList;
@@ -37,7 +35,7 @@ import java.util.Map;
 /**
  * Created by emanhassan on 7/4/16.
  */
-public class MapFragment extends Fragment implements OnSingleTapListener {
+public class IncidentMapFragment extends Fragment implements OnSingleTapListener {
 
     private MapView mapView;
     private ArrayList<Incident> incidentsLocs;
@@ -48,7 +46,7 @@ public class MapFragment extends Fragment implements OnSingleTapListener {
 
     @Override
     protected Controller createController() {
-        return new IncidentFrgmtCtrl();
+        return new FragmentCtrl();
     }
 
     @Override
@@ -159,7 +157,7 @@ public class MapFragment extends Fragment implements OnSingleTapListener {
             if (null != id) {
                 if (incidentsLocs != null && incidentsLocs.size() > ((int) id)) {
                     Incident selectedIncident = incidentsLocs.get((int) id);
-                    ((IncidentListener) controller).onMarkerClicked(selectedIncident);
+                    ((IncidentMapListener) controller).onMarkerClicked(selectedIncident);
                 }
             }
 

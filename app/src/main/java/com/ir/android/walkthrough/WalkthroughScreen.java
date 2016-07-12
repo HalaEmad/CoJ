@@ -3,12 +3,13 @@ package com.ir.android.walkthrough;
 import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.ViewModel;
 import com.ibm.android.kit.views.activities.Activity;
+import com.ibm.android.kit.views.fragments.Fragment;
 import com.ir.android.R;
 
 /**
  * Created by bassam on 09-07-2016.
  */
-public class WalkthroughScreen extends Activity {
+public class WalkthroughScreen extends Fragment {
     @Override
     protected Controller createController() {
         return new WalkthroughCtrl();

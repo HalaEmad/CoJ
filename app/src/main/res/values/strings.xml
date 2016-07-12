@@ -13,8 +13,21 @@
 
     <!-- Home -->
     <string name="home_title">Home</string>
+    <string name="home_welcome">Welcome</string>
+    <string name="home_shift_details">Shift Details</string>
+    <string name="home_vehicle_details">Vehicle Details</string>
+    <string name="home_Date">Date: </string>
+    <string name="home_shift_label">Shift: </string>
+    <string name="home_area">Area: </string>
+    <string name="home_driver">Driver: </string>
+    <string name="home_reg">Reg: </string>
+    <string name="home_occ">Occ: </string>
+
+    <string name="home_onduty">ON DUTY</string>
+    <string name="home_onbreak">ON BREAK</string>
+
     <string name="home_open_navigation">Open Navigation</string>
-    <string name="home_close_navigation">Open Navigation</string>
+    <string name="home_close_navigation">Close Navigation</string>
     <string-array name="navigation_array">
         <item>Home</item>
         <item>Incidents</item>
