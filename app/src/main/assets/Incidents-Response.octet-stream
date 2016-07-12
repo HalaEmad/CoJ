@@ -1,7 +1,7 @@
 {
   "type": "FeatureCollection",
   "id": 1,
-  "lastUpdateDate": 1467816031113,
+  "lastUpdateDate": 1468248027614,
   "features": [
     {
       "type": "Feature",
@@ -384,6 +384,358 @@
         "LastUpdateDateTime": {
           "text": "Jun 30, 2016 8:49:54 AM",
           "value": 1467276594147,
+          "offset": 0
+        },
+        "Description": null,
+        "AssessmentDateTime": {
+          "text": "Jul 21, 2013 8:30:00 PM",
+          "value": 1374438600000,
+          "offset": 0
+        },
+        "StartDateTime": {
+          "text": "Jul 21, 2013 8:30:00 PM",
+          "value": 1374438600000,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 99,
+      "fid": 99,
+      "deleted": false,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.267746,
+          45.0287704
+        ]
+      },
+      "properties": {
+        "DatasourceId": 1,
+        "TenantId": null,
+        "Classification": null,
+        "AnnotationId": null,
+        "Name": "Record Five",
+        "TimeZoneOffset": 60,
+        "EndDateTime": {
+          "text": "Jul 21, 2013 8:30:00 PM",
+          "value": 1374438600000,
+          "offset": 0
+        },
+        "DeleteFlag": 0,
+        "ObjectId": 99,
+        "LastUpdateDateTime": {
+          "text": "Jul 10, 2016 8:37:06 AM",
+          "value": 1468139826516,
+          "offset": 0
+        },
+        "Description": null,
+        "AssessmentDateTime": {
+          "text": "Jul 21, 2013 8:30:00 PM",
+          "value": 1374438600000,
+          "offset": 0
+        },
+        "StartDateTime": {
+          "text": "Jul 21, 2013 8:30:00 PM",
+          "value": 1374438600000,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 100,
+      "fid": 100,
+      "deleted": false,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.267746,
+          45.0287704
+        ]
+      },
+      "properties": {
+        "DatasourceId": 1,
+        "TenantId": null,
+        "Classification": null,
+        "AnnotationId": null,
+        "Name": "Record Five",
+        "TimeZoneOffset": 60,
+        "EndDateTime": {
+          "text": "Jul 21, 2013 8:30:00 PM",
+          "value": 1374438600000,
+          "offset": 0
+        },
+        "DeleteFlag": 0,
+        "ObjectId": 100,
+        "LastUpdateDateTime": {
+          "text": "Jul 11, 2016 1:08:20 PM",
+          "value": 1468242500947,
+          "offset": 0
+        },
+        "Description": null,
+        "AssessmentDateTime": {
+          "text": "Jul 21, 2013 8:30:00 PM",
+          "value": 1374438600000,
+          "offset": 0
+        },
+        "StartDateTime": {
+          "text": "Jul 21, 2013 8:30:00 PM",
+          "value": 1374438600000,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 101,
+      "fid": 101,
+      "deleted": false,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.267746,
+          45.0287704
+        ]
+      },
+      "properties": {
+        "DatasourceId": 1,
+        "TenantId": null,
+        "Classification": null,
+        "AnnotationId": null,
+        "Name": "Record Five",
+        "TimeZoneOffset": 60,
+        "EndDateTime": {
+          "text": "Jul 21, 2013 8:30:00 PM",
+          "value": 1374438600000,
+          "offset": 0
+        },
+        "DeleteFlag": 0,
+        "ObjectId": 101,
+        "LastUpdateDateTime": {
+          "text": "Jul 11, 2016 1:12:08 PM",
+          "value": 1468242728102,
+          "offset": 0
+        },
+        "Description": null,
+        "AssessmentDateTime": {
+          "text": "Jul 21, 2013 8:30:00 PM",
+          "value": 1374438600000,
+          "offset": 0
+        },
+        "StartDateTime": {
+          "text": "Jul 21, 2013 8:30:00 PM",
+          "value": 1374438600000,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 102,
+      "fid": 102,
+      "deleted": false,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.267746,
+          45.0287704
+        ]
+      },
+      "properties": {
+        "DatasourceId": 1,
+        "TenantId": null,
+        "Classification": null,
+        "AnnotationId": null,
+        "Name": "Record Five",
+        "TimeZoneOffset": 60,
+        "EndDateTime": {
+          "text": "Jul 21, 2013 8:30:00 PM",
+          "value": 1374438600000,
+          "offset": 0
+        },
+        "DeleteFlag": 0,
+        "ObjectId": 102,
+        "LastUpdateDateTime": {
+          "text": "Jul 11, 2016 1:14:01 PM",
+          "value": 1468242841855,
+          "offset": 0
+        },
+        "Description": null,
+        "AssessmentDateTime": {
+          "text": "Jul 21, 2013 8:30:00 PM",
+          "value": 1374438600000,
+          "offset": 0
+        },
+        "StartDateTime": {
+          "text": "Jul 21, 2013 8:30:00 PM",
+          "value": 1374438600000,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 103,
+      "fid": 103,
+      "deleted": false,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.267746,
+          45.0287704
+        ]
+      },
+      "properties": {
+        "DatasourceId": 1,
+        "TenantId": null,
+        "Classification": null,
+        "AnnotationId": null,
+        "Name": "Record Five",
+        "TimeZoneOffset": 60,
+        "EndDateTime": {
+          "text": "Jul 11, 2016 1:14:09 PM",
+          "value": 1468242849085,
+          "offset": 0
+        },
+        "DeleteFlag": 0,
+        "ObjectId": 103,
+        "LastUpdateDateTime": {
+          "text": "Jul 11, 2016 1:14:09 PM",
+          "value": 1468242849085,
+          "offset": 0
+        },
+        "Description": null,
+        "AssessmentDateTime": {
+          "text": "Jul 11, 2016 1:14:09 PM",
+          "value": 1468242849085,
+          "offset": 0
+        },
+        "StartDateTime": {
+          "text": "Jul 11, 2016 1:14:09 PM",
+          "value": 1468242849085,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 104,
+      "fid": 104,
+      "deleted": false,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.267746,
+          45.0287704
+        ]
+      },
+      "properties": {
+        "DatasourceId": 1,
+        "TenantId": null,
+        "Classification": null,
+        "AnnotationId": null,
+        "Name": "Record Five",
+        "TimeZoneOffset": 60,
+        "EndDateTime": {
+          "text": "Jul 11, 2016 1:14:19 PM",
+          "value": 1468242859548,
+          "offset": 0
+        },
+        "DeleteFlag": 0,
+        "ObjectId": 104,
+        "LastUpdateDateTime": {
+          "text": "Jul 11, 2016 1:14:19 PM",
+          "value": 1468242859548,
+          "offset": 0
+        },
+        "Description": null,
+        "AssessmentDateTime": {
+          "text": "Jul 11, 2016 1:14:19 PM",
+          "value": 1468242859548,
+          "offset": 0
+        },
+        "StartDateTime": {
+          "text": "Jul 11, 2016 1:14:19 PM",
+          "value": 1468242859548,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 105,
+      "fid": 105,
+      "deleted": false,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.267746,
+          45.0287704
+        ]
+      },
+      "properties": {
+        "DatasourceId": 1,
+        "TenantId": null,
+        "Classification": null,
+        "AnnotationId": null,
+        "Name": "Ahmed Henawey",
+        "TimeZoneOffset": 60,
+        "EndDateTime": {
+          "text": "Jul 11, 2016 1:14:51 PM",
+          "value": 1468242891649,
+          "offset": 0
+        },
+        "DeleteFlag": 0,
+        "ObjectId": 105,
+        "LastUpdateDateTime": {
+          "text": "Jul 11, 2016 1:14:51 PM",
+          "value": 1468242891649,
+          "offset": 0
+        },
+        "Description": null,
+        "AssessmentDateTime": {
+          "text": "Jul 11, 2016 1:14:51 PM",
+          "value": 1468242891649,
+          "offset": 0
+        },
+        "StartDateTime": {
+          "text": "Jul 11, 2016 1:14:51 PM",
+          "value": 1468242891649,
+          "offset": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 106,
+      "fid": 106,
+      "deleted": false,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.267746,
+          45.0287704
+        ]
+      },
+      "properties": {
+        "DatasourceId": 1,
+        "TenantId": null,
+        "Classification": null,
+        "AnnotationId": null,
+        "Name": "Record Five",
+        "TimeZoneOffset": 60,
+        "EndDateTime": {
+          "text": "Jul 21, 2013 8:30:00 PM",
+          "value": 1374438600000,
+          "offset": 0
+        },
+        "DeleteFlag": 0,
+        "ObjectId": 106,
+        "LastUpdateDateTime": {
+          "text": "Jul 11, 2016 2:40:27 PM",
+          "value": 1468248027614,
           "offset": 0
         },
         "Description": null,

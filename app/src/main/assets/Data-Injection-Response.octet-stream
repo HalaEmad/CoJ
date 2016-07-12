@@ -1,17 +1,14 @@
 {
-  "_COMMENT": "custom properties (\"Property_1\",\"Property_2\") not avaliable for current datasource",
   "DATASOURCEID": 1,
-  "PROPERTY_1": "505 East 9th Street",
-  "UNIQUETEXTIDENTIFIER": "jmpdincidents",
-  "PROPERTY_2": "Record five description",
-  "NAME": "Record Five",
-  "lastUpdateTime": 1468136226516,
-  "TIMEZONEOFFSET": 60,
   "LOCATION": "Point(-93.26774597168402 45.02877031147919)",
-  "ENDDATETIME": "2013-07-21T20:30:00",
-  "OBJECTID": 99,
-  "LASTUPDATEDATETIME": "2016-07-10T09:37:06+01:00",
-  "id": 99,
-  "STARTDATETIME": "2013-07-21T20:30:00",
-  "ASSESSMENTDATETIME": "2013-07-21T20:30:00"
+  "ENDDATETIME": 1468249393675,
+  "UNIQUETEXTIDENTIFIER": "jmpdincidents",
+  "LASTUPDATEDATETIME": "2016-07-11T16:03:13+01:00",
+  "OBJECTID": 109,
+  "id": 109,
+  "NAME": "Record Five",
+  "lastUpdateTime": 1468245793676,
+  "TIMEZONEOFFSET": 60,
+  "ASSESSMENTDATETIME": 1468249393675,
+  "STARTDATETIME": 1468249393675
 }

@@ -8,6 +8,8 @@ public class SavingFailedException extends ProcessingFailedException {
         super();
     }
 
+    public SavingFailedException(String message){super(message);}
+
     public SavingFailedException(Throwable throwable){
         super(throwable);
     }
