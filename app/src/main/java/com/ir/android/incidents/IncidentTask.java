@@ -1,4 +1,4 @@
-package com.ir.android.map;
+package com.ir.android.incidents;
 
 import android.content.Context;
 
@@ -13,9 +13,9 @@ import java.util.ArrayList;
 /**
  * Created by emanhassan on 6/10/16.
  */
-public class MapTask extends Task {
+public class IncidentTask extends Task {
 
-    public MapTask(ITask listener, Context context) {
+    public IncidentTask(ITask listener, Context context) {
         super(listener, context);
     }
 

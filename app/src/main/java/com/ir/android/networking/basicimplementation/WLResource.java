@@ -9,8 +9,6 @@ import com.worklight.wlclient.api.WLProcedureInvocationData;
 import com.worklight.wlclient.api.WLRequestOptions;
 import com.worklight.wlclient.api.WLResponse;
 
-import org.apache.http.Header;
-
 import java.util.ArrayList;
 
 /**
@@ -18,17 +16,17 @@ import java.util.ArrayList;
  */
 public abstract class WLResource implements Resource {
 
-    private final static String SHARED_PREFERNCES_NAME="WLResource";
-    private final static String LTPA_TOKEN2_SHARED_PREFERNCES_NAME="ltpaToken2";
+    private final static String SHARED_PREFERNCES_NAME = "WLResource";
+    private final static String LTPA_TOKEN2_SHARED_PREFERNCES_NAME = "ltpaToken2";
     private ArrayList<Object> parameters;
     private Context context;
 
     private String ltpaToken2;
 
-    public WLResource(Context context){
+    public WLResource(Context context) {
         super();
-        this.context=context;
-        parameters=new ArrayList<>();
+        this.context = context;
+        parameters = new ArrayList<>();
     }
 
     protected String getLtpaToken2() {
@@ -41,9 +39,9 @@ public abstract class WLResource implements Resource {
     protected WLResponse process() throws ProcessingFailedException {
         try {
 
-            BasicWLResponseListener responseListener=new BasicWLResponseListener();
+            BasicWLResponseListener responseListener = new BasicWLResponseListener();
 
-            final WLClient client=WLClient.createInstance(context);
+            final WLClient client = WLClient.createInstance(context);
 
             String adapterName = getAdapterName();
             String procedureName = getProcedureName();
@@ -57,21 +55,23 @@ public abstract class WLResource implements Resource {
             WLRequestOptions options = new WLRequestOptions();
             options.setTimeout(30000);
 
-            client.invokeProcedure(invocationData,responseListener , options);
+            client.invokeProcedure(invocationData, responseListener, options);
 
             WLResponse response = responseListener.getResponseSync();
 
-            Header cookie=response.getHeader("Set-Cookie");
-            if(cookie!=null) {
-                String cookieValue = cookie.getValue();
-                int startIndex = cookieValue.indexOf("LtpaToken2=");
-                int endIndex = cookieValue.indexOf(";", startIndex);
-                ltpaToken2 = cookieValue.substring(startIndex, endIndex);
-
-                SharedPreferences.Editor editor = context.getSharedPreferences(SHARED_PREFERNCES_NAME, Context.MODE_PRIVATE).edit();
-                editor.putString(LTPA_TOKEN2_SHARED_PREFERNCES_NAME, ltpaToken2);
-                editor.commit();
-            }
+            // Bassam++ commented because it gives Header class not found error
+//            Header cookie = response.getHeader("Set-Cookie");
+//            if (cookie != null) {
+//                String cookieValue = cookie.getValue();
+//                int startIndex = cookieValue.indexOf("LtpaToken2=");
+//                int endIndex = cookieValue.indexOf(";", startIndex);
+//                ltpaToken2 = cookieValue.substring(startIndex, endIndex);
+//
+//                SharedPreferences.Editor editor = context.getSharedPreferences(SHARED_PREFERNCES_NAME, Context.MODE_PRIVATE).edit();
+//                editor.putString(LTPA_TOKEN2_SHARED_PREFERNCES_NAME, ltpaToken2);
+//                editor.commit();
+//            }
+            // Bassam--
 
             return response;
 
@@ -88,7 +88,7 @@ public abstract class WLResource implements Resource {
         return context;
     }
 
-    public void addParameter(Object object){
+    public void addParameter(Object object) {
         parameters.add(object);
     }
 

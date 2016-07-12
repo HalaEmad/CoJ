@@ -29,6 +29,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"
                 android:paddingRight="10dp"
+                android:src="@mipmap/assault_icon"
                 android:layout_weight="0.10"
                 />
 
@@ -69,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/common_plus_signin_btn_text_dark_disabled"
+        android:background="#f4f3f2"
         android:minHeight="30dp"
         android:orientation="vertical">
 
@@ -119,7 +120,7 @@
         android:id="@+id/thirdLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/button_material_light"
+        android:background="#fbf8f8"
         android:minHeight="30dp"
         android:orientation="vertical">
         <LinearLayout

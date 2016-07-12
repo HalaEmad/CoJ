@@ -1,14 +1,14 @@
-package com.ir.android.ActiveCall;
+package com.ir.android.active_call;
 
 import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.ViewModel;
-import com.ibm.android.kit.views.activities.Activity;
+import com.ibm.android.kit.views.fragments.Fragment;
 import com.ir.android.R;
 
 /**
  * Created by bassam on 09-07-2016.
  */
-public class ActiveCallScreen extends Activity {
+public class ActiveCallScreen extends Fragment {
     @Override
     protected Controller createController() {
         return new ActiveCallCtrl();

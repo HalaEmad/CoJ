@@ -1,4 +1,4 @@
-package com.ir.android.map.fragments;
+package com.ir.android.incidents.list;
 
 /**
  * Created by emanhassan on 7/4/16.

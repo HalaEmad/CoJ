@@ -1,4 +1,4 @@
-package com.ir.android.map;
+package com.ir.android.incidents.map;
 
 import com.ir.android.model.Incident;
 
@@ -7,7 +7,7 @@ import com.ir.android.model.Incident;
  * So Map controller should handle this action and return back to UI
  * Created by emanhassan on 6/23/16.
  */
-public interface IncidentListener {
+public interface IncidentMapListener {
     void onMarkerClicked (Incident clickedIncident);
     void onMarkerClicked (int position);
 

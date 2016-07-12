@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <permission
-        android:name="com.ir.android.map.permission.MAPS_RECEIVE"
+        android:name="com.ir.android.incidents.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!--
@@ -59,22 +59,7 @@
             android:name=".login.LoginScreen"
             android:label="@string/sign_in_title" />
 
-        <activity
-            android:name=".home.HomeScreen"
-            android:label="@string/home_title" />
-
-        <activity
-            android:name=".walkthrough.WalkthroughScreen"
-            android:label="@string/walkthrough_title" />
-
-        <activity
-            android:name=".map.IncidentActivity"
-            android:label="@string/incident_title"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity
-            android:name=".ActiveCall.ActiveCallScreen"
-            android:label="@string/active_call_title" />
+        <activity android:name=".main.MainScreen" />
 
         <activity android:name="com.worklight.wlclient.ui.UIActivity" />
 

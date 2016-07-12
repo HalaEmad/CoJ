@@ -1,14 +1,14 @@
-package com.ir.android.map.fragments;
+package com.ir.android.incidents.list;
 
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.ViewModel;
 import com.ibm.android.kit.views.fragments.Fragment;
 import com.ir.android.R;
-import com.ir.android.map.IncidentListener;
+import com.ir.android.incidents.map.IncidentMapListener;
+import com.ir.android.incidents.FragmentViewModel;
+import com.ir.android.incidents.FragmentCtrl;
 import com.ir.android.model.Incident;
 
 import java.util.ArrayList;
@@ -16,14 +16,14 @@ import java.util.ArrayList;
 /**
  * Created by emanhassan on 7/4/16.
  */
-public class ListFragment extends Fragment implements  ItemListener
+public class IncidentListFragment extends Fragment implements ItemListener
 {
 
     private ListView listView;
 
     @Override
     protected Controller createController() {
-        return new IncidentFrgmtCtrl();
+        return new FragmentCtrl();
     }
 
     @Override
@@ -41,19 +41,19 @@ public class ListFragment extends Fragment implements  ItemListener
 
         listView = (ListView) getView().findViewById(R.id.list);
         ArrayList<Incident> incidents =  ((FragmentViewModel)controller.getViewModel()).getIncidentsLocs();
-        listView.setAdapter(new IncidentAdapter(getContext(), incidents,this));
+        listView.setAdapter(new IncidentListAdapter(getContext(), incidents,this));
 
     }
 
     @Override
     protected void bindViews(ViewModel viewInfo) {
-        ((IncidentAdapter)listView.getAdapter()).notifyDataSetChanged();
+        ((IncidentListAdapter)listView.getAdapter()).notifyDataSetChanged();
     }
 
 
 
     @Override
     public void onItemClickListener(int position) {
-        ((IncidentListener)controller).onMarkerClicked(position);
+        ((IncidentMapListener)controller).onMarkerClicked(position);
     }
 }
