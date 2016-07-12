@@ -5,7 +5,6 @@ import android.content.Context;
 import com.ibm.android.kit.models.Result;
 import com.ibm.android.kit.tasks.ITask;
 import com.ibm.android.kit.tasks.Task;
-import com.ir.android.networking.login.UserResource;
 
 /**
  * Created by emanhassan on 6/12/16.
@@ -24,6 +23,7 @@ public class LoginTask extends Task {
     @Override
     protected Result onTaskWork() {
 
+        // Bassam++ comment using UserResource because of exception
 //        try {
 //            UserResource loginResource=new UserResource(username,password,context);
 //            loginResource.retrieve();
@@ -33,6 +33,7 @@ public class LoginTask extends Task {
 //            //TODO: Please make reuslt 0 once "java.lang.RuntimeException: WLConfig(): Can't load wlclient.properties file" solved
 ////            return new Result(1);//java.lang.RuntimeException: WLConfig(): Can't load wlclient.properties file
 //        }
+        // Bassam--
 
         return new Result(0);
 
