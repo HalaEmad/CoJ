@@ -15,25 +15,18 @@ public class LoginTask extends Task {
 
     public LoginTask(ITask listener, Context context, String username, String password) {
         super(listener, context);
-        try {
-            loginResource = new UserResource(username, password, this.context);
-        }catch (Exception e){
-            //TODO: cancel task
-            System.out.print("");
-        }
+        loginResource = new UserResource(username, password, this.context);
     }
 
 
     @Override
     protected Result onTaskWork() {
-
         try {
             loginResource.retrieve();
             return new Result(0,loginResource);
         } catch (Exception e) {
             return new Result(1,e);
         }
-
     }
 
 }
