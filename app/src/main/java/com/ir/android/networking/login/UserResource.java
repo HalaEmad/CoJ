@@ -224,6 +224,7 @@ public class UserResource extends WLResource {
         }catch (Exception e){
             //TODO:remove stub
 
+            if(username.equals("marius") && password.equals("ibmioc16")) {
                 try {
                     InputStream inputStream = getContext().getAssets().open("Login-Success.octet-stream");
 
@@ -237,18 +238,45 @@ public class UserResource extends WLResource {
 
                     //read from stub
                     ObjectMapper objectMapper = new ObjectMapper();
-                    JSONObject jsonObject=new JSONObject(string.toString());
-                    String array=jsonObject.getString("text");
-                    JSONArray jsonArray=new JSONArray(array);
+                    JSONObject jsonObject = new JSONObject(string.toString());
+                    String array = jsonObject.getString("text");
+                    JSONArray jsonArray = new JSONArray(array);
 
 
                     objectMapper.readerForUpdating(this).readValue(jsonArray.getString(0));
 
                     return;
-                }catch(Exception e1){
+                } catch (Exception e1) {
                     /*it's stub please don't handle this*/
                     e1.printStackTrace();
                 }
+            }else{
+                try {
+                    InputStream inputStream = getContext().getAssets().open("Login-Failure.octet-stream");
+
+                    BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
+                    StringBuilder string = new StringBuilder();
+                    String line;
+                    while ((line = r.readLine()) != null) {
+                        string.append(line).append('\n');
+                    }
+
+
+                    //read from stub
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    JSONObject jsonObject = new JSONObject(string.toString());
+                    String array = jsonObject.getString("text");
+                    JSONArray jsonArray = new JSONArray(array);
+
+
+                    objectMapper.readerForUpdating(this).readValue(jsonArray.getString(0));
+
+                    return;
+                } catch (Exception e1) {
+                    /*it's stub please don't handle this*/
+                    e1.printStackTrace();
+                }
+            }
     //Stub end
             throw new LoginFailedException(e);
         }
