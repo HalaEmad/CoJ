@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.ibm.android.kit.utils.LocationUtility;
+import com.ir.android.networking.LocationReportingResource.LocationReportingException;
+import com.ir.android.networking.LocationReportingResource.LocationReportingResource;
 
 /**
  * Created by emanhassan on 6/26/16.
@@ -52,7 +54,13 @@ public class LocationService extends IntentService implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-
+        try {
+            LocationReportingResource locationReportingResource=new LocationReportingResource(getBaseContext());
+            locationReportingResource.setCoordinate(location.getLatitude(),location.getLongitude());
+            locationReportingResource.save();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Log.i("#COJLocation#", "Lat: " + location.getLatitude() + ", Lng: " + location.getLongitude());
         // TODO send location to server
     }

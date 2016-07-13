@@ -15,6 +15,7 @@ public class LoginCtrl extends Controller {
 
     public void startLogin(String username, String password) {
 
+
         task = new LoginTask(this, getContext(), username, password);
         task.execute();
 

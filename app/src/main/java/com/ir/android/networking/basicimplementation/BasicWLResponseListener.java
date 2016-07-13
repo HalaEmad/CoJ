@@ -30,13 +30,17 @@ public class BasicWLResponseListener implements WLResponseListener{
     public void onSuccess(WLResponse response) {
         status=ResponseStatus.SUCCESS;
         this.response=response;
-        syncThread.notify();
+        synchronized (syncThread) {
+            syncThread.notify();
+        }
     }
     @Override
     public void onFailure(WLFailResponse response) {
         status=ResponseStatus.FAIL;
         this.response=response;
-        syncThread.notify();
+        synchronized (syncThread) {
+            syncThread.notify();
+        }
     }
 }
 

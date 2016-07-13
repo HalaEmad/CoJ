@@ -11,13 +11,16 @@ import com.ir.android.networking.login.UserResource;
  * Created by emanhassan on 6/12/16.
  */
 public class LoginTask extends Task {
-    private String username;
-    private String password;
+    private UserResource loginResource;
 
     public LoginTask(ITask listener, Context context, String username, String password) {
         super(listener, context);
-        this.username = username;
-        this.password = password;
+        try {
+            loginResource = new UserResource(username, password, this.context);
+        }catch (Exception e){
+            //TODO: cancel task
+            System.out.print("");
+        }
     }
 
 
@@ -25,7 +28,6 @@ public class LoginTask extends Task {
     protected Result onTaskWork() {
 
         try {
-            UserResource loginResource=new UserResource(username,password,context);
             loginResource.retrieve();
             return new Result(0,loginResource);
         } catch (Exception e) {

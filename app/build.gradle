@@ -37,6 +37,11 @@ dependencies {
     compile 'com.esri.arcgis.android:arcgis-android:10.2.8'
     compile 'com.android.support:multidex:1.0.0'
 
+    compile files('libs/worklight-android.jar')
+    compile files('libs/uicandroid.jar')
+    compile files('libs/android-async-http.jar')
+    compile files('libs/bcprov.jar')
+
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
 }

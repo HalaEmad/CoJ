@@ -31,7 +31,7 @@ public class LocationReportingResource extends WLResource {
         return wlCoordinate;
     }
 
-    public LocationReportingResource(Context context){
+    public LocationReportingResource(Context context) {
         super(context);
     }
 

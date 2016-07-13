@@ -49,7 +49,7 @@ public class UserResource extends WLResource {
         super(context);
     }
 
-    public UserResource(String username, String password,Context context){
+    public UserResource(String username, String password,Context context) {
         this(context);
         this.username=username;
         this.password=password;
