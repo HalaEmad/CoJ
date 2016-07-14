@@ -3,6 +3,7 @@ package com.ir.android.networking.basicimplementation;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ir.android.networking.basicimplementation.exceptions.ProcessingFailedException;
 import com.worklight.wlclient.api.WLClient;
 import com.worklight.wlclient.api.WLProcedureInvocationData;
@@ -18,14 +19,29 @@ public abstract class WLResource implements Resource {
 
     private final static String SHARED_PREFERNCES_NAME = "WLResource";
     private final static String LTPA_TOKEN2_SHARED_PREFERNCES_NAME = "ltpaToken2";
+
+    @JsonIgnore
     private ArrayList<Object> parameters;
+
+    @JsonIgnore
     private Context context;
 
+    @JsonIgnore
     private String ltpaToken2;
 
-    public WLResource(Context context) {
+    @JsonIgnore
+    private WLClient client;
+
+    public WLResource(Context context)  {
         super();
         this.context = context;
+
+        try {
+            client = WLClient.getInstance();
+        }catch (RuntimeException e){
+            client=WLClient.createInstance(this.context);
+        }
+
         parameters = new ArrayList<>();
     }
 
@@ -40,8 +56,13 @@ public abstract class WLResource implements Resource {
         try {
 
             BasicWLResponseListener responseListener = new BasicWLResponseListener();
+            client.connect(responseListener);
+            WLResponse response=responseListener.getResponseSync();
+            if(response.getStatus()!=200){
+                throw new ProcessingFailedException(response.getResponseText());
+            }
 
-            final WLClient client = WLClient.createInstance(context);
+            responseListener = new BasicWLResponseListener();
 
             String adapterName = getAdapterName();
             String procedureName = getProcedureName();
@@ -57,7 +78,7 @@ public abstract class WLResource implements Resource {
 
             client.invokeProcedure(invocationData, responseListener, options);
 
-            WLResponse response = responseListener.getResponseSync();
+            response = responseListener.getResponseSync();
 
             // Bassam++ commented because it gives Header class not found error
 //            Header cookie = response.getHeader("Set-Cookie");

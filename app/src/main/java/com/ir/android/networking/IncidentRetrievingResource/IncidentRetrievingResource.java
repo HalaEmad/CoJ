@@ -19,7 +19,7 @@ import java.io.InputStreamReader;
  */
 public class IncidentRetrievingResource extends WLResource {
 
-    public IncidentRetrievingResource(Context context){
+    public IncidentRetrievingResource(Context context) {
         super(context);
     }
 
