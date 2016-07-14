@@ -92,9 +92,9 @@ public class IncidentMapFragment extends Fragment implements OnSingleTapListener
                             BitmapDrawable pinStarBlueDrawable = (BitmapDrawable) ContextCompat.getDrawable(context,R.mipmap.your_location );
 //
                             Bitmap b = pinStarBlueDrawable.getBitmap();
-//                            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 36, 36  , false);
+                            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 36, 36  , false);
 
-                            PictureMarkerSymbol pinStarBlueSymbol = new PictureMarkerSymbol(new BitmapDrawable(getResources(), b));
+                            PictureMarkerSymbol pinStarBlueSymbol = new PictureMarkerSymbol(new BitmapDrawable(getResources(), bitmapResized));
                             Point point = GeometryEngine.project(incident.getLongitude(), incident.getLatitude(), mapView.getSpatialReference());
                             multipoint.add(point);
                             Map<String, Object> attributes = new HashMap<String, Object>();
