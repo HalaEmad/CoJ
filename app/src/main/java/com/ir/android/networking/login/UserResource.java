@@ -224,7 +224,7 @@ public class UserResource extends WLResource {
         }catch (Exception e){
             //TODO:remove stub
 
-            if(username.equals("marius") && password.equals("ibmioc16")) {
+            if((username.equals("marius") && password.equals("ibmioc16")) ||(username.equals("wpsadmin") && password.equals("ChangeM3N0Wx") )) {
                 try {
                     InputStream inputStream = getContext().getAssets().open("Login-Success.octet-stream");
 
