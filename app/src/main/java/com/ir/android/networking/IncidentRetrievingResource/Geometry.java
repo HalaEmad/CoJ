@@ -6,6 +6,28 @@ import java.util.ArrayList;
  * Created by Henawey on 7/12/16.
  */
 public class Geometry {
+
+    public enum Types {
+        Point("Point");
+
+        private final String text;
+
+        /**
+         * @param text
+         */
+        private Types(final String text) {
+            this.text = text;
+        }
+
+        /* (non-Javadoc)
+         * @see java.lang.Enum#toString()
+         */
+        @Override
+        public String toString() {
+            return text;
+        }
+    }
+
     private String type;
     private ArrayList<Double> coordinates;
 

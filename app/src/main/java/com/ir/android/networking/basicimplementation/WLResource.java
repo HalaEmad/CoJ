@@ -10,6 +10,8 @@ import com.worklight.wlclient.api.WLProcedureInvocationData;
 import com.worklight.wlclient.api.WLRequestOptions;
 import com.worklight.wlclient.api.WLResponse;
 
+import org.apache.http.Header;
+
 import java.util.ArrayList;
 
 /**
@@ -80,19 +82,17 @@ public abstract class WLResource implements Resource {
 
             response = responseListener.getResponseSync();
 
-            // Bassam++ commented because it gives Header class not found error
-//            Header cookie = response.getHeader("Set-Cookie");
-//            if (cookie != null) {
-//                String cookieValue = cookie.getValue();
-//                int startIndex = cookieValue.indexOf("LtpaToken2=");
-//                int endIndex = cookieValue.indexOf(";", startIndex);
-//                ltpaToken2 = cookieValue.substring(startIndex, endIndex);
-//
-//                SharedPreferences.Editor editor = context.getSharedPreferences(SHARED_PREFERNCES_NAME, Context.MODE_PRIVATE).edit();
-//                editor.putString(LTPA_TOKEN2_SHARED_PREFERNCES_NAME, ltpaToken2);
-//                editor.commit();
-//            }
-            // Bassam--
+            Header cookie = response.getHeader("Set-Cookie");
+            if (cookie != null) {
+                String cookieValue = cookie.getValue();
+                int startIndex = cookieValue.indexOf("LtpaToken2=");
+                int endIndex = cookieValue.indexOf(";", startIndex);
+                ltpaToken2 = cookieValue.substring(startIndex, endIndex);
+
+                SharedPreferences.Editor editor = context.getSharedPreferences(SHARED_PREFERNCES_NAME, Context.MODE_PRIVATE).edit();
+                editor.putString(LTPA_TOKEN2_SHARED_PREFERNCES_NAME, ltpaToken2);
+                editor.commit();
+            }
 
             return response;
 
