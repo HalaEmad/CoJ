@@ -210,7 +210,7 @@ public class UserResource extends WLResource {
     public static void logout(Context context){
         clearCache(context);
     }
-    
+
     @Override
     public void save() throws SavingFailedException {
 

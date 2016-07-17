@@ -5,7 +5,9 @@ import android.content.SharedPreferences;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ir.android.networking.basicimplementation.exceptions.ProcessingFailedException;
+import com.ir.android.networking.basicimplementation.exceptions.WLUnresponsiveHostException;
 import com.worklight.wlclient.api.WLClient;
+import com.worklight.wlclient.api.WLFailResponse;
 import com.worklight.wlclient.api.WLProcedureInvocationData;
 import com.worklight.wlclient.api.WLRequestOptions;
 import com.worklight.wlclient.api.WLResponse;
@@ -67,8 +69,22 @@ public abstract class WLResource implements Resource {
             client.connect(responseListener);
             WLResponse response=responseListener.getResponseSync();
             if(response.getStatus()!=200){
-                throw new ProcessingFailedException(response.getResponseText());
+                if(response instanceof WLFailResponse){
+
+                    WLFailResponse failResponse=(WLFailResponse) response;
+
+                    switch (failResponse.getErrorCode()){
+                        case UNRESPONSIVE_HOST:
+                            throw new WLUnresponsiveHostException(failResponse.getErrorMsg());
+                     default:
+                         throw new ProcessingFailedException(failResponse.getErrorMsg());
+                    }
+
+                }else {
+                    throw new ProcessingFailedException(response.getResponseText());
+                }
             }
+
 
             responseListener = new BasicWLResponseListener();
 
