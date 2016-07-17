@@ -62,7 +62,7 @@ public class LocationReportingResource extends WLResource {
 
             addParameter(1);//id
             addParameter(1);//datasourceID
-            addParameter(getLtpaToken2());//ltpaToken
+            addParameter(getLtpaToken2(getContext()));//ltpaToken
             WLResponse response = process();
             if(response.getStatus()!=200){
                 throw new LocationReportingException(response.getResponseText());

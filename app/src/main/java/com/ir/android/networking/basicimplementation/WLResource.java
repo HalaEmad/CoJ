@@ -47,11 +47,17 @@ public abstract class WLResource implements Resource {
         parameters = new ArrayList<>();
     }
 
-    protected String getLtpaToken2() {
+    protected static String getLtpaToken2(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(SHARED_PREFERNCES_NAME, context.MODE_PRIVATE);
         String ltpaToken2 = prefs.getString(LTPA_TOKEN2_SHARED_PREFERNCES_NAME, null);
 
         return ltpaToken2;
+    }
+
+    protected  static void clearCache(Context context){
+        SharedPreferences.Editor editor = context.getSharedPreferences(SHARED_PREFERNCES_NAME, context.MODE_PRIVATE).edit();
+        editor.remove(LTPA_TOKEN2_SHARED_PREFERNCES_NAME);
+        editor.apply();
     }
 
     protected WLResponse process() throws ProcessingFailedException {

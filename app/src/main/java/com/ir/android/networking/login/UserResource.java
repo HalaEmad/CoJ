@@ -202,6 +202,15 @@ public class UserResource extends WLResource {
         return "authenticateUser";
     }
 
+    public static boolean isLoggedIn(Context context){
+        String ltpaToken2=getLtpaToken2(context);
+        return (ltpaToken2==null || ltpaToken2.isEmpty());
+    }
+
+    public static void logout(Context context){
+        clearCache(context);
+    }
+    
     @Override
     public void save() throws SavingFailedException {
 

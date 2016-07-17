@@ -100,7 +100,7 @@ public class IncidentRetrievingResource extends WLResource {
 
             addParameter(1);//datasourceID
             addParameter("??");//boundaries
-            addParameter(getLtpaToken2());//ltpaToken
+            addParameter(getLtpaToken2(getContext()));//ltpaToken
 
             WLResponse response = process();
 
