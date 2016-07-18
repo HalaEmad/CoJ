@@ -5,6 +5,8 @@ import android.content.Context;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ir.android.networking.basicimplementation.WLResource;
+import com.ir.android.networking.login.Models.ProfileAttribute;
+import com.ir.android.networking.login.Models.UserGroup;
 import com.worklight.utils.Base64;
 import com.worklight.wlclient.api.WLResponse;
 
