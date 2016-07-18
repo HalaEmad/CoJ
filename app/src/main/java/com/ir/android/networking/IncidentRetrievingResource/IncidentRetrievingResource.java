@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ir.android.networking.basicimplementation.WLResource;
-import com.ir.android.networking.basicimplementation.exceptions.SavingFailedException;
 import com.worklight.wlclient.api.WLResponse;
 
 import java.io.BufferedReader;
@@ -88,12 +87,7 @@ public class IncidentRetrievingResource extends WLResource {
     }
 
     @Override
-    public void save() throws SavingFailedException {
-
-    }
-
-    @Override
-    public void retrieve() throws IncidentRetrievingFailedException {
+    public void invoke() throws IncidentRetrievingFailedException {
         try {
 
             //TODO: missing boundaries

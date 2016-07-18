@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ir.android.networking.basicimplementation.WLResource;
-import com.ir.android.networking.basicimplementation.exceptions.RetrivingFailedException;
 import com.worklight.location.api.geo.WLCoordinate;
 import com.worklight.wlclient.api.WLResponse;
 
@@ -46,7 +45,7 @@ public class LocationReportingResource extends WLResource {
     }
 
     @Override
-    public void save() throws LocationReportingException {
+    public void invoke() throws LocationReportingException {
         try {
             addParameter(System.currentTimeMillis());//startDate
             addParameter(System.currentTimeMillis());//endDate
@@ -99,10 +98,5 @@ public class LocationReportingResource extends WLResource {
             throw new LocationReportingException(e);
 
         }
-    }
-
-    @Override
-    public void retrieve() throws RetrivingFailedException {
-
     }
 }

@@ -26,9 +26,9 @@ public class IncidentTask extends Task {
 
         try {
             IncidentRetrievingResource resource = new IncidentRetrievingResource(context);
-            resource.retrieve();
+            resource.invoke();
         }catch (IncidentRetrievingFailedException e){
-            System.out.print("");
+            e.printStackTrace();
         }
 
         ArrayList<Incident> incidents = new ArrayList<Incident>();

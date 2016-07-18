@@ -5,7 +5,6 @@ import android.content.Context;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ir.android.networking.basicimplementation.WLResource;
-import com.ir.android.networking.basicimplementation.exceptions.SavingFailedException;
 import com.worklight.utils.Base64;
 import com.worklight.wlclient.api.WLResponse;
 
@@ -207,12 +206,7 @@ public class UserResource extends WLResource {
     }
 
     @Override
-    public void save() throws SavingFailedException {
-
-    }
-
-    @Override
-    public void retrieve() throws LoginFailedException{
+    public void invoke() throws LoginFailedException{
         try {
             String authorizationInput =
                     Base64.encode((username + ":" + password).getBytes(), "UTF-8");
