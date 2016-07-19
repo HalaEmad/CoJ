@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.esri.android.map.GraphicsLayer;
 import com.esri.android.map.Layer;
+import com.esri.android.map.MapOptions;
 import com.esri.android.map.MapView;
 import com.esri.android.map.ags.ArcGISTiledMapServiceLayer;
 import com.esri.android.map.event.OnSingleTapListener;
@@ -71,30 +72,30 @@ public class IncidentMapFragment extends Fragment implements OnSingleTapListener
     protected void bindViews(ViewModel viewModel) {
         //Create the layer
         final Layer oneMapLayer = new ArcGISTiledMapServiceLayer("http://e1.onemap.sg/arcgis/rest/services/BASEMAP/MapServer");
+
         incidentsLocs =
 
                 ((FragmentViewModel) viewModel).getIncidentsLocs();
 
         final Context context = getContext();
+
         //Know when the map layer loaded
         mapView.setOnStatusChangedListener(new OnStatusChangedListener() {
             private static final long serialVersionUID = 1L;
 
 
             public void onStatusChanged(Object source, STATUS status) {
-                if (status == STATUS.LAYER_LOADED) {
+                if (status == STATUS.LAYER_LOADED || mapView.isLoaded()) {
                     if (incidentsLocs != null) {
 
                         MultiPoint multipoint = new MultiPoint();
                         for (int i = 0; i < incidentsLocs.size(); i++) {
                             Incident incident = incidentsLocs.get(i);
-//                            incident.getDrawableId()
-                            BitmapDrawable pinStarBlueDrawable = (BitmapDrawable) ContextCompat.getDrawable(context,R.mipmap.your_location );
-//
+                            BitmapDrawable pinStarBlueDrawable = (BitmapDrawable) ContextCompat.getDrawable(context, R.mipmap.assault_icon);
                             Bitmap b = pinStarBlueDrawable.getBitmap();
-                            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 76, 90  , false);
+//                            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 76, 90  , false);
 
-                            PictureMarkerSymbol pinStarBlueSymbol = new PictureMarkerSymbol(new BitmapDrawable(getResources(), bitmapResized));
+                            PictureMarkerSymbol pinStarBlueSymbol = new PictureMarkerSymbol(new BitmapDrawable(getResources(), b));
                             Point point = GeometryEngine.project(incident.getLongitude(), incident.getLatitude(), mapView.getSpatialReference());
                             multipoint.add(point);
                             Map<String, Object> attributes = new HashMap<String, Object>();
@@ -118,49 +119,51 @@ public class IncidentMapFragment extends Fragment implements OnSingleTapListener
         mapView.addLayer(oneMapLayer);
 
     }
-
-
     @Override
     public void onSingleTap(float x, float y) {
+        try {
+            Point identifyPoint = mapView.toMapPoint(x, y);
 
-        Point identifyPoint = mapView.toMapPoint(x, y);
+            params.setGeometry(identifyPoint);
+            params.setSpatialReference(mapView.getSpatialReference());
+            params.setMapHeight(mapView.getHeight());
+            params.setMapWidth(mapView.getWidth());
 
-        params.setGeometry(identifyPoint);
-        params.setSpatialReference(mapView.getSpatialReference());
-        params.setMapHeight(mapView.getHeight());
-        params.setMapWidth(mapView.getWidth());
+            // add the area of extent to identify parameters
+            Envelope env = new Envelope();
+            mapView.getExtent().queryEnvelope(env);
+            params.setMapExtent(env);
 
-        // add the area of extent to identify parameters
-        Envelope env = new Envelope();
-        mapView.getExtent().queryEnvelope(env);
-        params.setMapExtent(env);
+            Feature result = null;
+            Layer[] layers = mapView.getLayers();
 
-        Feature result = null;
-        Layer[] layers = mapView.getLayers();
+            for (int i = 0; i < layers.length; i++) {
+                Layer layer = layers[i];
+                if (layer instanceof GraphicsLayer) {
 
-        for (int i = 0; i < layers.length; i++) {
-            Layer layer = layers[i];
-            if (layer instanceof GraphicsLayer) {
+                    GraphicsLayer graphicsLayer = (GraphicsLayer) layer;
+                    int[] graphicIds = graphicsLayer.getGraphicIDs(x, y, 20);
 
-                GraphicsLayer graphicsLayer = (GraphicsLayer) layer;
-                int[] graphicIds = graphicsLayer.getGraphicIDs(x, y, 20);
-
-                if (0 < graphicIds.length) {
-                    result = graphicsLayer.getGraphic(graphicIds[0]);
-                    break;
-                }
-            }
-        }
-
-        if (null != result) {
-            Object id = result.getAttributeValue(ATTR_INDEX);
-            if (null != id) {
-                if (incidentsLocs != null && incidentsLocs.size() > ((int) id)) {
-                    Incident selectedIncident = incidentsLocs.get((int) id);
-                    ((IncidentMapListener) controller).onMarkerClicked(selectedIncident);
+                    if (0 < graphicIds.length) {
+                        result = graphicsLayer.getGraphic(graphicIds[0]);
+                        break;
+                    }
                 }
             }
 
+            if (null != result) {
+                Object id = result.getAttributeValue(ATTR_INDEX);
+                if (null != id) {
+                    if (incidentsLocs != null && incidentsLocs.size() > ((int) id)) {
+                        Incident selectedIncident = incidentsLocs.get((int) id);
+                        mapView.centerAt(selectedIncident.getLatitude(), selectedIncident.getLongitude(), true);
+                        ((IncidentMapListener) controller).onMarkerClicked(selectedIncident);
+                    }
+                }
+
+            }
+        } catch (Exception e) {
+            Log.e("map",e.getMessage());
         }
     }
 

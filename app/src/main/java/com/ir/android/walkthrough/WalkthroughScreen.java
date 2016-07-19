@@ -16,6 +16,8 @@ import com.ibm.android.kit.models.ViewModel;
 import com.ibm.android.kit.views.fragments.Fragment;
 import com.ir.android.R;
 
+import java.text.BreakIterator;
+
 /**
  * Created by bassam on 09-07-2016.
  */
@@ -58,6 +60,7 @@ public class WalkthroughScreen extends Fragment {
     @Override
     protected void bindViews(ViewModel viewModel) {
         mPagerAdapter.notifyDataSetChanged();
+        mPager.setAdapter(mPagerAdapter);
     }
 
 
@@ -70,6 +73,10 @@ public class WalkthroughScreen extends Fragment {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+        private ImageView mPageImageView;
+        private TextView mPageTitle;
+        private TextView mPageDetails;
+        private TextView mSubDetails;
 
         public PlaceholderFragment() {
         }
@@ -103,23 +110,15 @@ public class WalkthroughScreen extends Fragment {
 
         @Override
         protected void initViews() {
+             mPageImageView = (ImageView) getView().findViewById(R.id.wt_icon);
+             mPageTitle = (TextView) getView().findViewById(R.id.title_textView);
+             mPageDetails = (TextView) getView().findViewById(R.id.details_textview);
+             mSubDetails = (TextView) getView().findViewById(R.id.details_2_textview);
 
         }
 
         @Override
         protected void bindViews(ViewModel viewInfo) {
-
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.page_walkthrough, container, false);
-
-            ImageView mPageImageView = (ImageView) rootView.findViewById(R.id.wt_icon);
-            TextView mPageTitle = (TextView) rootView.findViewById(R.id.title_textView);
-            TextView mPageDetails = (TextView) rootView.findViewById(R.id.details_textview);
-            TextView mSubDetails = (TextView) rootView.findViewById(R.id.details_2_textview);
             int position = getArguments().getInt(ARG_SECTION_NUMBER);
             switch (position) {
                 case 0:
@@ -143,10 +142,44 @@ public class WalkthroughScreen extends Fragment {
 
                     break;
             }
-
-            return rootView;
         }
-    }
+//
+//        @Override
+//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                                 Bundle savedInstanceState) {
+//            View rootView = inflater.inflate(R.layout.page_walkthrough, container, false);
+//
+//            ImageView mPageImageView = (ImageView) rootView.findViewById(R.id.wt_icon);
+//            TextView mPageTitle = (TextView) rootView.findViewById(R.id.title_textView);
+//            TextView mPageDetails = (TextView) rootView.findViewById(R.id.details_textview);
+//            TextView mSubDetails = (TextView) rootView.findViewById(R.id.details_2_textview);
+//            int position = getArguments().getInt(ARG_SECTION_NUMBER);
+//            switch (position) {
+//                case 0:
+//                    mPageImageView.setImageResource(R.mipmap.wt_alert_icon);
+//                    mPageTitle.setText(getResources().getString(R.string.wt_active_call_title));
+//                    mPageDetails.setText(getResources().getString(R.string.wt_active_call_detail));
+//                    mSubDetails.setText(getResources().getString(R.string.wt_active_call_detail_2));
+//
+//                    break;
+//
+//                case 1:
+//                    mPageImageView.setImageResource(R.mipmap.wt_location_icon);
+//                    mPageTitle.setText(getResources().getString(R.string.wt_location_title));
+//                    mPageDetails.setText(getResources().getString(R.string.wt_location_detail));
+//                    break;
+//
+//                case 2:
+//                    mPageImageView.setImageResource(R.mipmap.wt_exclamation_mark);
+//                    mPageTitle.setText(getResources().getString(R.string.wt_incident_marker_title));
+//                    mPageDetails.setText(getResources().getString(R.string.wt_incident_marker_detail));
+//
+//                    break;
+//            }
+//
+//            return rootView;
+//        }
+  }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
