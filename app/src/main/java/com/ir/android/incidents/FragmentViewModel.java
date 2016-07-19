@@ -3,6 +3,7 @@ package com.ir.android.incidents;
 import com.ibm.android.kit.models.ViewModel;
 import com.ir.android.model.Incident;
 
+
 import java.util.ArrayList;
 
 /**

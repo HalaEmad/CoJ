@@ -19,6 +19,7 @@ import com.ir.android.R;
 import com.ir.android.incidents.map.IncidentMapListener;
 
 import com.ir.android.model.Incident;
+import com.ir.android.model.IncidentM;
 import com.ir.android.service.LocationService;
 
 import java.util.ArrayList;
@@ -91,19 +92,19 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
 
         ((ImageView) dialog.findViewById(R.id.firstIcon)).setImageResource(clickedIncident.getDrawableId());
         TextView status = (TextView) dialog.findViewById(R.id.firstInfo);
-        status.setText(clickedIncident.getStatus());
+//        status.setText(clickedIncident.getStatus());
 
         TextView security = (TextView) dialog.findViewById(R.id.secondInfo);
-        security.setText(clickedIncident.getSecurityLevel());
+//        security.setText(clickedIncident.getSecurityLevel());
 
         LinearLayout weapons = (LinearLayout) dialog.findViewById(R.id.thirdLayout);
 
-        if (GeneralUtility.isEmptyString(clickedIncident.getWeapons())) {
-            weapons.setVisibility(View.GONE);
-        } else {
-            weapons.setVisibility(View.VISIBLE);
-            ((TextView) dialog.findViewById(R.id.thirdInfo)).setText(clickedIncident.getWeapons());
-        }
+//        if (GeneralUtility.isEmptyString(clickedIncident.getWeapons())) {
+//            weapons.setVisibility(View.GONE);
+//        } else {
+//            weapons.setVisibility(View.VISIBLE);
+//            ((TextView) dialog.findViewById(R.id.thirdInfo)).setText(clickedIncident.getWeapons());
+//        }
         dialog.show();
     }
 

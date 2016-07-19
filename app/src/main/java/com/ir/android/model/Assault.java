@@ -1,9 +1,11 @@
 package com.ir.android.model;
 
+import com.ir.android.R;
+
 /**
  * Created by emanhassan on 7/18/16.
  */
-public class Assault extends Incident{
+public class Assault extends Incident {
 
     private String status;
     private String severityLevel;
@@ -11,10 +13,6 @@ public class Assault extends Incident{
     private int weaponDrawableId;
     private  String weaponDescription;
 
-    // TODO REMOVE
-    public Assault(double latitude, double longitude, String info) {
-        super(latitude, longitude, info);
-    }
 
     public String getStatus() {
         return status;
@@ -41,7 +39,7 @@ public class Assault extends Incident{
     }
 
     public int getWeaponDrawableId() {
-        return weaponDrawableId;
+        return R.mipmap.weapons_icon;
     }
 
     public void setWeaponDrawableId(int weaponDrawableId) {

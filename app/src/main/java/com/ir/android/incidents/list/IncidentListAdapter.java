@@ -7,10 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ibm.android.kit.views.adapters.AbstractViewHolder;
-import com.ibm.android.kit.views.adapters.ListAdapter;
 import com.ir.android.R;
-import com.ir.android.incidents.list.ItemListener;
-import com.ir.android.model.Incident;
+import com.ir.android.model.IncidentM;
 
 import java.util.ArrayList;
 
@@ -18,9 +16,9 @@ import java.util.ArrayList;
  * Created by emanhassan on 7/4/16.
  */
 public class IncidentListAdapter extends com.ibm.android.kit.views.adapters.ListAdapter {
-    private ArrayList<Incident> incidents;
+    private ArrayList<IncidentM> incidents;
     private ItemListener listener ;
-    public IncidentListAdapter(Context context, ArrayList<Incident> incidents, ItemListener listener) {
+    public IncidentListAdapter(Context context, ArrayList<IncidentM> incidents, ItemListener listener) {
         super(context);
         this.incidents = incidents;
         this.listener = listener;
@@ -57,7 +55,7 @@ public class IncidentListAdapter extends com.ibm.android.kit.views.adapters.List
 
     @Override
     protected void bindView(AbstractViewHolder holder, int position) {
-        Incident incident = incidents.get(position);
+        IncidentM incident = incidents.get(position);
         ((IncidentViewHolder)holder).incidentType.setText(incident.getType());
         ((IncidentViewHolder)holder).incidentStatus.setText(incident.getStatus());
 

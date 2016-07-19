@@ -8,7 +8,6 @@ import android.util.Log;
 
 import com.esri.android.map.GraphicsLayer;
 import com.esri.android.map.Layer;
-import com.esri.android.map.MapOptions;
 import com.esri.android.map.MapView;
 import com.esri.android.map.ags.ArcGISTiledMapServiceLayer;
 import com.esri.android.map.event.OnSingleTapListener;
@@ -28,6 +27,7 @@ import com.ir.android.R;
 import com.ir.android.incidents.FragmentViewModel;
 import com.ir.android.incidents.FragmentCtrl;
 import com.ir.android.model.Incident;
+import com.ir.android.model.IncidentM;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -91,8 +91,10 @@ public class IncidentMapFragment extends Fragment implements OnSingleTapListener
                         MultiPoint multipoint = new MultiPoint();
                         for (int i = 0; i < incidentsLocs.size(); i++) {
                             Incident incident = incidentsLocs.get(i);
-                            BitmapDrawable pinStarBlueDrawable = (BitmapDrawable) ContextCompat.getDrawable(context, R.mipmap.assault_icon);
+
+                            BitmapDrawable pinStarBlueDrawable = (BitmapDrawable) ContextCompat.getDrawable(context, incident.getDrawableId());
                             Bitmap b = pinStarBlueDrawable.getBitmap();
+
 //                            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 76, 90  , false);
 
                             PictureMarkerSymbol pinStarBlueSymbol = new PictureMarkerSymbol(new BitmapDrawable(getResources(), b));
@@ -103,7 +105,6 @@ public class IncidentMapFragment extends Fragment implements OnSingleTapListener
 
 //                            Graphic g = new Graphic(point, new SimpleMarkerSymbol(Color.RED, 10, SimpleMarkerSymbol.STYLE.CIRCLE), attributes);
                             Graphic g = new Graphic(point, pinStarBlueSymbol, attributes);
-                            Log.i("log", incident.getInfo());
 //
                             graphicsLayer.addGraphic(g);
 

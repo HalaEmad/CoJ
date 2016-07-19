@@ -9,9 +9,7 @@ public class Officer extends Incident {
     private String name;
     private String unit;
 
-    public Officer(double latitude, double longitude, String info) {
-        super(latitude, longitude, info);
-    }
+
 
     public String getRank() {
         return rank;

@@ -9,7 +9,7 @@ import com.ir.android.R;
 import com.ir.android.incidents.map.IncidentMapListener;
 import com.ir.android.incidents.FragmentViewModel;
 import com.ir.android.incidents.FragmentCtrl;
-import com.ir.android.model.Incident;
+import com.ir.android.model.IncidentM;
 
 import java.util.ArrayList;
 
@@ -40,7 +40,7 @@ public class IncidentListFragment extends Fragment implements ItemListener
     protected void initViews() {
 
         listView = (ListView) getView().findViewById(R.id.list);
-        ArrayList<Incident> incidents =  ((FragmentViewModel)controller.getViewModel()).getIncidentsLocs();
+        ArrayList<IncidentM> incidents =  ((FragmentViewModel)controller.getViewModel()).getIncidentsLocs();
         listView.setAdapter(new IncidentListAdapter(getContext(), incidents,this));
 
     }
