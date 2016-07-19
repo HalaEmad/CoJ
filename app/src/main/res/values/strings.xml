@@ -55,5 +55,8 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
-
+    <!-- Incidents-->
+    <string name="assualt_label">Assualt</string>
+    <string name="officer_label">JMPD OFFICER</string>
+    <string name="weapons_label">Weapons</string>
 </resources>

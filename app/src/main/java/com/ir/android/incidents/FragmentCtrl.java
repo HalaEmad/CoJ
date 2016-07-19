@@ -4,22 +4,20 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.Result;
 import com.ibm.android.kit.models.ViewModel;
 import com.ibm.android.kit.tasks.Task;
-import com.ibm.android.kit.utils.GeneralUtility;
 import com.ibm.android.kit.utils.LocationUtility;
 import com.ir.android.R;
 import com.ir.android.incidents.map.IncidentMapListener;
 
+import com.ir.android.model.Assault;
 import com.ir.android.model.Incident;
-import com.ir.android.model.IncidentM;
+import com.ir.android.model.Officer;
 import com.ir.android.service.LocationService;
 
 import java.util.ArrayList;
@@ -82,28 +80,38 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
 
     @Override
     public void onMarkerClicked(Incident clickedIncident) {
-        // TODO SHOW DIALOG BASED ON CLICKED MARKER INFO
+
         Dialog dialog = new Dialog(getContext());
-        dialog.setContentView(R.layout.popup_dialog_assault);
 
-        TextView type = (TextView) dialog.findViewById(R.id.type);
-        type.setText(clickedIncident.getType());
+        if (clickedIncident instanceof Assault)
+        {
+            dialog.setContentView(R.layout.popup_dialog_assault);
+            ((ImageView) dialog.findViewById(R.id.type_icon)).setImageResource(clickedIncident.getDrawableId());
+            ((TextView) dialog.findViewById(R.id.type)).setText(getContext().getString(R.string.assualt_label));
+            ((TextView) dialog.findViewById(R.id.status)).setText(((Assault) clickedIncident).getStatus());
+            ((TextView) dialog.findViewById(R.id.distance)).setText(((Assault) clickedIncident).getDistance()+"m");
+
+            ((TextView) dialog.findViewById(R.id.severity_level)).setText(((Assault) clickedIncident).getSeverityLevel());
+            ((TextView) dialog.findViewById(R.id.severity_desc)).setText(((Assault) clickedIncident).getSeverityLvlDesc());
+
+            ((ImageView) dialog.findViewById(R.id.weapon_icon)).setImageResource(((Assault) clickedIncident).getWeaponDrawableId());
+            ((TextView) dialog.findViewById(R.id.weapon_desc)).setText(((Assault) clickedIncident).getWeaponDescription());
 
 
-        ((ImageView) dialog.findViewById(R.id.type_icon)).setImageResource(clickedIncident.getDrawableId());
-        TextView status = (TextView) dialog.findViewById(R.id.status);
-        status.setText(clickedIncident.getStatus());
+        }
+        else if (clickedIncident instanceof Officer){
+            dialog.setContentView(R.layout.popup_dialog_officer);
+            ((ImageView) dialog.findViewById(R.id.type_icon)).setImageResource(clickedIncident.getDrawableId());
+            ((TextView) dialog.findViewById(R.id.type)).setText(getContext().getString(R.string.officer_label));
 
-        TextView security = (TextView) dialog.findViewById(R.id.severity_desc);
-        security.setText(clickedIncident.getSecurityLevel());
 
-        LinearLayout weapons = (LinearLayout) dialog.findViewById(R.id.weapon_layout);
+            ((TextView) dialog.findViewById(R.id.name)).setText(((Officer) clickedIncident).getName());
+            ((TextView) dialog.findViewById(R.id.distance)).setText(((Officer) clickedIncident).getDistance()+"m");
 
-        if (GeneralUtility.isEmptyString(clickedIncident.getWeapons())) {
-            weapons.setVisibility(View.GONE);
-        } else {
-            weapons.setVisibility(View.VISIBLE);
-            ((TextView) dialog.findViewById(R.id.weapon_desc)).setText(clickedIncident.getWeapons());
+            ((TextView) dialog.findViewById(R.id.unit)).setText(((Officer) clickedIncident).getUnit());
+            ((TextView) dialog.findViewById(R.id.speciality)).setText(((Officer) clickedIncident).getSpeciality());
+
+
         }
         dialog.show();
     }
@@ -111,7 +119,6 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
     @Override
     public void onMarkerClicked(int position) {
 
-        // TODO SHOW DIALOG BASED ON CLICKED MARKER INFO
         onMarkerClicked(mIncidentsLocs.get(position));
 
     }

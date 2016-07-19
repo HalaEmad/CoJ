@@ -36,7 +36,7 @@
                 android:id="@+id/type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Assault"
+                android:text="@string/assualt_label"
                 android:textStyle="bold" />
 
             <TextView
@@ -135,7 +135,7 @@
                 android:id="@+id/weapon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Weapons"
+                android:text="@string/weapons_label"
                 android:textStyle="bold" />
 
             <TextView

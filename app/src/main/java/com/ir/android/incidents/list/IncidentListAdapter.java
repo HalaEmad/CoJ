@@ -8,7 +8,8 @@ import android.widget.TextView;
 
 import com.ibm.android.kit.views.adapters.AbstractViewHolder;
 import com.ir.android.R;
-import com.ir.android.model.IncidentM;
+import com.ir.android.model.Assault;
+import com.ir.android.model.Incident;
 
 import java.util.ArrayList;
 
@@ -16,9 +17,9 @@ import java.util.ArrayList;
  * Created by emanhassan on 7/4/16.
  */
 public class IncidentListAdapter extends com.ibm.android.kit.views.adapters.ListAdapter {
-    private ArrayList<IncidentM> incidents;
+    private ArrayList<Incident> incidents;
     private ItemListener listener ;
-    public IncidentListAdapter(Context context, ArrayList<IncidentM> incidents, ItemListener listener) {
+    public IncidentListAdapter(Context context, ArrayList<Incident> incidents, ItemListener listener) {
         super(context);
         this.incidents = incidents;
         this.listener = listener;
@@ -55,14 +56,14 @@ public class IncidentListAdapter extends com.ibm.android.kit.views.adapters.List
 
     @Override
     protected void bindView(AbstractViewHolder holder, int position) {
-        IncidentM incident = incidents.get(position);
-        ((IncidentViewHolder)holder).incidentType.setText(incident.getType());
+        Assault incident = (Assault) incidents.get(position);
+        ((IncidentViewHolder)holder).incidentType.setText(context.getResources().getString(R.string.assualt_label));
         ((IncidentViewHolder)holder).incidentStatus.setText(incident.getStatus());
 
-        ((IncidentViewHolder)holder).incidentLoc.setText(incident.getDistance());
+        ((IncidentViewHolder)holder).incidentLoc.setText(incident.getDistance()+"m");
 
         ((IncidentViewHolder)holder).incidentTypeImage.setImageResource(incident.getDrawableId());
-        //TODO
+
         ((IncidentViewHolder)holder).severityIcon.setImageResource(R.mipmap.severity_icon);
 
 

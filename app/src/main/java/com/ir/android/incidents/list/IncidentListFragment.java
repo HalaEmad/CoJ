@@ -2,6 +2,7 @@ package com.ir.android.incidents.list;
 
 import android.widget.ListView;
 
+import com.fasterxml.jackson.databind.util.ClassUtil;
 import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.ViewModel;
 import com.ibm.android.kit.views.fragments.Fragment;
@@ -9,7 +10,8 @@ import com.ir.android.R;
 import com.ir.android.incidents.map.IncidentMapListener;
 import com.ir.android.incidents.FragmentViewModel;
 import com.ir.android.incidents.FragmentCtrl;
-import com.ir.android.model.IncidentM;
+import com.ir.android.model.Assault;
+import com.ir.android.model.Incident;
 
 import java.util.ArrayList;
 
@@ -40,8 +42,16 @@ public class IncidentListFragment extends Fragment implements ItemListener
     protected void initViews() {
 
         listView = (ListView) getView().findViewById(R.id.list);
-        ArrayList<IncidentM> incidents =  ((FragmentViewModel)controller.getViewModel()).getIncidentsLocs();
-        listView.setAdapter(new IncidentListAdapter(getContext(), incidents,this));
+        ArrayList<Incident> incidents =  ((FragmentViewModel)controller.getViewModel()).getIncidentsLocs();
+        ArrayList<Incident> assualtsIncidents = new ArrayList<Incident>();
+        for (Incident incident: incidents)
+        {
+            if (incident instanceof Assault)
+            {
+                assualtsIncidents.add((Assault) incident);
+            }
+        }
+        listView.setAdapter(new IncidentListAdapter(getContext(), assualtsIncidents,this));
 
     }
 
