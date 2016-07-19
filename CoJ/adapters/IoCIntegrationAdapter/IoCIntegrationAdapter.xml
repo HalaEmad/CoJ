@@ -14,9 +14,9 @@
 	<description>IoCIntegrationAdapter</description>
 	<connectivity>
 		<connectionPolicy xsi:type="http:HTTPConnectionPolicyType">
-			<protocol>https</protocol>
-			<domain>172.30.11.118</domain>
-			<port>443</port>	
+			<protocol>http</protocol>
+			<domain>iocweb.ibmplatform.com</domain>
+			<port>80</port>	
 			<!-- Following properties used by adapter's key manager for choosing specific certificate from key store  
 			<sslCertificateAlias></sslCertificateAlias> 
 			<sslCertificatePassword></sslCertificatePassword>
@@ -25,8 +25,8 @@
 		<loadConstraints maxConcurrentConnectionsPerNode="2" />
 	</connectivity>
 
-	<procedure name="getEvents"/>
+	<procedure name="getEvents" securityTest="wl_unprotected"/>
 
-	<procedure name="reportEvent"/>
+	<procedure name="reportEvent" securityTest="wl_unprotected"/>
 	
 </wl:adapter>

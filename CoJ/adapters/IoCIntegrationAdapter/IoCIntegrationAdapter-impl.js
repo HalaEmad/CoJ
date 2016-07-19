@@ -2,28 +2,32 @@
  *  list of incidents that got created on the IoC server
  *  
  */
+var _Constants = {
+   JSESSIONID : "JSESSIONID",
+   SESSIONID : "com.ibm.ioc.sessionid",
+   REALM : "IOCAuthRealm",
+   LTPATOKEN : "LtpaToken2"
+};
 
 function getEvents(dataSourceId, boundaries, token) {
-path = "/ibm/ioc/api/spatial-service/features/" + dataSourceId;
-
-var user = WL.Server.getActiveUser(_Constants.REALM); httpHeaders = {
-         Accept : "application/json",
-Cookie : _Constants.LTPATOKEN + "=" + user.attributes.ltpaToken };
-httpHeaders[_Constants.SESSIONID] = user.attributes.sessionId; httpHeaders["Cookie"] += "; " + _Constants.JSESSIONID + "="
-            + user.attributes.sessionId;
-         var input = {
-            method : 'get',
-            returnedContentType : 'json',
-            path : path,
-            headers : httpHeaders,
-            parameters: {
-              boundaries: boundaries,
-              criterion: "deleteFlag=0"
-            }
-};
-         return WL.Server.invokeHttp(input);
-   }
-
+	path = "/ibm/ioc/api/spatial-service/features/" + dataSourceId;
+	var user = WL.Server.getActiveUser(_Constants.REALM); httpHeaders = {
+	         Accept : "application/json",
+	Cookie : _Constants.LTPATOKEN + "=" + user.attributes.ltpaToken };
+	httpHeaders[_Constants.SESSIONID] = user.attributes.sessionId; httpHeaders["Cookie"] += "; " + _Constants.JSESSIONID + "="
+	            + user.attributes.sessionId;
+	         var input = {
+	            method : 'get',
+	            returnedContentType : 'json',
+	            path : path,
+	            headers : httpHeaders,
+	            parameters: {
+	              boundaries: boundaries,
+	              criterion: "deleteFlag=0"
+	            }
+	};
+	         return WL.Server.invokeHttp(input);
+	   }
 /*This procedure will be responsible for updating incidents info*/
 
 function reportEvent(startDate, endDate, lastUpdate, location, name, severity,
