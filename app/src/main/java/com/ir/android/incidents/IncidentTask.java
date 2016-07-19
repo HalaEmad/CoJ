@@ -7,6 +7,8 @@ import com.ibm.android.kit.tasks.ITask;
 import com.ibm.android.kit.tasks.Task;
 import com.ir.android.R;
 import com.ir.android.model.Incident;
+import com.ir.android.networking.IncidentRetrievingResource.IncidentRetrievingFailedException;
+import com.ir.android.networking.IncidentRetrievingResource.IncidentRetrievingResource;
 
 import java.util.ArrayList;
 
@@ -21,6 +23,13 @@ public class IncidentTask extends Task {
 
     @Override
     protected Result onTaskWork() {
+
+        try {
+            IncidentRetrievingResource resource = new IncidentRetrievingResource(context);
+            resource.invoke();
+        }catch (IncidentRetrievingFailedException e){
+            e.printStackTrace();
+        }
 
         ArrayList<Incident> incidents = new ArrayList<Incident>();
 

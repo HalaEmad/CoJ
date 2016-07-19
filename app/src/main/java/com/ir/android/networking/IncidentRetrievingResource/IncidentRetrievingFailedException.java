@@ -1,11 +1,11 @@
 package com.ir.android.networking.IncidentRetrievingResource;
 
-import com.ir.android.networking.basicimplementation.exceptions.RetrivingFailedException;
+import com.ir.android.networking.basicimplementation.exceptions.InvocationFailedException;
 
 /**
  * Created by Henawey on 7/11/16.
  */
-public class IncidentRetrievingFailedException extends RetrivingFailedException{
+public class IncidentRetrievingFailedException extends InvocationFailedException {
     public IncidentRetrievingFailedException(){
         super();
     }

@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.ibm.android.kit.utils.LocationUtility;
-import com.ir.android.networking.LocationReportingResource.LocationReportingException;
 import com.ir.android.networking.LocationReportingResource.LocationReportingResource;
 
 /**
@@ -57,7 +56,7 @@ public class LocationService extends IntentService implements LocationListener {
         try {
             LocationReportingResource locationReportingResource=new LocationReportingResource(getBaseContext());
             locationReportingResource.setCoordinate(location.getLatitude(),location.getLongitude());
-            locationReportingResource.save();
+            locationReportingResource.invoke();
         } catch (Exception e) {
             e.printStackTrace();
         }

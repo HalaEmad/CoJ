@@ -5,16 +5,13 @@ import android.content.Context;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ir.android.networking.basicimplementation.WLResource;
-import com.ir.android.networking.basicimplementation.exceptions.SavingFailedException;
+import com.ir.android.networking.login.Models.ProfileAttribute;
+import com.ir.android.networking.login.Models.UserGroup;
 import com.worklight.utils.Base64;
 import com.worklight.wlclient.api.WLResponse;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -201,13 +198,17 @@ public class UserResource extends WLResource {
         return "authenticateUser";
     }
 
-    @Override
-    public void save() throws SavingFailedException {
+    public static boolean isLoggedIn(Context context){
+        String ltpaToken2=getLtpaToken2(context);
+        return (ltpaToken2==null || ltpaToken2.isEmpty());
+    }
 
+    public static void logout(Context context){
+        clearCache(context);
     }
 
     @Override
-    public void retrieve() throws LoginFailedException{
+    public void invoke() throws LoginFailedException{
         try {
             String authorizationInput =
                     Base64.encode((username + ":" + password).getBytes(), "UTF-8");
@@ -215,70 +216,79 @@ public class UserResource extends WLResource {
             WLResponse response=process();
             if(response.getStatus()== 200) {
                 ObjectMapper objectMapper = new ObjectMapper();
-                JSONArray jsonArray=new JSONArray(response.getResponseText());
-                objectMapper.readerForUpdating(this).readValue(jsonArray.getString(0));
+
+                JSONObject responseJson=response.getResponseJSON();
+                String responseText=responseJson.getString("text");
+                objectMapper.readerForUpdating(this).readValue(responseText);
             }else{
                 throw new LoginFailedException(response.getResponseText());
             }
 
         }catch (Exception e){
             //TODO:remove stub
-
-            if((username.equals("marius") && password.equals("ibmioc16")) ||(username.equals("wpsadmin") && password.equals("ChangeM3N0Wx") )) {
-                try {
-                    InputStream inputStream = getContext().getAssets().open("Login-Success.octet-stream");
-
-                    BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
-                    StringBuilder string = new StringBuilder();
-                    String line;
-                    while ((line = r.readLine()) != null) {
-                        string.append(line).append('\n');
-                    }
-
-
-                    //read from stub
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    JSONObject jsonObject = new JSONObject(string.toString());
-                    String array = jsonObject.getString("text");
-                    JSONArray jsonArray = new JSONArray(array);
-
-
-                    objectMapper.readerForUpdating(this).readValue(jsonArray.getString(0));
-
-                    return;
-                } catch (Exception e1) {
-                    /*it's stub please don't handle this*/
-                    e1.printStackTrace();
-                }
-            }else{
-                try {
-                    InputStream inputStream = getContext().getAssets().open("Login-Failure.octet-stream");
-
-                    BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
-                    StringBuilder string = new StringBuilder();
-                    String line;
-                    while ((line = r.readLine()) != null) {
-                        string.append(line).append('\n');
-                    }
-
-
-                    //read from stub
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    JSONObject jsonObject = new JSONObject(string.toString());
-                    String array = jsonObject.getString("text");
-                    JSONArray jsonArray = new JSONArray(array);
-
-
-                    objectMapper.readerForUpdating(this).readValue(jsonArray.getString(0));
-
-                    return;
-                } catch (Exception e1) {
-                    /*it's stub please don't handle this*/
-                    e1.printStackTrace();
-                }
-            }
-    //Stub end
+//            if((username.equals("marius") && password.equals("ibmioc16")) || (username.equals("wpsadmin") && password.equals("ChangeM3N0Wx") )) {
+//                try {
+//                    InputStream inputStream = getContext().getAssets().open("Login-Success.octet-stream");
+//
+//                    BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
+//                    StringBuilder string = new StringBuilder();
+//                    String line;
+//                    while ((line = r.readLine()) != null) {
+//                        string.append(line).append('\n');
+//                    }
+//
+//
+//                    //read from stub
+//                    ObjectMapper objectMapper = new ObjectMapper();
+//                    JSONObject jsonObject = new JSONObject(string.toString());
+//                    String array = jsonObject.getString("text");
+//                    JSONArray jsonArray = new JSONArray(array);
+//
+//
+//                    objectMapper.readerForUpdating(this).readValue(jsonArray.getString(0));
+//
+//                    String SHARED_PREFERNCES_NAME = "WLResource";
+//                    String LTPA_TOKEN2_SHARED_PREFERNCES_NAME = "ltpaToken2";
+//
+//                    SharedPreferences.Editor editor = getContext().getSharedPreferences(SHARED_PREFERNCES_NAME, Context.MODE_PRIVATE).edit();
+//                    editor.putString(LTPA_TOKEN2_SHARED_PREFERNCES_NAME, "xi++41ykzLsTDQIG5qvrx6IOsH+MgjS0gtfw7u0mgvbFx3glcbAQN9+Vf7geCacx0f5B9qL0v0Hh5e1Xrp43VH5cyVJEtZjQhSpIEZmZUzQRcl0mCy46TSJFsvsEAoB8ohtRuMNzw2L2dMI/TZeWx6K1i4cycRgZbPE4isTkXw0RzUmWeOcdqEXxeo8134FlS5gLeS3SBjNdD+KJjzGI44a8f3pR8l5gq6ullO/vPysjxkbGWDd55IhbzUaD65L47MWTk0FO3fqsh+ebo5v0brLJHw2RbqdOVUs5IKxGQQ+y8KbYQ+n7Dz1HqpNuIea2l7z2JFPiakMR1oZFD2JF2EvBAnDWeLrVwGK694atbhCc8zZGVA/3DbUQKhyTK1rFNOZ9BV9HMtm5/ajHoVYur65EhzaqVQ5E6Lq2QA4iqaNefL+JFs+vove12ZR0H9UmN2p1e8InJAxZkg/vQPhCqPt6bxFERuajmDez9PDFkEd8Xh+0mpCnE9hTOG3Wts1OBJxBhbb1p5BBLO97R/zynymoR2iO5WYlPiPJ9Y2TYY9Rl26TKMTkLNebpJcI2RXOh+0lmoWNU35tymlugI8eYGqxAavtDf1mJI+PA/lqNQY5NP6AIrj4F0wDXu5Cvxe+XowbLbDqipE8ZnlXGOBQbABHqnZ35vJPEEo4Zj4/V2YWbyJyGWD+kdl6543WhCHQ");
+//                    editor.commit();
+//                    return;
+//                } catch (Exception e1) {
+//                    /*it's stub please don't handle this*/
+//                    e1.printStackTrace();
+//                }
+//            }else{
+//                try {
+//                    InputStream inputStream = getContext().getAssets().open("Login-Failure.octet-stream");
+//
+//                    BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
+//                    StringBuilder string = new StringBuilder();
+//                    String line;
+//                    while ((line = r.readLine()) != null) {
+//                        string.append(line).append('\n');
+//                    }
+//
+//
+//                    //read from stub
+//                    ObjectMapper objectMapper = new ObjectMapper();
+//                    JSONObject jsonObject = new JSONObject(string.toString());
+//                    String array = jsonObject.getString("text");
+//                    JSONArray jsonArray = new JSONArray(array);
+//
+//
+//                    objectMapper.readerForUpdating(this).readValue(jsonArray.getString(0));
+//
+//                    return;
+//                } catch (Exception e1) {
+//                    /*it's stub please don't handle this*/
+//                    e1.printStackTrace();
+//                }
+//Stub end
             throw new LoginFailedException(e);
+//            }
+//
+//
         }
     }
 }

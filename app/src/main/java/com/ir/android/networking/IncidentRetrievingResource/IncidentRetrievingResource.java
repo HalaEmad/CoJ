@@ -3,21 +3,75 @@ package com.ir.android.networking.IncidentRetrievingResource;
 import android.content.Context;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ir.android.networking.FeatureModels.Feature;
 import com.ir.android.networking.basicimplementation.WLResource;
-import com.ir.android.networking.basicimplementation.exceptions.SavingFailedException;
 import com.worklight.wlclient.api.WLResponse;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 /**
  * Created by Henawey on 7/11/16.
  */
+
 public class IncidentRetrievingResource extends WLResource {
+
+    private String type;
+    private int id;
+    private long lastUpdateDate;
+    private ArrayList<Feature> features;
+    private boolean moreDataAvailable;
+    private ArrayList<String> messages;
+
+    public ArrayList<Feature> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(ArrayList<Feature> features) {
+        this.features = features;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(long lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
+    }
+
+    public boolean isMoreDataAvailable() {
+        return moreDataAvailable;
+    }
+
+    public void setMoreDataAvailable(boolean moreDataAvailable) {
+        this.moreDataAvailable = moreDataAvailable;
+    }
+
+    public ArrayList<String> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(ArrayList<String> messages) {
+        this.messages = messages;
+    }
 
     public IncidentRetrievingResource(Context context) {
         super(context);
@@ -34,19 +88,14 @@ public class IncidentRetrievingResource extends WLResource {
     }
 
     @Override
-    public void save() throws SavingFailedException {
-
-    }
-
-    @Override
-    public void retrieve() throws IncidentRetrievingFailedException {
+    public void invoke() throws IncidentRetrievingFailedException {
         try {
 
             //TODO: missing boundaries
 
             addParameter(1);//datasourceID
-            addParameter("??");//boundaries
-            addParameter(getLtpaToken2());//ltpaToken
+            addParameter("");//boundaries
+            addParameter(getLtpaToken2(getContext()));//ltpaToken
 
             WLResponse response = process();
 
@@ -66,15 +115,9 @@ public class IncidentRetrievingResource extends WLResource {
                     string.append(line).append('\n');
                 }
 
-
                 //read from stub
                 ObjectMapper objectMapper = new ObjectMapper();
-                JSONObject jsonObject=new JSONObject(string.toString());
-                String array=jsonObject.getString("text");
-                JSONArray jsonArray=new JSONArray(array);
-
-
-                objectMapper.readerForUpdating(this).readValue(jsonArray.getString(0));
+                objectMapper.readerForUpdating(this).readValue(string.toString());
 
                 return;
             }catch(Exception e1){

@@ -63,6 +63,7 @@ public class MainCtrl extends Controller implements MainViewListener {
                 if (fragment == null)
                     fragment = new WalkthroughScreen();
                 title = getScreen().getString(R.string.walkthrough_title);
+
                 break;
             case 3:
                 finish();

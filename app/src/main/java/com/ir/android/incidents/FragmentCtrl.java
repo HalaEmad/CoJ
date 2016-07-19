@@ -50,8 +50,8 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
 
         LocationService.start(getScreen());
 
-        IncidentTask task = new IncidentTask(this, getContext()
-        );
+
+        IncidentTask task = new IncidentTask(this, activity);
         task.execute();
     }
 

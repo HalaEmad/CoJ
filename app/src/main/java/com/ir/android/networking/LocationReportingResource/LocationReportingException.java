@@ -1,11 +1,11 @@
 package com.ir.android.networking.LocationReportingResource;
 
-import com.ir.android.networking.basicimplementation.exceptions.SavingFailedException;
+import com.ir.android.networking.basicimplementation.exceptions.InvocationFailedException;
 
 /**
  * Created by Henawey on 7/11/16.
  */
-public class LocationReportingException extends SavingFailedException {
+public class LocationReportingException extends InvocationFailedException {
     public LocationReportingException(){
         super();
     }

@@ -41,4 +41,19 @@
     <!-- Active call -->
     <string name="active_call_title">Active Call</string>
 
+    <!-- Walkthrough -->
+    <string name="wt_active_call_title">What is an Active Call?</string>
+    <string name="wt_active_call_detail">Active Calls refer to calls that have been assigned or requested by an officer.</string>
+    <string name="wt_active_call_detail_2">They remain active until they are marked as closed.</string>
+
+    <string name="wt_location_title">Share My Location</string>
+    <string name="wt_location_detail">A Field Officers location is tracked and shared, so backup and support resources can be dispatched in a more effective and timely manner.</string>
+
+    <string name="wt_incident_marker_title">View Incident Marker</string>
+    <string name="wt_incident_marker_detail">Active Calls refer to calls that have been assigned or requested by an officer.</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+
 </resources>

@@ -1,4 +1,4 @@
-package com.ir.android.networking.login;
+package com.ir.android.networking.login.Models;
 
 /**
  * Created by Henawey on 7/11/16.
