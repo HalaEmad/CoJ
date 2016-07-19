@@ -31,7 +31,6 @@
     <string-array name="navigation_array">
         <item>Home</item>
         <item>Incidents</item>
-        <item>Active Calls</item>
         <item>Walkthrough</item>
         <item>logout</item>
     </string-array>

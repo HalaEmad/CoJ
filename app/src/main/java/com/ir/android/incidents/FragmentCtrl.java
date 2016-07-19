@@ -83,26 +83,26 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
     public void onMarkerClicked(Incident clickedIncident) {
         // TODO SHOW DIALOG BASED ON CLICKED MARKER INFO
         Dialog dialog = new Dialog(getContext());
-        dialog.setContentView(R.layout.popup_dialog);
+        dialog.setContentView(R.layout.popup_dialog_assault);
 
-        TextView type = (TextView) dialog.findViewById(R.id.firstTitle);
+        TextView type = (TextView) dialog.findViewById(R.id.type);
         type.setText(clickedIncident.getType());
 
 
-        ((ImageView) dialog.findViewById(R.id.firstIcon)).setImageResource(clickedIncident.getDrawableId());
-        TextView status = (TextView) dialog.findViewById(R.id.firstInfo);
+        ((ImageView) dialog.findViewById(R.id.type_icon)).setImageResource(clickedIncident.getDrawableId());
+        TextView status = (TextView) dialog.findViewById(R.id.status);
         status.setText(clickedIncident.getStatus());
 
-        TextView security = (TextView) dialog.findViewById(R.id.secondInfo);
+        TextView security = (TextView) dialog.findViewById(R.id.severity_desc);
         security.setText(clickedIncident.getSecurityLevel());
 
-        LinearLayout weapons = (LinearLayout) dialog.findViewById(R.id.thirdLayout);
+        LinearLayout weapons = (LinearLayout) dialog.findViewById(R.id.weapon_layout);
 
         if (GeneralUtility.isEmptyString(clickedIncident.getWeapons())) {
             weapons.setVisibility(View.GONE);
         } else {
             weapons.setVisibility(View.VISIBLE);
-            ((TextView) dialog.findViewById(R.id.thirdInfo)).setText(clickedIncident.getWeapons());
+            ((TextView) dialog.findViewById(R.id.weapon_desc)).setText(clickedIncident.getWeapons());
         }
         dialog.show();
     }
