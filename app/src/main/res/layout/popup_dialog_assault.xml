@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="2dp">
+
+    <!-- First Section -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="2dp"
+        android:background="#d6e1e2"
+        android:minHeight="30dp"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/type_icon"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/assault_icon" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Assault"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="pending Dispatch" />
+
+            <TextView
+                android:id="@+id/distance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="200 m" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <!-- Second section-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="2dp"
+        android:background="#f4f3f2"
+        android:minHeight="30dp"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/severity_icon"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/severity_icon" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/severity_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Severity - Level 2"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/severity_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Major Injuries, EMS Dispatched" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <!-- Third Section -->
+
+
+    <LinearLayout
+        android:id="@+id/weapon_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="2dp"
+        android:background="#fbf8f8"
+        android:minHeight="30dp"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/weapon_icon"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/weapons_icon" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/weapon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weapons"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/weapon_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Suspect with knife" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

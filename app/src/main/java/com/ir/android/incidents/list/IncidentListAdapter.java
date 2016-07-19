@@ -45,9 +45,9 @@ public class IncidentListAdapter extends com.ibm.android.kit.views.adapters.List
     @Override
     protected AbstractViewHolder initView(View convertView, int position) {
         IncidentViewHolder holder = new IncidentViewHolder();
-        holder.incidentType = (TextView) convertView.findViewById(R.id.firstTitle);
-        holder.incidentStatus = (TextView) convertView.findViewById(R.id.firstInfo);
-        holder.incidentLoc = (TextView) convertView.findViewById(R.id.firstLoc);
+        holder.incidentType = (TextView) convertView.findViewById(R.id.type);
+        holder.incidentStatus = (TextView) convertView.findViewById(R.id.status);
+        holder.incidentLoc = (TextView) convertView.findViewById(R.id.distance);
         holder.severityIcon = (ImageView) convertView.findViewById(R.id.severity_level);
         holder.incidentTypeImage = (ImageView) convertView.findViewById(R.id.incident_type);
         return holder;

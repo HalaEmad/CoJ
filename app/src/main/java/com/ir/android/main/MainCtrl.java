@@ -50,14 +50,14 @@ public class MainCtrl extends Controller implements MainViewListener {
                     fragment = new IncidentScreen();
                 title = getScreen().getString(R.string.incident_title);
                 break;
+//            case 2:
+//                tag = "screen.active.call";
+//                fragment = getScreen().getSupportFragmentManager().findFragmentByTag(tag);
+//                if (fragment == null)
+//                    fragment = new ActiveCallScreen();
+//                title = getScreen().getString(R.string.active_call_title);
+//                break;
             case 2:
-                tag = "screen.active.call";
-                fragment = getScreen().getSupportFragmentManager().findFragmentByTag(tag);
-                if (fragment == null)
-                    fragment = new ActiveCallScreen();
-                title = getScreen().getString(R.string.active_call_title);
-                break;
-            case 3:
                 tag = "screen.walkthrough";
                 fragment = getScreen().getSupportFragmentManager().findFragmentByTag(tag);
                 if (fragment == null)
@@ -65,7 +65,7 @@ public class MainCtrl extends Controller implements MainViewListener {
                 title = getScreen().getString(R.string.walkthrough_title);
 
                 break;
-            case 4:
+            case 3:
                 finish();
                 NavigationHelper.showLogin(getContext());
                 return;

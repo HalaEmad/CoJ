@@ -20,13 +20,13 @@
         android:src="@mipmap/fr_logo" />
 
     <!--<ProgressBar-->
-        <!--style="?android:attr/progressBarStyleLarge"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:indeterminateTint="#FFF"-->
-        <!--android:indeterminateTintMode="src_in" />-->
+    <!--style="?android:attr/progressBarStyleLarge"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:indeterminateTint="#FFF"-->
+    <!--android:indeterminateTintMode="src_in" />-->
 
     <ImageView
         android:layout_width="wrap_content"
