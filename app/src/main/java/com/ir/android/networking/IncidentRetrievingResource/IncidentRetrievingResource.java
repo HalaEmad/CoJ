@@ -2,7 +2,7 @@ package com.ir.android.networking.IncidentRetrievingResource;
 
 import android.content.Context;
 
-import com.ir.android.networking.FeatureModels.Feature;
+import com.ir.android.networking.Datasources.FeatureModels.Feature;
 import com.ir.android.networking.basicimplementation.WLResource;
 import com.worklight.wlclient.api.WLResponse;
 

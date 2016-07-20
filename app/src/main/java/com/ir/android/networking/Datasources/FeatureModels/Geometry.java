@@ -1,4 +1,4 @@
-package com.ir.android.networking.FeatureModels;
+package com.ir.android.networking.Datasources.FeatureModels;
 
 import java.util.ArrayList;
 
