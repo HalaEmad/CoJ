@@ -38,8 +38,8 @@ public class IncidentTask extends Task {
 
         in1.setType(Incident.TYPE_ASSUALT);
         in1.setDistance(200);
-        in1.setLatitude(30.0444);
-        in1.setLongitude(31.2357);
+        in1.setLatitude(-26.206852);
+        in1.setLongitude(28.0442333);
         ((Assault)in1).setStatus("Pending dispatch");
         ((Assault)in1).setSeverityLevel("Severity - Level 2");
         ((Assault)in1).setSeverityLvlDesc("Major Injures");
@@ -51,10 +51,11 @@ public class IncidentTask extends Task {
 
         Incident in2= new Assault();
 
+
         in2.setType(Incident.TYPE_ASSUALT);
         in2.setDistance(100);
-        in2.setLatitude(31.205753);
-        in2.setLongitude(29.924526);
+        in2.setLatitude(-26.20671);
+        in2.setLongitude(28.0442333);
         ((Assault)in2).setStatus("Pending dispatch");
         ((Assault)in2).setSeverityLevel("Severity - Level 1");
         ((Assault)in2).setSeverityLvlDesc("Major Injures");
@@ -65,8 +66,8 @@ public class IncidentTask extends Task {
         Incident in3 = new Officer();
         in3.setType(Incident.TYPE_OFFICER);
         in3.setDistance(100);
-        in3.setLongitude(32.89942);
-        in3.setLatitude(24.09082);
+        in3.setLatitude(-26.206142);
+        in3.setLongitude(28.0414706);
 
         ((Officer)in3).setName("Name Surname");
         ((Officer)in3).setRank("Constable");
@@ -74,11 +75,12 @@ public class IncidentTask extends Task {
         ((Officer)in3).setUnit("Food Patrol");
         incidentArrayList.add((Officer)in3);
 
+
         Incident in4 = new Officer();
         in4.setType(Incident.TYPE_OFFICER);
         in3.setDistance(100);
-        in4.setLatitude(29.203171);
-        in4.setLongitude(25.519545);
+        in4.setLatitude( -26.2051699);
+        in4.setLongitude(28.0451453);
 
         ((Officer)in4).setName("Name Surname");
         ((Officer)in4).setRank("W/O");
