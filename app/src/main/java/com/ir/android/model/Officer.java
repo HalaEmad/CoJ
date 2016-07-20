@@ -10,12 +10,13 @@ public class Officer extends Incident {
     private String unit;
 
 
-
     public String getRank() {
         return rank;
     }
 
     public void setRank(String rank) {
+        if (rank == null)
+            rank = "";
         this.rank = rank;
     }
 
@@ -24,6 +25,8 @@ public class Officer extends Incident {
     }
 
     public void setSpeciality(String speciality) {
+        if (speciality == null)
+            speciality = "";
         this.speciality = speciality;
     }
 
@@ -32,6 +35,8 @@ public class Officer extends Incident {
     }
 
     public void setName(String name) {
+        if (name == null)
+            name = "";
         this.name = name;
     }
 
@@ -40,6 +45,8 @@ public class Officer extends Incident {
     }
 
     public void setUnit(String unit) {
+        if(unit == null)
+            unit ="";
         this.unit = unit;
     }
 }
