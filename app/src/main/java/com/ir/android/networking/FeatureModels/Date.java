@@ -1,4 +1,4 @@
-package com.ir.android.networking.Datasources.FeatureModels;
+package com.ir.android.networking.FeatureModels;
 
 /**
  * Created by Henawey on 7/15/16.

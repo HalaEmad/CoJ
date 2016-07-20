@@ -1,11 +1,18 @@
-package com.ir.android.networking.Datasources.FeatureModels;
+package com.ir.android.networking.FeatureModels;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
 
 /**
  * Created by Henawey on 7/12/16.
  */
-public class Property {
+public class Properties {
+
+    public Properties(){
+        dynamicProperties=new ArrayList<>();
+    }
 
     @JsonProperty("DatasourceId")
     private int datasourceId;
@@ -46,9 +53,21 @@ public class Property {
     @JsonProperty("AssessmentDateTime")
     private Date assessmentDateTime;
 
+    private ArrayList<DynamicProperty> dynamicProperties;
 
     public Date getAssessmentDateTime() {
         return assessmentDateTime;
+    }
+
+
+    @JsonAnySetter
+    public void set(String name, String value) {
+        if (name.toLowerCase().startsWith("property")) {
+            DynamicProperty dynamicProperty = new DynamicProperty();
+            dynamicProperty.setName(name);
+            dynamicProperty.setValue(value);
+            dynamicProperties.add(dynamicProperty);
+        }
     }
 
     public void setAssessmentDateTime(Date assessmentDateTime) {
@@ -151,4 +170,11 @@ public class Property {
         this.startDateTime = startDateTime;
     }
 
+    public void setDynamicProperties(ArrayList<DynamicProperty> dynamicProperties) {
+        this.dynamicProperties = dynamicProperties;
+    }
+
+    public ArrayList<DynamicProperty> getDynamicProperties() {
+        return dynamicProperties;
+    }
 }

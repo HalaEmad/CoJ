@@ -1,4 +1,4 @@
-package com.ir.android.networking.Datasources.FeatureModels;
+package com.ir.android.networking.FeatureModels;
 
 /**
  * Created by Henawey on 7/12/16.
@@ -9,7 +9,7 @@ public class Feature {
     private int fid;
     private boolean deleted;
     private Geometry geometry;
-    private Property properties;
+    private Properties properties;
 
     public String getType() {
         return type;
@@ -51,11 +51,11 @@ public class Feature {
         this.geometry = geometry;
     }
 
-    public Property getProperties() {
+    public Properties getProperties() {
         return properties;
     }
 
-    public void setProperties(Property properties) {
+    public void setProperties(Properties properties) {
         this.properties = properties;
     }
 
