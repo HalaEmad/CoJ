@@ -100,6 +100,17 @@ public abstract class WLResource implements Resource {
         }
     }
 
+    protected  boolean isSuccessed(WLResponse response) throws JSONException{
+        JSONObject responseJson=response.getResponseJSON();
+        if(response.getStatus()!=200
+                || (responseJson.has("isSuccessful") && responseJson.getBoolean("isSuccessful") == false)
+                || (responseJson.has("statusCode") && (responseJson.getInt("statusCode")!=200))){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
     private WLResponse invokeAdapter() throws InterruptedException {
         BasicWLResponseListener responseListener = new BasicWLResponseListener();
 

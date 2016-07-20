@@ -255,7 +255,8 @@ public class UserResource extends WLResource {
                     Base64.encode((username + ":" + password).getBytes(), "UTF-8");
             addParameter(authorizationInput);
             WLResponse response=process();
-            if(response.getStatus()== 200 && (response.getResponseJSON().has("statusCode") && response.getResponseJSON().getInt("statusCode")==200)) {
+
+            if(isSuccessed(response)){
                 ObjectMapper objectMapper = new ObjectMapper();
 
                 JSONObject responseJson=response.getResponseJSON();

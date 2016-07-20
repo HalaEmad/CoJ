@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.ir.android.networking.FeatureModels.DynamicProperty;
 import com.ir.android.networking.FeatureModels.Feature;
+import com.ir.android.networking.FeatureModels.Properties;
 import com.ir.android.networking.basicimplementation.WLResource;
 import com.worklight.wlclient.api.WLResponse;
 
@@ -51,11 +52,10 @@ public class DynamicPropertiesResolver extends WLResource {
 
             WLResponse response = process();
 
-            if(response.getStatus()!=200){
-                throw new ResolvingFailedException(response.getResponseText());
+            if(isSuccessed(response)){
+                resolveFeatures(response.getResponseJSON());
             }else{
-
-                resolveFeatures(response.getResponseText());
+                throw new ResolvingFailedException(response.getResponseText());
             }
 
         }catch (Exception e){
@@ -71,7 +71,7 @@ public class DynamicPropertiesResolver extends WLResource {
                 }
 
                 //read from stub
-                resolveFeatures(string.toString());
+                resolveFeatures(new JSONObject(string.toString()));
 
                 return;
             }catch(Exception e1){
@@ -83,10 +83,9 @@ public class DynamicPropertiesResolver extends WLResource {
             throw new ResolvingFailedException(e);
         }
     }
-    private void resolveFeatures(String data) throws ResolvingFailedException{
+    private void resolveFeatures(JSONObject jsonObject) throws ResolvingFailedException{
         try {
             HashMap<String,String> mapping=new HashMap<>();
-            JSONObject jsonObject = new JSONObject(data);
             JSONArray columns=jsonObject.getJSONArray("columns");
             for (int i = 0; i < columns.length(); i++) {
                 JSONObject column=columns.getJSONObject(i);
@@ -107,11 +106,34 @@ public class DynamicPropertiesResolver extends WLResource {
             }
 
             for (Feature feature:features) {
-                ArrayList<DynamicProperty> dynamicProperties=feature.getProperties().getDynamicProperties();
+                Properties properties=feature.getProperties();
+                ArrayList<DynamicProperty> dynamicProperties=properties.getDynamicProperties();
                 for (DynamicProperty dynamicProperty:dynamicProperties) {
                     String newName=mapping.get(dynamicProperty.getName());
                     if(newName!=null){
                         dynamicProperty.setName(newName);
+
+                        switch (dynamicProperty.getName().toLowerCase()){
+                            case "call category":
+                                properties.setCallCategory(dynamicProperty.getValue());
+                                break;
+                            case "call type":
+                                properties.setCallType(dynamicProperty.getValue());
+                                break;
+                            case "address":
+                                properties.setAddress(dynamicProperty.getValue());
+                                break;
+                            case "submittedby":
+                                properties.setSubmittedBy(dynamicProperty.getValue());
+                                break;
+                            case "submitteddatetime":
+                                properties.setSubmittedDateTime(dynamicProperty.getValue());
+                                break;
+                            case "expirationdatetime":
+                                properties.setExpirationDateTime(dynamicProperty.getValue());
+                                break;
+                        }
+
                     }
                 }
             }

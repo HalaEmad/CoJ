@@ -2,6 +2,7 @@ package com.ir.android.networking.IncidentRetrievingResource;
 
 import android.content.Context;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ir.android.networking.FeatureModels.Feature;
 import com.ir.android.networking.FeatureModels.mapping.DynamicPropertiesResolver;
 import com.ir.android.networking.basicimplementation.WLResource;
@@ -97,11 +98,14 @@ public class IncidentRetrievingResource extends WLResource {
 
             WLResponse response = process();
 
-            if(response.getStatus()!=200){
-                throw new IncidentRetrievingFailedException(response.getResponseText());
-            }else{
+            if(isSuccessed(response)){
+                ObjectMapper objectMapper = new ObjectMapper();
+                objectMapper.readerForUpdating(this).readValue(response.getResponseJSON().toString());
+
                 DynamicPropertiesResolver dynamicPropertiesResolver=new DynamicPropertiesResolver(getContext(),getFeatures());
                 dynamicPropertiesResolver.invoke();
+            }else{
+                throw new IncidentRetrievingFailedException(response.getResponseText());
             }
 
         }catch (Exception e){
@@ -115,6 +119,9 @@ public class IncidentRetrievingResource extends WLResource {
                 while ((line = r.readLine()) != null) {
                     string.append(line).append('\n');
                 }
+
+                ObjectMapper objectMapper = new ObjectMapper();
+                objectMapper.readerForUpdating(this).readValue(string.toString());
 
                 DynamicPropertiesResolver dynamicPropertiesResolver=new DynamicPropertiesResolver(getContext(),getFeatures());
                 dynamicPropertiesResolver.invoke();
