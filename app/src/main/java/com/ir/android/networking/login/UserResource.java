@@ -255,26 +255,18 @@ public class UserResource extends WLResource {
                     Base64.encode((username + ":" + password).getBytes(), "UTF-8");
             addParameter(authorizationInput);
             WLResponse response=process();
-            if(response.getStatus()== 200) {
+            if(response.getStatus()== 200 && (response.getResponseJSON().has("statusCode") && response.getResponseJSON().getInt("statusCode")==200)) {
                 ObjectMapper objectMapper = new ObjectMapper();
 
                 JSONObject responseJson=response.getResponseJSON();
                 JSONObject userIdentity=responseJson.getJSONObject("userIdentity");
                 objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES).readerForUpdating(this).readValue(userIdentity.toString());
             }else{
-                logout(getContext());
-                throw new LoginFailedException(response.getResponseText());
+                throw new InvocationFailedException(response.getResponseText());
             }
 
         }catch (Exception e){
-
-
-            try {
-                logout(getContext());
-            } catch (LogoutFailedException e1) {
-                throw new LoginFailedException(e1);
-            }
-
+            throw new LoginFailedException(e);
         }
     }
 }
