@@ -16,8 +16,6 @@ import com.ibm.android.kit.models.ViewModel;
 import com.ibm.android.kit.views.fragments.Fragment;
 import com.ir.android.R;
 
-import java.text.BreakIterator;
-
 /**
  * Created by bassam on 09-07-2016.
  */
@@ -50,8 +48,7 @@ public class WalkthroughScreen extends Fragment {
     @Override
     protected void initViews() {
         mPager = (ViewPager) getView().findViewById(R.id.walkthrough_pager);
-//        mPagerAdapter = new WalkthroughAdapter(getContext(), getActivity().getSupportFragmentManager());
-        mPagerAdapter = new SectionsPagerAdapter(getActivity().getSupportFragmentManager());
+        mPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
 
         mPager.setAdapter(mPagerAdapter);
 
@@ -67,7 +64,7 @@ public class WalkthroughScreen extends Fragment {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
+    public static class PlaceholderFragment extends android.support.v4.app.Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -94,31 +91,14 @@ public class WalkthroughScreen extends Fragment {
         }
 
         @Override
-        protected Controller createController() {
-            return new WalkthroughAdapterCtrl();
-        }
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.page_walkthrough, container, false);
 
-        @Override
-        protected String getControllerTag() {
-            return "walkthrou.adapter";
-        }
-
-        @Override
-        protected int getLayoutId() {
-            return R.layout.page_walkthrough;
-        }
-
-        @Override
-        protected void initViews() {
-             mPageImageView = (ImageView) getView().findViewById(R.id.wt_icon);
-             mPageTitle = (TextView) getView().findViewById(R.id.title_textView);
-             mPageDetails = (TextView) getView().findViewById(R.id.details_textview);
-             mSubDetails = (TextView) getView().findViewById(R.id.details_2_textview);
-
-        }
-
-        @Override
-        protected void bindViews(ViewModel viewInfo) {
+            ImageView mPageImageView = (ImageView) rootView.findViewById(R.id.wt_icon);
+            TextView mPageTitle = (TextView) rootView.findViewById(R.id.title_textView);
+            TextView mPageDetails = (TextView) rootView.findViewById(R.id.details_textview);
+            TextView mSubDetails = (TextView) rootView.findViewById(R.id.details_2_textview);
             int position = getArguments().getInt(ARG_SECTION_NUMBER);
             switch (position) {
                 case 0:
@@ -142,44 +122,10 @@ public class WalkthroughScreen extends Fragment {
 
                     break;
             }
+
+            return rootView;
         }
-//
-//        @Override
-//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                                 Bundle savedInstanceState) {
-//            View rootView = inflater.inflate(R.layout.page_walkthrough, container, false);
-//
-//            ImageView mPageImageView = (ImageView) rootView.findViewById(R.id.wt_icon);
-//            TextView mPageTitle = (TextView) rootView.findViewById(R.id.title_textView);
-//            TextView mPageDetails = (TextView) rootView.findViewById(R.id.details_textview);
-//            TextView mSubDetails = (TextView) rootView.findViewById(R.id.details_2_textview);
-//            int position = getArguments().getInt(ARG_SECTION_NUMBER);
-//            switch (position) {
-//                case 0:
-//                    mPageImageView.setImageResource(R.mipmap.wt_alert_icon);
-//                    mPageTitle.setText(getResources().getString(R.string.wt_active_call_title));
-//                    mPageDetails.setText(getResources().getString(R.string.wt_active_call_detail));
-//                    mSubDetails.setText(getResources().getString(R.string.wt_active_call_detail_2));
-//
-//                    break;
-//
-//                case 1:
-//                    mPageImageView.setImageResource(R.mipmap.wt_location_icon);
-//                    mPageTitle.setText(getResources().getString(R.string.wt_location_title));
-//                    mPageDetails.setText(getResources().getString(R.string.wt_location_detail));
-//                    break;
-//
-//                case 2:
-//                    mPageImageView.setImageResource(R.mipmap.wt_exclamation_mark);
-//                    mPageTitle.setText(getResources().getString(R.string.wt_incident_marker_title));
-//                    mPageDetails.setText(getResources().getString(R.string.wt_incident_marker_detail));
-//
-//                    break;
-//            }
-//
-//            return rootView;
-//        }
-  }
+    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -192,10 +138,10 @@ public class WalkthroughScreen extends Fragment {
         }
 
         @Override
-        public Fragment getItem(int position) {
+        public android.support.v4.app.Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            Log.i("pager", ""+position);
+            Log.i("pager", "" + position);
             return PlaceholderFragment.newInstance(position);
         }
 

@@ -13,30 +13,30 @@
         android:layout_marginTop="50dp"
         android:background="#FFFFFF"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/wt_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
+            android:layout_gravity="center|left"
+            android:layout_margin="30dp"
             android:scaleType="fitCenter"
             android:src="@mipmap/wt_alert_icon" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_margin="30dp">
 
             <TextView
                 android:id="@+id/title_textView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
                 android:gravity="center"
+                android:padding="16dp"
+                android:layout_height="wrap_content"
                 android:text="@string/wt_active_call_title"
                 android:textAlignment="center"
                 android:textSize="20sp"
