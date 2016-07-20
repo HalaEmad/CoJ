@@ -96,7 +96,9 @@ public class IncidentRetrievingResource extends WLResource {
             if(response.getStatus()!=200){
                 throw new IncidentRetrievingFailedException(response.getResponseText());
             }
+
         }catch (Exception e){
+
 
             throw new IncidentRetrievingFailedException(e);
         }

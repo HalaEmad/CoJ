@@ -122,6 +122,7 @@ public abstract class WLResource implements Resource {
     }
 
     private void connectToServer() throws InterruptedException, ProcessingFailedException {
+
         BasicWLResponseListener responseListener = new BasicWLResponseListener();
         client.connect(responseListener);
         WLResponse response=responseListener.getResponseSync();
@@ -146,33 +147,54 @@ public abstract class WLResource implements Resource {
     private void saveJSessionID(WLResponse response) throws JSONException {
         SharedPreferences.Editor editor = context.getSharedPreferences(SHARED_PREFERNCES_NAME, Context.MODE_PRIVATE).edit();
 
+
+
         JSONObject jsonObject= response.getResponseJSON();
 
-        JSONObject responseHeaders=jsonObject.getJSONObject("responseHeaders");
+        if(jsonObject.has("WL-Authentication-Success")){
+            JSONObject WLAuthenticationSuccess=jsonObject.getJSONObject("WL-Authentication-Success");
+            if(WLAuthenticationSuccess.has("IOCAuthRealm")){
+                JSONObject IOCAuthRealm=WLAuthenticationSuccess.getJSONObject("IOCAuthRealm");
+                if(IOCAuthRealm.has("attributes")){
+                    JSONObject attributes=IOCAuthRealm.getJSONObject("attributes");
+                    if(attributes.has("sessionId")){
+                        String jsessionID=attributes.getString("sessionId");
 
-        if(responseHeaders.has("com.ibm.ioc.sessionid")) {
-            String jsessionID = responseHeaders.getString("com.ibm.ioc.sessionid");
+                        if (jsessionID != null && !jsessionID.isEmpty()) {
 
-            if (jsessionID != null && !jsessionID.isEmpty()) {
+                            editor.putString(JSESSION_ID_SHARED_PREFERNCES_NAME, jsessionID);
+                            editor.commit();
+                        }
+                    }
+                }
 
-                editor.putString(JSESSION_ID_SHARED_PREFERNCES_NAME, jsessionID);
-                editor.commit();
             }
         }
     }
     private void saveLTPAToken2(WLResponse response) throws JSONException {
         SharedPreferences.Editor editor = context.getSharedPreferences(SHARED_PREFERNCES_NAME, Context.MODE_PRIVATE).edit();
 
-        Header cookie = response.getHeader("Set-Cookie");
-        if (cookie != null) {
-            String cookieValue = cookie.getValue();
-            int startIndex = cookieValue.indexOf("LtpaToken2=");
-            int endIndex = cookieValue.indexOf(";", startIndex);
-            String ltpaToken2 = cookieValue.substring(startIndex, endIndex);
 
-            if (ltpaToken2!=null && !ltpaToken2.isEmpty()) {
-                editor.putString(LTPA_TOKEN2_SHARED_PREFERNCES_NAME, ltpaToken2);
-                editor.commit();
+
+        JSONObject jsonObject= response.getResponseJSON();
+
+        if(jsonObject.has("WL-Authentication-Success")&& !jsonObject.isNull("WL-Authentication-Success")){
+            JSONObject WLAuthenticationSuccess=jsonObject.getJSONObject("WL-Authentication-Success");
+            if(WLAuthenticationSuccess.has("IOCAuthRealm")&& !WLAuthenticationSuccess.isNull("IOCAuthRealm")){
+                JSONObject IOCAuthRealm=WLAuthenticationSuccess.getJSONObject("IOCAuthRealm");
+                if(IOCAuthRealm.has("attributes")&& !IOCAuthRealm.isNull("attributes")){
+                    JSONObject attributes=IOCAuthRealm.getJSONObject("attributes");
+                    if(attributes.has("ltpaToken") && !attributes.isNull("ltpaToken")){
+                        String ltpaToken=attributes.getString("ltpaToken");
+
+                        if (ltpaToken != null && !ltpaToken.isEmpty()) {
+
+                            editor.putString(LTPA_TOKEN2_SHARED_PREFERNCES_NAME, ltpaToken);
+                            editor.commit();
+                        }
+                    }
+                }
+
             }
         }
 

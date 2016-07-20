@@ -3,8 +3,11 @@ package com.ir.android.networking.login;
 import android.content.Context;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ir.android.networking.basicimplementation.WLResource;
+import com.ir.android.networking.basicimplementation.exceptions.InvocationFailedException;
+import com.ir.android.networking.basicimplementation.exceptions.ProcessingFailedException;
 import com.ir.android.networking.login.Models.ProfileAttribute;
 import com.ir.android.networking.login.Models.UserGroup;
 import com.worklight.utils.Base64;
@@ -22,6 +25,7 @@ public class UserResource extends WLResource {
     private String username;
     private String password;
 
+    private String userId;
     private String uid;
     private String preferredLanguage;
     private boolean userSpecifiedLanguage;
@@ -66,6 +70,14 @@ public class UserResource extends WLResource {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 
     public String getUid() {
@@ -203,8 +215,37 @@ public class UserResource extends WLResource {
         return (ltpaToken2==null || ltpaToken2.isEmpty());
     }
 
-    public static void logout(Context context){
-        clearCache(context);
+    public static void logout(Context context) throws LogoutFailedException {
+
+        try {
+            final WLResource wlResource = new WLResource(context) {
+                @Override
+                public String getAdapterName() {
+                    return "Authentication";
+                }
+
+                @Override
+                public String getProcedureName() {
+                    return "logoutUser";
+                }
+
+                @Override
+                public void invoke() throws InvocationFailedException {
+                    try {
+                        WLResponse response=process();
+                        if (response.getStatus()!=200){
+                            throw new LogoutFailedException(response.getResponseText());
+                        }
+                    } catch (ProcessingFailedException e) {
+                        throw new InvocationFailedException(e);
+                    }
+                }
+            };
+            wlResource.invoke();
+            clearCache(context);
+        }catch (InvocationFailedException e){
+            throw new LogoutFailedException(e);
+        }
     }
 
     @Override
@@ -218,14 +259,22 @@ public class UserResource extends WLResource {
                 ObjectMapper objectMapper = new ObjectMapper();
 
                 JSONObject responseJson=response.getResponseJSON();
-                String responseText=responseJson.getString("text");
-                objectMapper.readerForUpdating(this).readValue(responseText);
+                JSONObject userIdentity=responseJson.getJSONObject("userIdentity");
+                objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES).readerForUpdating(this).readValue(userIdentity.toString());
             }else{
+                logout(getContext());
                 throw new LoginFailedException(response.getResponseText());
             }
 
         }catch (Exception e){
-            throw new LoginFailedException(e);
+
+
+            try {
+                logout(getContext());
+            } catch (LogoutFailedException e1) {
+                throw new LoginFailedException(e1);
+            }
+
         }
     }
 }
