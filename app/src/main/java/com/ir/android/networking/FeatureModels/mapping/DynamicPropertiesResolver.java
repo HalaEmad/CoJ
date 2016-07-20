@@ -91,7 +91,7 @@ public class DynamicPropertiesResolver extends WLResource {
             for (int i = 0; i < columns.length(); i++) {
                 JSONObject column=columns.getJSONObject(i);
                 String category=column.getString("category");
-//                if (category.equalsIgnoreCase("MINIMAL")){
+                if (category.equalsIgnoreCase("MINIMAL")||category.equalsIgnoreCase("KEY")){
                       String format="";
                       if (column.has("format")) {
                             format = column.getString("format");
@@ -103,7 +103,7 @@ public class DynamicPropertiesResolver extends WLResource {
                         String targetNewName =column.getString("i18nLabel");
                         mapping.put(targetName,targetNewName);
                     }
-//                }
+                }
             }
 
             for (Feature feature:features) {
