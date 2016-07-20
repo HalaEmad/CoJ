@@ -2,14 +2,10 @@ package com.ir.android.networking.IncidentRetrievingResource;
 
 import android.content.Context;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ir.android.networking.FeatureModels.Feature;
 import com.ir.android.networking.basicimplementation.WLResource;
 import com.worklight.wlclient.api.WLResponse;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -91,8 +87,6 @@ public class IncidentRetrievingResource extends WLResource {
     public void invoke() throws IncidentRetrievingFailedException {
         try {
 
-            //TODO: missing boundaries
-
             addParameter(1);//datasourceID
             addParameter("");//boundaries
             addParameter(getLtpaToken2(getContext()));//ltpaToken
@@ -103,28 +97,6 @@ public class IncidentRetrievingResource extends WLResource {
                 throw new IncidentRetrievingFailedException(response.getResponseText());
             }
         }catch (Exception e){
-            //TODO:remove stub
-
-            try {
-                InputStream inputStream = getContext().getAssets().open("Incidents-Response.octet-stream");
-
-                BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
-                StringBuilder string = new StringBuilder();
-                String line;
-                while ((line = r.readLine()) != null) {
-                    string.append(line).append('\n');
-                }
-
-                //read from stub
-                ObjectMapper objectMapper = new ObjectMapper();
-                objectMapper.readerForUpdating(this).readValue(string.toString());
-
-                return;
-            }catch(Exception e1){
-                    /*it's stub please don't handle this*/
-                e1.printStackTrace();
-            }
-            //Stub end
 
             throw new IncidentRetrievingFailedException(e);
         }

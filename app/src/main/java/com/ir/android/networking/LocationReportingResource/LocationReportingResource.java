@@ -2,17 +2,10 @@ package com.ir.android.networking.LocationReportingResource;
 
 import android.content.Context;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ir.android.networking.basicimplementation.WLResource;
 import com.worklight.location.api.geo.WLCoordinate;
 import com.worklight.wlclient.api.WLResponse;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.TimeZone;
 
 /**
@@ -67,36 +60,7 @@ public class LocationReportingResource extends WLResource {
                 throw new LocationReportingException(response.getResponseText());
             }
         }catch (Exception e){
-            //TODO:remove stub
-
-            try {
-                InputStream inputStream = getContext().getAssets().open("Data-Injection-Response.octet-stream");
-
-                BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
-                StringBuilder string = new StringBuilder();
-                String line;
-                while ((line = r.readLine()) != null) {
-                    string.append(line).append('\n');
-                }
-
-
-                //read from stub
-                ObjectMapper objectMapper = new ObjectMapper();
-                JSONObject jsonObject=new JSONObject(string.toString());
-                String array=jsonObject.getString("text");
-                JSONArray jsonArray=new JSONArray(array);
-
-
-                objectMapper.readerForUpdating(this).readValue(jsonArray.getString(0));
-
-                return;
-            }catch(Exception e1){
-                    /*it's stub please don't handle this*/
-                e1.printStackTrace();
-            }
-            //Stub end
             throw new LocationReportingException(e);
-
         }
     }
 }
