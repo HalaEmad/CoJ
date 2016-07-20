@@ -61,8 +61,8 @@ public abstract class WLResource implements Resource {
     }
 
     protected static String getLtpaToken2(Context context) {
-//        SharedPreferences prefs = context.getSharedPreferences(SHARED_PREFERNCES_NAME, context.MODE_PRIVATE);
-        String ltpaToken2 = "xi++41ykzLsTDQIG5qvrx6IOsH+MgjS0gtfw7u0mgvbFx3glcbAQN9+Vf7geCacx0f5B9qL0v0Hh5e1Xrp43VH5cyVJEtZjQhSpIEZmZUzQRcl0mCy46TSJFsvsEAoB8ohtRuMNzw2L2dMI/TZeWx6K1i4cycRgZbPE4isTkXw0RzUmWeOcdqEXxeo8134FlS5gLeS3SBjNdD+KJjzGI44a8f3pR8l5gq6ullO/vPysjxkbGWDd55IhbzUaD65L47MWTk0FO3fqsh+ebo5v0brLJHw2RbqdOVUs5IKxGQQ+y8KbYQ+n7Dz1HqpNuIea2l7z2JFPiakMR1oZFD2JF2EvBAnDWeLrVwGK694atbhCc8zZGVA/3DbUQKhyTK1rFNOZ9BV9HMtm5/ajHoVYur65EhzaqVQ5E6Lq2QA4iqaNefL+JFs+vove12ZR0H9UmN2p1e8InJAxZkg/vQPhCqPt6bxFERuajmDez9PDFkEd8Xh+0mpCnE9hTOG3Wts1OBJxBhbb1p5BBLO97R/zynymoR2iO5WYlPiPJ9Y2TYY9Rl26TKMTkLNebpJcI2RXOh+0lmoWNU35tymlugI8eYGqxAavtDf1mJI+PA/lqNQY5NP6AIrj4F0wDXu5Cvxe+XowbLbDqipE8ZnlXGOBQbABHqnZ35vJPEEo4Zj4/V2YWbyJyGWD+kdl6543WhCHQ";//prefs.getString(LTPA_TOKEN2_SHARED_PREFERNCES_NAME, null);
+        SharedPreferences prefs = context.getSharedPreferences(SHARED_PREFERNCES_NAME, context.MODE_PRIVATE);
+        String ltpaToken2 = prefs.getString(LTPA_TOKEN2_SHARED_PREFERNCES_NAME, null);
 
         return ltpaToken2;
     }
