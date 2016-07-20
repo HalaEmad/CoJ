@@ -19,6 +19,8 @@ public class Assault extends Incident {
     }
 
     public void setStatus(String status) {
+        if (status == null)
+            status ="";
         this.status = status;
     }
 
@@ -27,6 +29,8 @@ public class Assault extends Incident {
     }
 
     public void setSeverityLevel(String severityLevel) {
+        if (severityLevel == null)
+            severityLevel ="";
         this.severityLevel = severityLevel;
     }
 
@@ -35,6 +39,8 @@ public class Assault extends Incident {
     }
 
     public void setSeverityLvlDesc(String severityLvlDesc) {
+        if (severityLvlDesc == null)
+            severityLvlDesc ="" ;
         this.severityLvlDesc = severityLvlDesc;
     }
 
@@ -51,6 +57,8 @@ public class Assault extends Incident {
     }
 
     public void setWeaponDescription(String weaponDescription) {
+        if (weaponDescription == null)
+            weaponDescription = "";
         this.weaponDescription = weaponDescription;
     }
 }
