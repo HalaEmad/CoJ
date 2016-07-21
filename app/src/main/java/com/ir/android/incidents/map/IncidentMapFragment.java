@@ -145,10 +145,8 @@ public class IncidentMapFragment extends Fragment implements OnSingleTapListener
                 if (null != id) {
                     if (incidentsLocs != null && incidentsLocs.size() > ((int) id)) {
                         Incident selectedIncident = incidentsLocs.get((int) id);
-
-//                        mapView.setScale(13, false);
 //                        mapView.centerAt(selectedIncident.getLatitude(), selectedIncident.getLongitude(), true);
-                        mapView.centerAndZoom(selectedIncident.getLatitude(), selectedIncident.getLongitude(), 13);
+                        mapView.centerAndZoom(selectedIncident.getLatitude(), selectedIncident.getLongitude(), 20);
                         ((IncidentMapListener) controller).onMarkerClicked(selectedIncident);
                     }
                 }
