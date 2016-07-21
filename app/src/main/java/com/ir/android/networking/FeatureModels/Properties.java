@@ -1,11 +1,18 @@
 package com.ir.android.networking.FeatureModels;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
 
 /**
  * Created by Henawey on 7/12/16.
  */
-public class Property {
+public class Properties {
+
+    public Properties(){
+        dynamicProperties=new ArrayList<>();
+    }
 
     @JsonProperty("DatasourceId")
     private int datasourceId;
@@ -46,9 +53,28 @@ public class Property {
     @JsonProperty("AssessmentDateTime")
     private Date assessmentDateTime;
 
+    private String callCategory;
+    private String callType;
+    private String address;
+    private String submittedBy;
+    private String submittedDateTime;
+    private String expirationDateTime;
+
+    private ArrayList<DynamicProperty> dynamicProperties;
 
     public Date getAssessmentDateTime() {
         return assessmentDateTime;
+    }
+
+
+    @JsonAnySetter
+    public void set(String name, String value) {
+        if (name.toLowerCase().startsWith("property")) {
+            DynamicProperty dynamicProperty = new DynamicProperty();
+            dynamicProperty.setName(name);
+            dynamicProperty.setValue(value);
+            dynamicProperties.add(dynamicProperty);
+        }
     }
 
     public void setAssessmentDateTime(Date assessmentDateTime) {
@@ -151,4 +177,55 @@ public class Property {
         this.startDateTime = startDateTime;
     }
 
+    public String getCallCategory() {
+        return callCategory;
+    }
+
+    public void setCallCategory(String callCategory) {
+        this.callCategory = callCategory;
+    }
+
+    public String getCallType() {
+        return callType;
+    }
+
+    public void setCallType(String callType) {
+        this.callType = callType;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getSubmittedBy() {
+        return submittedBy;
+    }
+
+    public void setSubmittedBy(String submittedBy) {
+        this.submittedBy = submittedBy;
+    }
+
+    public String getSubmittedDateTime() {
+        return submittedDateTime;
+    }
+
+    public void setSubmittedDateTime(String submittedDateTime) {
+        this.submittedDateTime = submittedDateTime;
+    }
+
+    public String getExpirationDateTime() {
+        return expirationDateTime;
+    }
+
+    public void setExpirationDateTime(String expirationDateTime) {
+        this.expirationDateTime = expirationDateTime;
+    }
+
+    public ArrayList<DynamicProperty> getDynamicProperties() {
+        return dynamicProperties;
+    }
 }

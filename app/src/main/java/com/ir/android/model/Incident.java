@@ -12,7 +12,7 @@ public class Incident {
     private int type;
     private double latitude;
     private  double longitude;
-    private int distance;
+    private String distance;
     private int drawableId;
 
     public int getType() {
@@ -39,11 +39,11 @@ public class Incident {
         this.longitude = longitude;
     }
 
-    public int getDistance() {
+    public String getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(String distance) {
         this.distance = distance;
     }
 

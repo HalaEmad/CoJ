@@ -89,7 +89,7 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
             ((ImageView) dialog.findViewById(R.id.type_icon)).setImageResource(clickedIncident.getDrawableId());
             ((TextView) dialog.findViewById(R.id.type)).setText(getContext().getString(R.string.assualt_label));
             ((TextView) dialog.findViewById(R.id.status)).setText(((Assault) clickedIncident).getStatus());
-            ((TextView) dialog.findViewById(R.id.distance)).setText(((Assault) clickedIncident).getDistance()+"m");
+            ((TextView) dialog.findViewById(R.id.distance)).setText(((Assault) clickedIncident).getDistance());
 
             ((TextView) dialog.findViewById(R.id.severity_level)).setText(((Assault) clickedIncident).getSeverityLevel());
             ((TextView) dialog.findViewById(R.id.severity_desc)).setText(((Assault) clickedIncident).getSeverityLvlDesc());
@@ -106,7 +106,7 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
 
 
             ((TextView) dialog.findViewById(R.id.name)).setText(((Officer) clickedIncident).getName());
-            ((TextView) dialog.findViewById(R.id.distance)).setText(((Officer) clickedIncident).getDistance()+"m");
+            ((TextView) dialog.findViewById(R.id.distance)).setText(((Officer) clickedIncident).getDistance());
 
             ((TextView) dialog.findViewById(R.id.unit)).setText(((Officer) clickedIncident).getUnit());
             ((TextView) dialog.findViewById(R.id.speciality)).setText(((Officer) clickedIncident).getSpeciality());

@@ -1,4 +1,4 @@
-package com.ir.android.networking.IncidentRetrievingResource;
+package com.ir.android.networking.PoliceOfficersRetrievingResource;
 
 import android.content.Context;
 
@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Created by Henawey on 7/11/16.
  */
 
-public class IncidentRetrievingResource extends WLResource {
+public class PoliceOfficersRetrievingResource extends WLResource {
 
     private String type;
     private int id;
@@ -74,7 +74,7 @@ public class IncidentRetrievingResource extends WLResource {
         this.messages = messages;
     }
 
-    public IncidentRetrievingResource(Context context) {
+    public PoliceOfficersRetrievingResource(Context context) {
         super(context);
     }
 
@@ -89,10 +89,10 @@ public class IncidentRetrievingResource extends WLResource {
     }
 
     @Override
-    public void invoke() throws IncidentRetrievingFailedException {
+    public void invoke() throws PoliceOfficersRetrievingFailedException {
         try {
 
-            addParameter(10);//datasourceID
+            addParameter(12);//datasourceID
             addParameter("");//boundaries
             addParameter(getLtpaToken2(getContext()));//ltpaToken
 
@@ -105,7 +105,7 @@ public class IncidentRetrievingResource extends WLResource {
                 DynamicPropertiesResolver dynamicPropertiesResolver=new DynamicPropertiesResolver(getContext(),getFeatures());
                 dynamicPropertiesResolver.invoke();
             }else{
-                throw new IncidentRetrievingFailedException(response.getResponseText());
+                throw new PoliceOfficersRetrievingFailedException(response.getResponseText());
             }
 
         }catch (Exception e){
@@ -133,7 +133,7 @@ public class IncidentRetrievingResource extends WLResource {
             }
             //Stub end
 
-            throw new IncidentRetrievingFailedException(e);
+            throw new PoliceOfficersRetrievingFailedException(e);
         }
     }
 
