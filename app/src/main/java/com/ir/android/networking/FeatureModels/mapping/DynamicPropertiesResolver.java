@@ -126,11 +126,12 @@ public class DynamicPropertiesResolver extends WLResource {
                 ArrayList<DynamicProperty> dynamicProperties=properties.getDynamicProperties();
                 for (DynamicProperty dynamicProperty:dynamicProperties) {
                     String newName=mapping.get(dynamicProperty.getName());
-                    Log.i("Mapping", "Name: "+dynamicProperty.getName());
-                    Log.i("Mapping", "Value: "+dynamicProperty.getValue());
+
 
                     if(newName!=null){
                         dynamicProperty.setName(newName);
+                        Log.i("Mapping", "Name: "+dynamicProperty.getName());
+                        Log.i("Mapping", "Value: "+dynamicProperty.getValue());
 
                         switch (dynamicProperty.getName().toLowerCase()){
                             case "call category":
@@ -150,6 +151,12 @@ public class DynamicPropertiesResolver extends WLResource {
                                 break;
                             case "expirationdatetime":
                                 properties.setExpirationDateTime(dynamicProperty.getValue());
+                                break;
+                            case "status":
+                                properties.setStatus(dynamicProperty.getValue());
+                                break;
+                            case "severity":
+                                properties.setSeverity(dynamicProperty.getValue());
                                 break;
                         }
 

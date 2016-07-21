@@ -59,4 +59,5 @@
     <string name="assualt_label">Assualt</string>
     <string name="officer_label">JMPD OFFICER</string>
     <string name="weapons_label">Weapons</string>
+    <string name="severity_level_label">Severity - Level </string>
 </resources>

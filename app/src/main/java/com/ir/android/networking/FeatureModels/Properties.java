@@ -59,6 +59,8 @@ public class Properties {
     private String submittedBy;
     private String submittedDateTime;
     private String expirationDateTime;
+    private String status;
+    private String severity;
 
     private ArrayList<DynamicProperty> dynamicProperties;
 
@@ -223,6 +225,22 @@ public class Properties {
 
     public void setExpirationDateTime(String expirationDateTime) {
         this.expirationDateTime = expirationDateTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getSeverity() {
+        return severity;
+    }
+
+    public void setSeverity(String severity) {
+        this.severity = severity;
     }
 
     public ArrayList<DynamicProperty> getDynamicProperties() {

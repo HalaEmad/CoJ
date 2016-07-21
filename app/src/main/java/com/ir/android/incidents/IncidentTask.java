@@ -5,6 +5,8 @@ import android.content.Context;
 import com.ibm.android.kit.models.Result;
 import com.ibm.android.kit.tasks.ITask;
 import com.ibm.android.kit.tasks.Task;
+import com.ibm.android.kit.utils.GeneralUtility;
+import com.ir.android.R;
 import com.ir.android.model.Assault;
 import com.ir.android.model.Incident;
 import com.ir.android.model.Officer;
@@ -54,7 +56,10 @@ public class IncidentTask extends Task {
                     incident.setTypeName(feature.getType());
 
                     incident.setDistance(feature.getProperties().getAddress());
-
+                    incident.setStatus(feature.getProperties().getStatus());
+                    String severityLvl = feature.getProperties().getSeverity();
+                    if (!GeneralUtility.isEmptyString(severityLvl))
+                        incident.setSeverityLevel(context.getString(R.string.severity_level_label) + " " + severityLvl);
                     incidents.add(incident);
 
                 }
@@ -86,6 +91,10 @@ public class IncidentTask extends Task {
                     incident.setTypeName(feature.getType());
 
                     incident.setDistance(feature.getProperties().getAddress());
+                    incident.setStatus(feature.getProperties().getStatus());
+                    String severityLvl = feature.getProperties().getSeverity();
+                    if (!GeneralUtility.isEmptyString(severityLvl))
+                        incident.setSeverityLevel(context.getString(R.string.severity_level_label) + " "+ severityLvl);
 
                     incidents.add(incident);
 
@@ -127,7 +136,6 @@ public class IncidentTask extends Task {
         } catch (PoliceOfficersRetrievingFailedException e) {
             e.printStackTrace();
         }
-
 
 
         ArrayList<Incident> incidentArrayList = new ArrayList<Incident>();
