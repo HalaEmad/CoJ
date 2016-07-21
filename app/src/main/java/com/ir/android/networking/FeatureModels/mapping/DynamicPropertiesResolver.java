@@ -1,6 +1,7 @@
 package com.ir.android.networking.FeatureModels.mapping;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.ir.android.networking.FeatureModels.DynamicProperty;
 import com.ir.android.networking.FeatureModels.Feature;
@@ -125,6 +126,9 @@ public class DynamicPropertiesResolver extends WLResource {
                 ArrayList<DynamicProperty> dynamicProperties=properties.getDynamicProperties();
                 for (DynamicProperty dynamicProperty:dynamicProperties) {
                     String newName=mapping.get(dynamicProperty.getName());
+                    Log.i("Mapping", "Name: "+dynamicProperty.getName());
+                    Log.i("Mapping", "Value: "+dynamicProperty.getValue());
+
                     if(newName!=null){
                         dynamicProperty.setName(newName);
 

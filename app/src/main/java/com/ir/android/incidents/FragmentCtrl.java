@@ -110,7 +110,7 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
 
             ((TextView) dialog.findViewById(R.id.unit)).setText(((Officer) clickedIncident).getUnit());
             ((TextView) dialog.findViewById(R.id.speciality)).setText(((Officer) clickedIncident).getSpeciality());
-
+            ((TextView) dialog.findViewById(R.id.rank)).setText(((Officer) clickedIncident).getRank());
 
         }
         dialog.show();

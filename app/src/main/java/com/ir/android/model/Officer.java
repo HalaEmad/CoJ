@@ -9,7 +9,9 @@ public class Officer extends Incident {
     private String name;
     private String unit;
 
-
+    public Officer() {
+        this.setType(TYPE_OFFICER);
+    }
     public String getRank() {
         return rank;
     }

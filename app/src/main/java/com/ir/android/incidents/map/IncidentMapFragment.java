@@ -1,9 +1,7 @@
 package com.ir.android.incidents.map;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
 
 import com.esri.android.map.GraphicsLayer;
@@ -24,8 +22,8 @@ import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.ViewModel;
 import com.ibm.android.kit.views.fragments.Fragment;
 import com.ir.android.R;
-import com.ir.android.incidents.FragmentViewModel;
 import com.ir.android.incidents.FragmentCtrl;
+import com.ir.android.incidents.FragmentViewModel;
 import com.ir.android.model.Incident;
 
 import java.util.ArrayList;
@@ -90,23 +88,13 @@ public class IncidentMapFragment extends Fragment implements OnSingleTapListener
                         MultiPoint multipoint = new MultiPoint();
                         for (int i = 0; i < incidentsLocs.size(); i++) {
                             Incident incident = incidentsLocs.get(i);
-
-                            BitmapDrawable pinStarBlueDrawable = (BitmapDrawable) ContextCompat.getDrawable(context, incident.getDrawableId());
-                            Bitmap b = pinStarBlueDrawable.getBitmap();
-
-//                            Bitmap bitmapResized = Bitmap.createScaledBitmap(b, 76, 90  , false);
-
-                            PictureMarkerSymbol pinStarBlueSymbol = new PictureMarkerSymbol(new BitmapDrawable(getResources(), b));
+                            PictureMarkerSymbol pinStarBlueSymbol = new PictureMarkerSymbol(getContext(), ResourcesCompat.getDrawable(getResources(), incident.getDrawableId(), null));
                             Point point = GeometryEngine.project(incident.getLongitude(), incident.getLatitude(), mapView.getSpatialReference());
                             multipoint.add(point);
                             Map<String, Object> attributes = new HashMap<String, Object>();
                             attributes.put(ATTR_INDEX, i);
-
-//                            Graphic g = new Graphic(point, new SimpleMarkerSymbol(Color.RED, 10, SimpleMarkerSymbol.STYLE.CIRCLE), attributes);
                             Graphic g = new Graphic(point, pinStarBlueSymbol, attributes);
-//
                             graphicsLayer.addGraphic(g);
-
                             mapView.addLayer(graphicsLayer);
                         }
                         mapView.setExtent(multipoint, 100, true);
@@ -119,6 +107,7 @@ public class IncidentMapFragment extends Fragment implements OnSingleTapListener
         mapView.addLayer(oneMapLayer);
 
     }
+
     @Override
     public void onSingleTap(float x, float y) {
         try {
@@ -156,14 +145,15 @@ public class IncidentMapFragment extends Fragment implements OnSingleTapListener
                 if (null != id) {
                     if (incidentsLocs != null && incidentsLocs.size() > ((int) id)) {
                         Incident selectedIncident = incidentsLocs.get((int) id);
-                        mapView.centerAt(selectedIncident.getLatitude(), selectedIncident.getLongitude(), true);
+//                        mapView.centerAt(selectedIncident.getLatitude(), selectedIncident.getLongitude(), true);
+                        mapView.centerAndZoom(selectedIncident.getLatitude(), selectedIncident.getLongitude(), 20);
                         ((IncidentMapListener) controller).onMarkerClicked(selectedIncident);
                     }
                 }
 
             }
         } catch (Exception e) {
-            Log.e("map",e.getMessage());
+            Log.e("map", e.getMessage());
         }
     }
 
