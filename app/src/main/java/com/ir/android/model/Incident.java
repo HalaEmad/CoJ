@@ -10,6 +10,7 @@ public class Incident {
     public final static int TYPE_OFFICER = 2;
 
     private int type;
+    private String typeName;
     private double latitude;
     private  double longitude;
     private String distance;
@@ -44,6 +45,8 @@ public class Incident {
     }
 
     public void setDistance(String distance) {
+        if (distance == null)
+            distance = "";
         this.distance = distance;
     }
 
@@ -52,5 +55,13 @@ public class Incident {
             return R.mipmap.foot_patrol_officer;
         }else
             return R.mipmap.assault_icon;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 }

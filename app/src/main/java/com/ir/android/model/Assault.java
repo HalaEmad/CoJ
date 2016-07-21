@@ -13,6 +13,9 @@ public class Assault extends Incident {
     private int weaponDrawableId;
     private  String weaponDescription;
 
+    public Assault() {
+        this.setType(TYPE_ASSUALT);
+    }
 
     public String getStatus() {
         return status;

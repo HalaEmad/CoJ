@@ -60,7 +60,7 @@ public class IncidentListAdapter extends com.ibm.android.kit.views.adapters.List
         ((IncidentViewHolder)holder).incidentType.setText(context.getResources().getString(R.string.assualt_label));
         ((IncidentViewHolder)holder).incidentStatus.setText(incident.getStatus());
 
-        ((IncidentViewHolder)holder).incidentLoc.setText(incident.getDistance()+"m");
+        ((IncidentViewHolder)holder).incidentLoc.setText(incident.getDistance());
 
         ((IncidentViewHolder)holder).incidentTypeImage.setImageResource(incident.getDrawableId());
 
