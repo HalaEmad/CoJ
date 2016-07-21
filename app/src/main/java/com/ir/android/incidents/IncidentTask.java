@@ -10,6 +10,10 @@ import com.ir.android.model.Incident;
 import com.ir.android.model.Officer;
 import com.ir.android.networking.IncidentRetrievingResource.IncidentRetrievingFailedException;
 import com.ir.android.networking.IncidentRetrievingResource.IncidentRetrievingResource;
+import com.ir.android.networking.ObservationsRetrievingResource.ObservationsRetrievingFailedException;
+import com.ir.android.networking.ObservationsRetrievingResource.ObservationsRetrievingResource;
+import com.ir.android.networking.PoliceOfficersRetrievingResource.PoliceOfficersRetrievingFailedException;
+import com.ir.android.networking.PoliceOfficersRetrievingResource.PoliceOfficersRetrievingResource;
 
 import java.util.ArrayList;
 
@@ -25,10 +29,27 @@ public class IncidentTask extends Task {
     @Override
     protected Result onTaskWork() {
 
+        IncidentRetrievingResource incidentRetrievingResource;
+        ObservationsRetrievingResource observationsRetrievingResource;
+        PoliceOfficersRetrievingResource policeOfficersRetrievingResource;
         try {
-            IncidentRetrievingResource resource = new IncidentRetrievingResource(context);
-            resource.invoke();
+            incidentRetrievingResource = new IncidentRetrievingResource(context);
+            incidentRetrievingResource.invoke();
         }catch (IncidentRetrievingFailedException e){
+            e.printStackTrace();
+        }
+
+        try {
+            observationsRetrievingResource = new ObservationsRetrievingResource(context);
+            observationsRetrievingResource.invoke();
+        }catch (ObservationsRetrievingFailedException e){
+            e.printStackTrace();
+        }
+
+        try {
+            policeOfficersRetrievingResource = new PoliceOfficersRetrievingResource(context);
+            policeOfficersRetrievingResource.invoke();
+        }catch (PoliceOfficersRetrievingFailedException e){
             e.printStackTrace();
         }
 
@@ -37,7 +58,7 @@ public class IncidentTask extends Task {
         Incident in1 = new Assault();
 
         in1.setType(Incident.TYPE_ASSUALT);
-        in1.setDistance(200);
+        in1.setDistance("200");
         in1.setLatitude(-26.206852);
         in1.setLongitude(28.0442333);
         ((Assault)in1).setStatus("Pending dispatch");
@@ -53,7 +74,7 @@ public class IncidentTask extends Task {
 
 
         in2.setType(Incident.TYPE_ASSUALT);
-        in2.setDistance(100);
+        in2.setDistance("100");
         in2.setLatitude(-26.20671);
         in2.setLongitude(28.0442333);
         ((Assault)in2).setStatus("Pending dispatch");
@@ -65,7 +86,7 @@ public class IncidentTask extends Task {
 
         Incident in3 = new Officer();
         in3.setType(Incident.TYPE_OFFICER);
-        in3.setDistance(100);
+        in3.setDistance("100");
         in3.setLatitude(-26.206142);
         in3.setLongitude(28.0414706);
 
@@ -78,7 +99,7 @@ public class IncidentTask extends Task {
 
         Incident in4 = new Officer();
         in4.setType(Incident.TYPE_OFFICER);
-        in3.setDistance(100);
+        in3.setDistance("100");
         in4.setLatitude( -26.2051699);
         in4.setLongitude(28.0451453);
 

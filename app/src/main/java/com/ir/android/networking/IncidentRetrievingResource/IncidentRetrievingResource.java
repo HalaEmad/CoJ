@@ -102,7 +102,7 @@ public class IncidentRetrievingResource extends WLResource {
                 ObjectMapper objectMapper = new ObjectMapper();
                 objectMapper.readerForUpdating(this).readValue(response.getResponseJSON().toString());
 
-                DynamicPropertiesResolver dynamicPropertiesResolver=new DynamicPropertiesResolver(getContext(),getFeatures());
+                DynamicPropertiesResolver dynamicPropertiesResolver=new DynamicPropertiesResolver(getContext(),10,getFeatures());
                 dynamicPropertiesResolver.invoke();
             }else{
                 throw new IncidentRetrievingFailedException(response.getResponseText());
@@ -123,7 +123,7 @@ public class IncidentRetrievingResource extends WLResource {
                 ObjectMapper objectMapper = new ObjectMapper();
                 objectMapper.readerForUpdating(this).readValue(string.toString());
 
-                DynamicPropertiesResolver dynamicPropertiesResolver=new DynamicPropertiesResolver(getContext(),getFeatures());
+                DynamicPropertiesResolver dynamicPropertiesResolver=new DynamicPropertiesResolver(getContext(),10,getFeatures());
                 dynamicPropertiesResolver.invoke();
 
                 return;

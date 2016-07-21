@@ -102,7 +102,7 @@ public class PoliceOfficersRetrievingResource extends WLResource {
                 ObjectMapper objectMapper = new ObjectMapper();
                 objectMapper.readerForUpdating(this).readValue(response.getResponseJSON().toString());
 
-                DynamicPropertiesResolver dynamicPropertiesResolver=new DynamicPropertiesResolver(getContext(),getFeatures());
+                DynamicPropertiesResolver dynamicPropertiesResolver=new DynamicPropertiesResolver(getContext(),12,getFeatures());
                 dynamicPropertiesResolver.invoke();
             }else{
                 throw new PoliceOfficersRetrievingFailedException(response.getResponseText());
@@ -111,7 +111,7 @@ public class PoliceOfficersRetrievingResource extends WLResource {
         }catch (Exception e){
 
             try {
-                InputStream inputStream = getContext().getAssets().open("Incidents-Response.octet-stream");
+                InputStream inputStream = getContext().getAssets().open("PoliceOfficers-Response.octet-stream");
 
                 BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder string = new StringBuilder();
@@ -123,7 +123,7 @@ public class PoliceOfficersRetrievingResource extends WLResource {
                 ObjectMapper objectMapper = new ObjectMapper();
                 objectMapper.readerForUpdating(this).readValue(string.toString());
 
-                DynamicPropertiesResolver dynamicPropertiesResolver=new DynamicPropertiesResolver(getContext(),getFeatures());
+                DynamicPropertiesResolver dynamicPropertiesResolver=new DynamicPropertiesResolver(getContext(),12,getFeatures());
                 dynamicPropertiesResolver.invoke();
 
                 return;

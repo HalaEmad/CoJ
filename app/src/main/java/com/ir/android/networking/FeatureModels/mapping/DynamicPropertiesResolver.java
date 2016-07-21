@@ -22,9 +22,11 @@ import java.util.HashMap;
  */
 public class DynamicPropertiesResolver extends WLResource {
 
+    private int datasourceID;
     private ArrayList<Feature> features;
-    public DynamicPropertiesResolver(Context context, ArrayList<Feature> features) {
+    public DynamicPropertiesResolver(Context context,int datasourceID, ArrayList<Feature> features) {
         super(context);
+        this.datasourceID=datasourceID;
         this.features=features;
     }
 
@@ -46,7 +48,7 @@ public class DynamicPropertiesResolver extends WLResource {
     public void invoke() throws ResolvingFailedException {
         try {
 
-            addParameter(1);//datasourceID
+            addParameter(datasourceID);//datasourceID
             addParameter("");//boundaries
             addParameter(getLtpaToken2(getContext()));//ltpaToken
 
@@ -61,7 +63,20 @@ public class DynamicPropertiesResolver extends WLResource {
         }catch (Exception e){
 
             try {
-                InputStream inputStream = getContext().getAssets().open("DataSources-List-and-Attributes-Mapping.octet-stream");
+                String fileName=null;
+                switch (datasourceID){
+                    case 10:
+                        fileName="Incidents-DataSources-List-and-Attributes-Mapping.octet-stream";
+                        break;
+                    case 11:
+                        fileName="Observations DataSources-List-and-Attributes-Mapping.octet-stream";
+                        break;
+                    case 12:
+                        fileName="PoliceOfficers-DataSources-List-and-Attributes-Mapping.octet-stream";
+                        break;
+                }
+
+                InputStream inputStream = getContext().getAssets().open(fileName);
 
                 BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder string = new StringBuilder();

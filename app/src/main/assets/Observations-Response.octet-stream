@@ -1,28 +1,30 @@
 {
   "type": "FeatureCollection",
-  "id": 10,
-  "lastUpdateDate": 1468783821152,
+  "id": 11,
+  "lastUpdateDate": 1468784544333,
   "features": [
     {
       "type": "Feature",
-      "id": 113,
-      "fid": 113,
+      "id": 114,
+      "fid": 114,
       "deleted": false,
       "geometry": {
         "type": "Point",
         "coordinates": [
           28.0442333,
-          -26.206852
+          -26.20671
         ]
       },
       "properties": {
-        "DatasourceId": 10,
+        "DatasourceId": 11,
         "TenantId": null,
         "Classification": null,
-        "Property_3": "Criminal Activity",
-        "Property_4": "Assault",
+        "Property_2": "Criminal Activity",
+        "Property_3": "Assault",
+        "Property_4": 3,
         "AnnotationId": null,
-        "Name": "Young male seen beating elderly man with brick",
+        "Property_5": "Acknowledged",
+        "Name": "assault- grievious bodily harm",
         "TimeZoneOffset": -240,
         "EndDateTime": {
           "text": "Jul 16, 2016 2:00:00 PM",
@@ -30,10 +32,10 @@
           "offset": 0
         },
         "DeleteFlag": 0,
-        "ObjectId": 113,
+        "ObjectId": 114,
         "LastUpdateDateTime": {
-          "text": "Jul 17, 2016 7:30:21 PM",
-          "value": 1468783821152,
+          "text": "Jul 17, 2016 7:42:24 PM",
+          "value": 1468784544333,
           "offset": 0
         },
         "Description": null,

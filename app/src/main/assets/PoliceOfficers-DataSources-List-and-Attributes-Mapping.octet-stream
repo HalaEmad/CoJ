@@ -1,0 +1,308 @@
+{
+    "id": 12,
+    "name": "PublicSafetyUser",
+    "lastUpdateDate": 1468832937210,
+    "messages": [],
+    "type": "CSV",
+    "scope": "DATASOURCE",
+    "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_16e07a44-1aa1-49d2-87b0-2070151074cf\"}",
+    "i18nLabel": "Public Safety User",
+    "description": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_37eb6f29-4bcd-40dc-89e6-69e601c2881b\"}",
+    "i18nDescription": "",
+    "receiver": {
+        "id": 12,
+        "type": "com.ibm.ioc.datareceiver.types.DataReceiverCSV",
+        "interval": 0,
+        "unit": "MINUTES"
+    },
+    "source": {
+        "protocol": "com.ibm.ioc.datasource_1_6_0_2.ColumnParserCsv",
+        "port": 0,
+        "directory": "/opt/IBM/ioc/csv/",
+        "filename": "PSuser.csv"
+    },
+    "columns": [
+        {
+            "type": "VARCHAR",
+            "sourceType": "VARCHAR",
+            "sourceName": "0",
+            "targetNames": [
+                "NAME"
+            ],
+            "hint": "Name",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_92d98ef8-e044-4af4-8409-908f6f6257cf\"}",
+            "i18nLabel": "Name",
+            "category": "MINIMAL",
+            "format": "STRING",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "VARCHAR",
+            "sourceType": "VARCHAR",
+            "sourceName": "1",
+            "targetNames": [
+                "Property_5"
+            ],
+            "hint": "User",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_d542bd80-b01a-4e06-8b34-9511e95e654c\"}",
+            "i18nLabel": "User",
+            "category": "FULL",
+            "length": "200",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "VARCHAR",
+            "sourceType": "VARCHAR",
+            "sourceName": "2",
+            "targetNames": [
+                "Property_2"
+            ],
+            "hint": "CategoryLevel1",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_45b34a20-574a-4fb8-8048-97a48ca800e5\"}",
+            "i18nLabel": "CategoryLevel1",
+            "category": "FULL",
+            "values": [
+                "Active",
+                "Inactive"
+            ],
+            "length": "200",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "VARCHAR",
+            "sourceType": "VARCHAR",
+            "sourceName": "3",
+            "targetNames": [
+                "Property_3"
+            ],
+            "hint": "CategoryLevel2",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_8b9f7b2d-f372-4542-8e7b-feeca761e357\"}",
+            "i18nLabel": "CategoryLevel2",
+            "category": "FULL",
+            "values": [
+                "On-duty",
+                "Off-duty",
+                "Leave"
+            ],
+            "length": "200",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "VARCHAR",
+            "sourceType": "VARCHAR",
+            "sourceName": "4",
+            "targetNames": [
+                "LOCATION"
+            ],
+            "hint": "Shape",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_66366971-9f5b-44ad-80fd-ac31fab86e07\"}",
+            "i18nLabel": "Shape",
+            "category": "MINIMAL",
+            "format": "SHAPE",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "VARCHAR",
+            "sourceType": "VARCHAR",
+            "sourceName": "5",
+            "targetNames": [
+                "Property_1"
+            ],
+            "hint": "Address",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_3a93062f-792e-4138-8662-4ec49a67f5ac\"}",
+            "i18nLabel": "Address",
+            "category": "FULL",
+            "length": "200",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "VARCHAR",
+            "sourceType": "VARCHAR",
+            "sourceName": "6",
+            "targetNames": [
+                "Property_4"
+            ],
+            "hint": "SubmittedBy",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_d1caa89a-87fb-434d-878e-597287489493\"}",
+            "i18nLabel": "SubmittedBy",
+            "category": "FULL",
+            "length": "200",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "TIMESTAMP",
+            "sourceType": "VARCHAR",
+            "sourceName": "7",
+            "targetNames": [
+                "START_DATE_TIME"
+            ],
+            "hint": "SubmittedDateTime",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_c5f785db-2d8c-4a87-8450-36c62cc3d787\"}",
+            "i18nLabel": "SubmittedDateTime",
+            "category": "MINIMAL",
+            "format": "TIMESTAMP",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "TIMESTAMP",
+            "sourceType": "VARCHAR",
+            "sourceName": "8",
+            "targetNames": [
+                "LAST_UPDATE_DATE_TIME"
+            ],
+            "hint": "ModifiedDateTime",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_7c97e09e-41a9-4ecc-881f-5d751e883079\"}",
+            "i18nLabel": "ModifiedDateTime",
+            "category": "MINIMAL",
+            "format": "TIMESTAMP",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "TIMESTAMP",
+            "sourceType": "VARCHAR",
+            "sourceName": "9",
+            "targetNames": [
+                "END_DATE_TIME"
+            ],
+            "hint": "ExpirationDateTime",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_aa133527-9c70-4566-8229-0e55381df9e4\"}",
+            "i18nLabel": "ExpirationDateTime",
+            "category": "MINIMAL",
+            "format": "TIMESTAMP",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        }
+    ],
+    "geometry": "POINT",
+    "routingLogic": "AND",
+    "styleLogic": "AND",
+    "archive": 1,
+    "boundary": false,
+    "correlation": false,
+    "report": false,
+    "table": "IOC.TARGET_TABLE_PublicSafetyUser",
+    "view": "IOC.TARGET_VIEW_PublicSafetyUser",
+    "serverRendering": false,
+    "nonTrustedSource": false,
+    "icon": "specializedTeam.png",
+    "radius": 0,
+    "sides": 0,
+    "styles": [
+        {
+            "name": "_base_",
+            "type": "COLOR",
+            "line": "#000000",
+            "value": "#d3d3d3",
+            "weight": 1,
+            "opacity": 1,
+            "scope": "DATASOURCE"
+        }
+    ],
+    "extensions": [
+        {
+            "name": "category",
+            "type": "CUSTOM",
+            "disabled": false,
+            "multiple": false,
+            "module": "ICPO",
+            "associated": "1",
+            "extensionId": 0
+        },
+        {
+            "name": "dimension",
+            "type": "CUSTOM",
+            "disabled": false,
+            "multiple": false,
+            "module": "ICPO",
+            "associated": "false",
+            "extensionId": 0
+        },
+        {
+            "name": "name",
+            "type": "CUSTOM",
+            "disabled": false,
+            "multiple": false,
+            "module": "ICPO",
+            "associated": "PublicSafetyUser",
+            "extensionId": 0
+        },
+        {
+            "name": "resource",
+            "type": "CUSTOM",
+            "disabled": false,
+            "multiple": false,
+            "module": "ICPO",
+            "associated": "false",
+            "extensionId": 0
+        }
+    ]
+}

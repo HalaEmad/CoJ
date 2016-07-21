@@ -1,16 +1,16 @@
 {
-  "id": 10,
-  "name": "PublicSafetyCall",
-  "lastUpdateDate": 1469014386064,
+  "id": 11,
+  "name": "PublicSafetyIncident",
+  "lastUpdateDate": 1469014285005,
   "messages": [],
   "type": "CSV",
   "scope": "DATASOURCE",
-  "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_27b00a12-8fd6-4401-89bf-2b5eedbe3df1\"}",
-  "i18nLabel": "Public Safety Call",
-  "description": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_b7724f2f-8fd6-44a7-8c9a-b97b9a1e2351\"}",
+  "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_c4845fb2-b961-4579-8fb8-dc5aa540f38c\"}",
+  "i18nLabel": "Public Safety Incident",
+  "description": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_0d475cd3-36c8-4adc-8106-ad24fbc22a16\"}",
   "i18nDescription": "",
   "receiver": {
-    "id": 10,
+    "id": 11,
     "type": "com.ibm.ioc.datareceiver.types.DataReceiverCSV",
     "interval": 0,
     "unit": "MINUTES"
@@ -19,7 +19,7 @@
     "protocol": "com.ibm.ioc.datasource_1_6_0_2.ColumnParserCsv",
     "port": 0,
     "directory": "/opt/IBM/ioc/csv/",
-    "filename": "PScall.csv"
+    "filename": "PSincident.csv"
   },
   "columns": [
     {
@@ -30,7 +30,7 @@
         "NAME"
       ],
       "hint": "Name",
-      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_365ee240-9b35-45c8-849b-8705061914b4\"}",
+      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_e1a249c3-826e-40e2-8d7d-ed9bd237d061\"}",
       "i18nLabel": "Name",
       "category": "MINIMAL",
       "format": "STRING",
@@ -50,11 +50,45 @@
       "targetNames": [
         "Property_5"
       ],
-      "hint": "Description",
-      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_4e82b01c-84c1-4bfd-848c-8f67be552a93\"}",
-      "i18nLabel": "Description",
-      "category": "FULL",
+      "hint": "Status",
+      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_96f2a81f-d8ca-409c-82a3-80e2892f43d0\"}",
+      "i18nLabel": "Status",
+      "category": "KEY",
+      "values": [
+        "To Be Acknowledged",
+        "Acknowledged",
+        "In Progress",
+        "Closed",
+        "Reopened"
+      ],
       "length": "200",
+      "enumerated": false,
+      "isId": false,
+      "optimize": false,
+      "updatable": true,
+      "metric": false,
+      "chart": false,
+      "hidden": false,
+      "ordinal": 0
+    },
+    {
+      "type": "INTEGER",
+      "sourceType": "VARCHAR",
+      "sourceName": "2",
+      "targetNames": [
+        "Property_4"
+      ],
+      "hint": "Severity",
+      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_cef6d4cf-0c03-421d-834f-9d66f6842b8f\"}",
+      "i18nLabel": "Severity",
+      "category": "KEY",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
       "enumerated": false,
       "isId": false,
       "optimize": false,
@@ -67,34 +101,13 @@
     {
       "type": "VARCHAR",
       "sourceType": "VARCHAR",
-      "sourceName": "2",
+      "sourceName": "3",
       "targetNames": [
         "Property_2"
       ],
-      "hint": "BANNER_PHOTO",
-      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_a301d2bf-c0d1-45f6-8e07-d7af7a5045a2\"}",
-      "i18nLabel": "BANNER_PHOTO",
-      "category": "FULL",
-      "length": "200",
-      "enumerated": false,
-      "isId": false,
-      "optimize": false,
-      "updatable": true,
-      "metric": false,
-      "chart": false,
-      "hidden": true,
-      "ordinal": 0
-    },
-    {
-      "type": "VARCHAR",
-      "sourceType": "VARCHAR",
-      "sourceName": "3",
-      "targetNames": [
-        "Property_3"
-      ],
       "hint": "CategoryLevel1",
-      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_7721d576-c8f1-422b-86c1-9e35e9e6f04a\"}",
-      "i18nLabel": "Call Category",
+      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_4ee5e66c-da33-462b-83c4-b71c3cc709d5\"}",
+      "i18nLabel": "Incident Category",
       "category": "KEY",
       "values": [
         "Criminal Activity",
@@ -117,11 +130,11 @@
       "sourceType": "VARCHAR",
       "sourceName": "4",
       "targetNames": [
-        "Property_4"
+        "Property_3"
       ],
       "hint": "CategoryLevel2",
-      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_cb7e4f04-c940-45cc-88cc-54be990f360c\"}",
-      "i18nLabel": "Call Type",
+      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_65cbaab4-ff1c-45d8-8e38-e98c53ff1763\"}",
+      "i18nLabel": "Incident Type",
       "category": "KEY",
       "values": [
         "Smash & Grab",
@@ -147,7 +160,7 @@
         "LOCATION"
       ],
       "hint": "Shape",
-      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_0dd4ab20-ed9e-4ad5-8f3a-9dc14eb37f73\"}",
+      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_7ecb1eb4-6557-4108-8f3c-40e788469fdf\"}",
       "i18nLabel": "Shape",
       "category": "MINIMAL",
       "format": "SHAPE",
@@ -168,29 +181,8 @@
         "Property_1"
       ],
       "hint": "Address",
-      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_1738f353-f603-4be6-8737-cb7b23a5c083\"}",
+      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_f4eeeed7-4d6c-482e-847a-34b6ed3da87c\"}",
       "i18nLabel": "Address",
-      "category": "FULL",
-      "length": "200",
-      "enumerated": false,
-      "isId": false,
-      "optimize": false,
-      "updatable": true,
-      "metric": false,
-      "chart": false,
-      "hidden": false,
-      "ordinal": 0
-    },
-    {
-      "type": "VARCHAR",
-      "sourceType": "VARCHAR",
-      "sourceName": "7",
-      "targetNames": [
-        "Property_6"
-      ],
-      "hint": "SubmittedBy",
-      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_60437d9c-8e52-40d5-8e26-f4ceda2335ac\"}",
-      "i18nLabel": "SubmittedBy",
       "category": "FULL",
       "length": "200",
       "enumerated": false,
@@ -205,13 +197,13 @@
     {
       "type": "TIMESTAMP",
       "sourceType": "VARCHAR",
-      "sourceName": "8",
+      "sourceName": "7",
       "targetNames": [
         "START_DATE_TIME"
       ],
-      "hint": "SubmittedDateTime",
-      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_d0a8f193-4632-420a-8e01-5acbf46c6c1f\"}",
-      "i18nLabel": "SubmittedDateTime",
+      "hint": "AcceptedDateTime",
+      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_2bf04258-0309-48d1-84aa-db49c75ce231\"}",
+      "i18nLabel": "AcceptedDateTime",
       "category": "MINIMAL",
       "format": "TIMESTAMP",
       "enumerated": false,
@@ -226,12 +218,12 @@
     {
       "type": "TIMESTAMP",
       "sourceType": "VARCHAR",
-      "sourceName": "9",
+      "sourceName": "8",
       "targetNames": [
         "END_DATE_TIME"
       ],
       "hint": "ExpirationDateTime",
-      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_3c74fc3f-969e-49b7-89d3-a6b50c51a730\"}",
+      "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_1baec9ee-ee54-44af-805a-285cbaff8f46\"}",
       "i18nLabel": "ExpirationDateTime",
       "category": "MINIMAL",
       "format": "TIMESTAMP",
@@ -252,11 +244,11 @@
   "boundary": false,
   "correlation": false,
   "report": false,
-  "table": "IOC.TARGET_TABLE_PublicSafetyCall",
-  "view": "IOC.TARGET_VIEW_PublicSafetyCall",
+  "table": "IOC.TARGET_TABLE_PublicSafetyIncident",
+  "view": "IOC.TARGET_VIEW_PublicSafetyIncident",
   "serverRendering": false,
   "nonTrustedSource": false,
-  "icon": "waterQuality.png",
+  "icon": "systemInfo.png",
   "radius": 0,
   "sides": 0,
   "styles": [
@@ -295,7 +287,7 @@
       "disabled": false,
       "multiple": false,
       "module": "ICPO",
-      "associated": "PublicSafetyCall",
+      "associated": "PublicSafetyIncident",
       "extensionId": 0
     },
     {

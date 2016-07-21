@@ -1,0 +1,311 @@
+{
+    "id": 10,
+    "name": "PublicSafetyCall",
+    "lastUpdateDate": 1469014386064,
+    "messages": [],
+    "type": "CSV",
+    "scope": "DATASOURCE",
+    "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_27b00a12-8fd6-4401-89bf-2b5eedbe3df1\"}",
+    "i18nLabel": "Public Safety Call",
+    "description": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_b7724f2f-8fd6-44a7-8c9a-b97b9a1e2351\"}",
+    "i18nDescription": "",
+    "receiver": {
+        "id": 10,
+        "type": "com.ibm.ioc.datareceiver.types.DataReceiverCSV",
+        "interval": 0,
+        "unit": "MINUTES"
+    },
+    "source": {
+        "protocol": "com.ibm.ioc.datasource_1_6_0_2.ColumnParserCsv",
+        "port": 0,
+        "directory": "/opt/IBM/ioc/csv/",
+        "filename": "PScall.csv"
+    },
+    "columns": [
+        {
+            "type": "VARCHAR",
+            "sourceType": "VARCHAR",
+            "sourceName": "0",
+            "targetNames": [
+                "NAME"
+            ],
+            "hint": "Name",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_365ee240-9b35-45c8-849b-8705061914b4\"}",
+            "i18nLabel": "Name",
+            "category": "MINIMAL",
+            "format": "STRING",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "VARCHAR",
+            "sourceType": "VARCHAR",
+            "sourceName": "1",
+            "targetNames": [
+                "Property_5"
+            ],
+            "hint": "Description",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_4e82b01c-84c1-4bfd-848c-8f67be552a93\"}",
+            "i18nLabel": "Description",
+            "category": "FULL",
+            "length": "200",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "VARCHAR",
+            "sourceType": "VARCHAR",
+            "sourceName": "2",
+            "targetNames": [
+                "Property_2"
+            ],
+            "hint": "BANNER_PHOTO",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_a301d2bf-c0d1-45f6-8e07-d7af7a5045a2\"}",
+            "i18nLabel": "BANNER_PHOTO",
+            "category": "FULL",
+            "length": "200",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": true,
+            "ordinal": 0
+        },
+        {
+            "type": "VARCHAR",
+            "sourceType": "VARCHAR",
+            "sourceName": "3",
+            "targetNames": [
+                "Property_3"
+            ],
+            "hint": "CategoryLevel1",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_7721d576-c8f1-422b-86c1-9e35e9e6f04a\"}",
+            "i18nLabel": "Call Category",
+            "category": "KEY",
+            "values": [
+                "Criminal Activity",
+                "Road Accident",
+                "Public Disorder",
+                "City ByLaws"
+            ],
+            "length": "200",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "VARCHAR",
+            "sourceType": "VARCHAR",
+            "sourceName": "4",
+            "targetNames": [
+                "Property_4"
+            ],
+            "hint": "CategoryLevel2",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_cb7e4f04-c940-45cc-88cc-54be990f360c\"}",
+            "i18nLabel": "Call Type",
+            "category": "KEY",
+            "values": [
+                "Smash & Grab",
+                "Hijacking",
+                "Assault",
+                "Theft"
+            ],
+            "length": "200",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "VARCHAR",
+            "sourceType": "VARCHAR",
+            "sourceName": "5",
+            "targetNames": [
+                "LOCATION"
+            ],
+            "hint": "Shape",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_0dd4ab20-ed9e-4ad5-8f3a-9dc14eb37f73\"}",
+            "i18nLabel": "Shape",
+            "category": "MINIMAL",
+            "format": "SHAPE",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "VARCHAR",
+            "sourceType": "VARCHAR",
+            "sourceName": "6",
+            "targetNames": [
+                "Property_1"
+            ],
+            "hint": "Address",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_1738f353-f603-4be6-8737-cb7b23a5c083\"}",
+            "i18nLabel": "Address",
+            "category": "FULL",
+            "length": "200",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "VARCHAR",
+            "sourceType": "VARCHAR",
+            "sourceName": "7",
+            "targetNames": [
+                "Property_6"
+            ],
+            "hint": "SubmittedBy",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_60437d9c-8e52-40d5-8e26-f4ceda2335ac\"}",
+            "i18nLabel": "SubmittedBy",
+            "category": "FULL",
+            "length": "200",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "TIMESTAMP",
+            "sourceType": "VARCHAR",
+            "sourceName": "8",
+            "targetNames": [
+                "START_DATE_TIME"
+            ],
+            "hint": "SubmittedDateTime",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_d0a8f193-4632-420a-8e01-5acbf46c6c1f\"}",
+            "i18nLabel": "SubmittedDateTime",
+            "category": "MINIMAL",
+            "format": "TIMESTAMP",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        },
+        {
+            "type": "TIMESTAMP",
+            "sourceType": "VARCHAR",
+            "sourceName": "9",
+            "targetNames": [
+                "END_DATE_TIME"
+            ],
+            "hint": "ExpirationDateTime",
+            "label": "{\"group\":\"DataSourceI18n\",\"key\":\"i18n_3c74fc3f-969e-49b7-89d3-a6b50c51a730\"}",
+            "i18nLabel": "ExpirationDateTime",
+            "category": "MINIMAL",
+            "format": "TIMESTAMP",
+            "enumerated": false,
+            "isId": false,
+            "optimize": false,
+            "updatable": true,
+            "metric": false,
+            "chart": false,
+            "hidden": false,
+            "ordinal": 0
+        }
+    ],
+    "geometry": "POINT",
+    "routingLogic": "AND",
+    "styleLogic": "AND",
+    "archive": 1,
+    "boundary": false,
+    "correlation": false,
+    "report": false,
+    "table": "IOC.TARGET_TABLE_PublicSafetyCall",
+    "view": "IOC.TARGET_VIEW_PublicSafetyCall",
+    "serverRendering": false,
+    "nonTrustedSource": false,
+    "icon": "waterQuality.png",
+    "radius": 0,
+    "sides": 0,
+    "styles": [
+        {
+            "name": "_base_",
+            "type": "COLOR",
+            "line": "#000000",
+            "value": "#d3d3d3",
+            "weight": 1,
+            "opacity": 1,
+            "scope": "DATASOURCE"
+        }
+    ],
+    "extensions": [
+        {
+            "name": "category",
+            "type": "CUSTOM",
+            "disabled": false,
+            "multiple": false,
+            "module": "ICPO",
+            "associated": "1",
+            "extensionId": 0
+        },
+        {
+            "name": "dimension",
+            "type": "CUSTOM",
+            "disabled": false,
+            "multiple": false,
+            "module": "ICPO",
+            "associated": "false",
+            "extensionId": 0
+        },
+        {
+            "name": "name",
+            "type": "CUSTOM",
+            "disabled": false,
+            "multiple": false,
+            "module": "ICPO",
+            "associated": "PublicSafetyCall",
+            "extensionId": 0
+        },
+        {
+            "name": "resource",
+            "type": "CUSTOM",
+            "disabled": false,
+            "multiple": false,
+            "module": "ICPO",
+            "associated": "false",
+            "extensionId": 0
+        }
+    ]
+}
