@@ -7,9 +7,9 @@ import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.ViewModel;
 import com.ir.android.NavigationHelper;
 import com.ir.android.R;
-import com.ir.android.active_call.ActiveCallScreen;
 import com.ir.android.home.HomeScreen;
 import com.ir.android.incidents.IncidentScreen;
+import com.ir.android.storage.PreferencesManager;
 import com.ir.android.walkthrough.WalkthroughScreen;
 
 /**
@@ -26,7 +26,10 @@ public class MainCtrl extends Controller implements MainViewListener {
     public void init(Intent intent) {
         super.init(intent);
 
-        selectFragment(0);
+        if (PreferencesManager.getInstance(getScreen()).isFirstRun())
+            selectFragment(2);
+        else
+            selectFragment(0);
     }
 
     @Override
