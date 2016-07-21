@@ -17,7 +17,6 @@ import com.ir.android.networking.ObservationsRetrievingResource.ObservationsRetr
 import com.ir.android.networking.PoliceOfficersRetrievingResource.PoliceOfficersRetrievingFailedException;
 import com.ir.android.networking.PoliceOfficersRetrievingResource.PoliceOfficersRetrievingResource;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
