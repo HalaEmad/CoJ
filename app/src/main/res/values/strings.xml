@@ -30,7 +30,7 @@
     <string name="home_close_navigation">Close Navigation</string>
     <string-array name="navigation_array">
         <item>Home</item>
-        <item>Incidents</item>
+        <item>Map</item>
         <item>Walkthrough</item>
         <item>logout</item>
     </string-array>
