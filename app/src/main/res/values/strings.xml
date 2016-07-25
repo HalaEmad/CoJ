@@ -30,7 +30,7 @@
     <string name="home_close_navigation">Close Navigation</string>
     <string-array name="navigation_array">
         <item>Home</item>
-        <item>Incidents</item>
+        <item>Map</item>
         <item>Walkthrough</item>
         <item>logout</item>
     </string-array>
@@ -50,7 +50,7 @@
     <string name="wt_location_detail">A Field Officers location is tracked and shared, so backup and support resources can be dispatched in a more effective and timely manner.</string>
 
     <string name="wt_incident_marker_title">View Incident Marker</string>
-    <string name="wt_incident_marker_detail">Active Calls refer to calls that have been assigned or requested by an officer.</string>
+    <string name="wt_incident_marker_detail">As a field officer, you will to identify incidents and view the incident details by simple tapping on the marker.</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
