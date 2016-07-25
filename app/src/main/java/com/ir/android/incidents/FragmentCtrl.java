@@ -1,11 +1,10 @@
 package com.ir.android.incidents;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 
 import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.Result;
@@ -14,7 +13,8 @@ import com.ibm.android.kit.tasks.Task;
 import com.ibm.android.kit.utils.LocationUtility;
 import com.ir.android.R;
 import com.ir.android.incidents.map.IncidentMapListener;
-
+import com.ir.android.incidents.popup.AssaultFragment;
+import com.ir.android.incidents.popup.OfficerFragment;
 import com.ir.android.model.Assault;
 import com.ir.android.model.Incident;
 import com.ir.android.model.Officer;
@@ -81,39 +81,54 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
     @Override
     public void onMarkerClicked(Incident clickedIncident) {
 
-        Dialog dialog = new Dialog(getContext());
+//        Dialog dialog = new Dialog(getContext());
+//
+//        if (clickedIncident instanceof Assault)
+//        {
+//            dialog.setContentView(R.layout.popup_dialog_assault);
+//            ((ImageView) dialog.findViewById(R.id.type_icon)).setImageResource(clickedIncident.getDrawableId());
+//            ((TextView) dialog.findViewById(R.id.type)).setText(getContext().getString(R.string.assualt_label));
+//            ((TextView) dialog.findViewById(R.id.status)).setText(((Assault) clickedIncident).getStatus());
+//            ((TextView) dialog.findViewById(R.id.distance)).setText(((Assault) clickedIncident).getDistance());
+//
+//            ((TextView) dialog.findViewById(R.id.severity_level)).setText(((Assault) clickedIncident).getSeverityLevel());
+//            ((TextView) dialog.findViewById(R.id.severity_desc)).setText(((Assault) clickedIncident).getSeverityLvlDesc());
+//
+//            ((ImageView) dialog.findViewById(R.id.weapon_icon)).setImageResource(((Assault) clickedIncident).getWeaponDrawableId());
+//            ((TextView) dialog.findViewById(R.id.weapon_desc)).setText(((Assault) clickedIncident).getWeaponDescription());
+//
+//
+//        }
+//        else if (clickedIncident instanceof Officer){
+//            dialog.setContentView(R.layout.popup_dialog_officer);
+//            ((ImageView) dialog.findViewById(R.id.type_icon)).setImageResource(clickedIncident.getDrawableId());
+//            ((TextView) dialog.findViewById(R.id.type)).setText(getContext().getString(R.string.officer_label));
+//
+//
+//            ((TextView) dialog.findViewById(R.id.name)).setText(((Officer) clickedIncident).getName());
+//            ((TextView) dialog.findViewById(R.id.distance)).setText(((Officer) clickedIncident).getDistance());
+//
+//            ((TextView) dialog.findViewById(R.id.unit)).setText(((Officer) clickedIncident).getUnit());
+//            ((TextView) dialog.findViewById(R.id.speciality)).setText(((Officer) clickedIncident).getSpeciality());
+//            ((TextView) dialog.findViewById(R.id.rank)).setText(((Officer) clickedIncident).getRank());
+//
+//        }
+//        dialog.show();
 
-        if (clickedIncident instanceof Assault)
-        {
-            dialog.setContentView(R.layout.popup_dialog_assault);
-            ((ImageView) dialog.findViewById(R.id.type_icon)).setImageResource(clickedIncident.getDrawableId());
-            ((TextView) dialog.findViewById(R.id.type)).setText(getContext().getString(R.string.assualt_label));
-            ((TextView) dialog.findViewById(R.id.status)).setText(((Assault) clickedIncident).getStatus());
-            ((TextView) dialog.findViewById(R.id.distance)).setText(((Assault) clickedIncident).getDistance());
+        Fragment popup = null;
 
-            ((TextView) dialog.findViewById(R.id.severity_level)).setText(((Assault) clickedIncident).getSeverityLevel());
-            ((TextView) dialog.findViewById(R.id.severity_desc)).setText(((Assault) clickedIncident).getSeverityLvlDesc());
-
-            ((ImageView) dialog.findViewById(R.id.weapon_icon)).setImageResource(((Assault) clickedIncident).getWeaponDrawableId());
-            ((TextView) dialog.findViewById(R.id.weapon_desc)).setText(((Assault) clickedIncident).getWeaponDescription());
-
-
+        if (clickedIncident instanceof Assault) {
+            popup = new AssaultFragment();
+        } else if (clickedIncident instanceof Officer) {
+            popup = new OfficerFragment();
         }
-        else if (clickedIncident instanceof Officer){
-            dialog.setContentView(R.layout.popup_dialog_officer);
-            ((ImageView) dialog.findViewById(R.id.type_icon)).setImageResource(clickedIncident.getDrawableId());
-            ((TextView) dialog.findViewById(R.id.type)).setText(getContext().getString(R.string.officer_label));
 
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_popup_container, popup)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null)
+                .commit();
 
-            ((TextView) dialog.findViewById(R.id.name)).setText(((Officer) clickedIncident).getName());
-            ((TextView) dialog.findViewById(R.id.distance)).setText(((Officer) clickedIncident).getDistance());
-
-            ((TextView) dialog.findViewById(R.id.unit)).setText(((Officer) clickedIncident).getUnit());
-            ((TextView) dialog.findViewById(R.id.speciality)).setText(((Officer) clickedIncident).getSpeciality());
-            ((TextView) dialog.findViewById(R.id.rank)).setText(((Officer) clickedIncident).getRank());
-
-        }
-        dialog.show();
     }
 
     @Override
@@ -129,4 +144,5 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
 
         LocationService.stop(getScreen());
     }
+
 }
