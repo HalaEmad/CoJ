@@ -119,8 +119,10 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
 
         if (clickedIncident instanceof Assault) {
             popup = new AssaultFragment();
+            ((AssaultFragment)popup).setViewModel((Assault) clickedIncident);
         } else if (clickedIncident instanceof Officer) {
             popup = new OfficerFragment();
+            ((OfficerFragment)popup).setData((Officer) clickedIncident);
         }
 
         getActivity().getSupportFragmentManager().beginTransaction()

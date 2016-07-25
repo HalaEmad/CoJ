@@ -1,11 +1,12 @@
 package com.ir.android.model;
 
+import com.ibm.android.kit.models.ViewModel;
 import com.ir.android.R;
 
 /**
  * Created by emanhassan on 7/19/16.
  */
-public class Incident {
+public class Incident extends ViewModel {
     public final static int TYPE_ASSUALT = 1;
     public final static int TYPE_OFFICER = 2;
 
