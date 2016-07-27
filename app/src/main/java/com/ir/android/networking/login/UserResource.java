@@ -1,13 +1,13 @@
 package com.ir.android.networking.login;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ir.android.networking.basicimplementation.WLResource;
 import com.ir.android.networking.basicimplementation.exceptions.InvocationFailedException;
-import com.ir.android.networking.basicimplementation.exceptions.ProcessingFailedException;
 import com.ir.android.networking.login.Models.ProfileAttribute;
 import com.ir.android.networking.login.Models.UserGroup;
 import com.worklight.utils.Base64;
@@ -21,6 +21,9 @@ import java.util.ArrayList;
  * Created by Henawey on 7/11/16.
  */
 public class UserResource extends WLResource {
+
+    private final static String SHARED_PREFERNCES_NAME = "UserResource";
+    private final static String UID_SHARED_PREFERNCES_NAME = "uid";
 
     private String username;
     private String password;
@@ -215,6 +218,14 @@ public class UserResource extends WLResource {
         return (ltpaToken2==null || ltpaToken2.isEmpty());
     }
 
+    public static String getCurrentUserID(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(SHARED_PREFERNCES_NAME, context.MODE_PRIVATE);
+        String uid = prefs.getString(UID_SHARED_PREFERNCES_NAME, null);
+
+        return uid;
+    }
+
+
     public static void logout(Context context) throws LogoutFailedException {
 
         try {
@@ -233,10 +244,14 @@ public class UserResource extends WLResource {
                 public void invoke() throws InvocationFailedException {
                     try {
                         WLResponse response=process();
-                        if (response.getStatus()!=200){
+                        if (isSuccessed(response)){
+                            SharedPreferences.Editor editor=getContext().getSharedPreferences(SHARED_PREFERNCES_NAME,Context.MODE_PRIVATE).edit();
+                            editor.remove(UID_SHARED_PREFERNCES_NAME);
+                            editor.commit();
+                        }else{
                             throw new LogoutFailedException(response.getResponseText());
                         }
-                    } catch (ProcessingFailedException e) {
+                    } catch (Exception e) {
                         throw new InvocationFailedException(e);
                     }
                 }
@@ -261,13 +276,28 @@ public class UserResource extends WLResource {
 
                 JSONObject responseJson=response.getResponseJSON();
                 JSONObject userIdentity=responseJson.getJSONObject("userIdentity");
+                JSONObject attributes=userIdentity.getJSONObject("attributes");
+                String uid = attributes.getString("uid");
+
+                SharedPreferences.Editor editor=getContext().getSharedPreferences(SHARED_PREFERNCES_NAME,Context.MODE_PRIVATE).edit();
+                editor.putString(UID_SHARED_PREFERNCES_NAME, uid);
+                editor.commit();
+
                 objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES).readerForUpdating(this).readValue(userIdentity.toString());
             }else{
                 throw new InvocationFailedException(response.getResponseText());
             }
 
         }catch (Exception e){
-            throw new LoginFailedException(e);
+
+            LoginFailedException loginFailedException=new LoginFailedException(e);
+
+            try {
+                logout(getContext());
+            }catch (Exception e1){
+                loginFailedException =new LoginFailedException(loginFailedException);
+            }
+            throw new LoginFailedException(loginFailedException);
         }
     }
 }
