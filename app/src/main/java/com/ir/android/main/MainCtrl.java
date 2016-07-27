@@ -9,6 +9,8 @@ import com.ir.android.NavigationHelper;
 import com.ir.android.R;
 import com.ir.android.home.HomeScreen;
 import com.ir.android.incidents.IncidentScreen;
+import com.ir.android.networking.login.LogoutFailedException;
+import com.ir.android.networking.login.UserResource;
 import com.ir.android.storage.PreferencesManager;
 import com.ir.android.walkthrough.WalkthroughScreen;
 
@@ -69,10 +71,15 @@ public class MainCtrl extends Controller implements MainViewListener {
 
                 break;
             case 3:
-                finish();
-                NavigationHelper.showLogin(getContext());
-                return;
-
+                try {
+                    UserResource.logout(getContext());
+                    finish();
+                    NavigationHelper.showLogin(getContext());
+                    return;
+                } catch (LogoutFailedException e) {
+                    //TODO: Please check exception handling
+                    e.printStackTrace();
+                }
         }
 
         if (fragment != null && title != null) {
