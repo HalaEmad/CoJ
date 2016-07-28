@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.ibm.android.kit.utils.LocationUtility;
 import com.ir.android.networking.LocationReportingResource.LocationReportingResource;
+import com.ir.android.networking.login.UserResource;
 
 /**
  * Created by emanhassan on 6/26/16.
@@ -54,8 +55,7 @@ public class LocationService extends IntentService implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
         try {
-            LocationReportingResource locationReportingResource=new LocationReportingResource(getBaseContext());
-            locationReportingResource.setCoordinate(location.getLatitude(),location.getLongitude());
+            LocationReportingResource locationReportingResource=new LocationReportingResource(getBaseContext(),location, UserResource.getCurrentUserID(getBaseContext()));
             locationReportingResource.invoke();
         } catch (Exception e) {
             e.printStackTrace();
