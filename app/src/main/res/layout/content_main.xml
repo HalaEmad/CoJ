@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingTop="30dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical"-->
+    <!--android:padding="15dp">-->
+
+    <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:textSize="20sp"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:textStyle="bold"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_gravity="center_vertical|bottom|left"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:text="Incidents" />&ndash;&gt;-->
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--&lt;!&ndash;<Switch&ndash;&gt;-->
+    <!--&lt;!&ndash;android:id="@+id/toggleBtnSwitch"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_width="80dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_height="30dp"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_alignParentRight="true"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_gravity="center_vertical|right"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:background="@drawable/toggle_btn"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:gravity="right"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:thumb="@android:color/transparent" />&ndash;&gt;-->
+    <!--</RelativeLayout>-->
+
+    <!--</LinearLayout>-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+
+        <LinearLayout
+            android:id="@+id/fragment_popup_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+
+        </LinearLayout>
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fab"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_margin="@dimen/fab_margin"-->
+        <!--android:background="#565656"-->
+        <!--android:src="@android:drawable/ic_dialog_info"-->
+        <!--app:layout_anchorGravity="bottom|end"-->
+        <!--app:layout_anchor="@+id/bottomsheetLayout"-->
+        <!--app:elevation="4dp"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignBottom="@id/fragment_container"-->
+        <!--android:layout_alignParentEnd="false" />-->
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

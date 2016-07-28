@@ -5,8 +5,16 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.ibm.android.kit.R;
+//import com.ir.android.R;
 
 public class AkDialog extends DialogFragment {
 
@@ -48,26 +56,50 @@ public class AkDialog extends DialogFragment {
 			params.positive = savedInstanceState.getString("positive");
 		}
 
-		Builder dialogBuilder = new AlertDialog.Builder(getActivity());
-		dialogBuilder.setTitle(params.title);
-		dialogBuilder.setMessage(params.message);
-		dialogBuilder.setPositiveButton(params.positive, new DialogInterface.OnClickListener() {
+		final Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+//		dialogBuilder.setTitle(params.title);
+//		dialogBuilder.setMessage(params.message);
+//		dialogBuilder.setPositiveButton(params.positive, new DialogInterface.OnClickListener() {
+//
+//			@Override
+//			public void onClick(DialogInterface dialog, int which) {
+//				((DialogListener) getActivity()).onDialogPositive(dialog, params.tag);
+//			}
+//		});
+//
+//		if (params.negative != null) {
+//			dialogBuilder.setNegativeButton(params.negative, new DialogInterface.OnClickListener() {
+//
+//				@Override
+//				public void onClick(DialogInterface dialog, int which) {
+//					((DialogListener) getActivity()).onDialogNegative(dialog, params.tag);
+//				}
+//			});
+//		}
+//		dialogBuilder.setView(R.layout.error_dialog);
+		LayoutInflater inflater = (LayoutInflater)getActivity().getApplicationContext().getSystemService (Context.LAYOUT_INFLATER_SERVICE);
+//		builder.setTitle("Sifiso");
+		View v = inflater.inflate(R.layout.error_dialog, null);
 
+		TextView DialogTitle = (TextView) v.findViewById(R.id.dialogTitle);
+		TextView Message = (TextView) v.findViewById(R.id.error_message);
+		Button OkayButton = (Button) v.findViewById(R.id.okay_button);
+
+		DialogTitle.setText(params.title);
+		Message.setText(params.message);
+		OkayButton.setText(params.positive);
+
+		OkayButton.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				((DialogListener) getActivity()).onDialogPositive(dialog, params.tag);
+			public void onClick(View v) {
+				dismiss();
 			}
 		});
 
-		if (params.negative != null) {
-			dialogBuilder.setNegativeButton(params.negative, new DialogInterface.OnClickListener() {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					((DialogListener) getActivity()).onDialogNegative(dialog, params.tag);
-				}
-			});
-		}
+		dialogBuilder.setView(v);
+//		builder.setIcon()
+//		builder.setPositiveButton(android.R.string.ok, null);
+//		builder.setNegativeButton(android.R.string.cancel, null);
 
 		return dialogBuilder.create();
 	}
