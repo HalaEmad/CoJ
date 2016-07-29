@@ -138,6 +138,7 @@ public class DynamicPropertiesResolver extends WLResource {
                                 properties.setCallCategory(dynamicProperty.getValue());
                                 break;
                             case "call type":
+                            case "incident type":
                                 properties.setCallType(dynamicProperty.getValue());
                                 break;
                             case "address":

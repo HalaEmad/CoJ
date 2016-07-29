@@ -125,6 +125,7 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
             ((OfficerFragment)popup).setData((Officer) clickedIncident);
         }
 
+
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_popup_container, popup)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

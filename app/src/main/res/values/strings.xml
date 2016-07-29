@@ -29,7 +29,7 @@
     <string name="home_open_navigation">Open Navigation</string>
     <string name="home_close_navigation">Close Navigation</string>
     <string-array name="navigation_array">
-        <item>Home</item>
+        <!--<item>Home</item>-->
         <item>Map</item>
         <item>Walkthrough</item>
         <item>logout</item>

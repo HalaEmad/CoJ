@@ -1,19 +1,21 @@
 package com.ir.android.incidents;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Switch;
 
 import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.ViewModel;
 import com.ibm.android.kit.views.fragments.Fragment;
+
 import com.ir.android.R;
 import com.ir.android.incidents.list.IncidentListFragment;
 import com.ir.android.incidents.map.IncidentMapFragment;
 
 public class IncidentScreen extends Fragment {
 
+    private boolean isLoaded;
 //    private Switch mapListSwitch;
 
     @Override
@@ -34,7 +36,7 @@ public class IncidentScreen extends Fragment {
 
     @Override
     protected void initViews() {
-
+        Log.i("MAPS", "initviews incident screen");
         setHasOptionsMenu(true);
 //        mapListSwitch = (Switch) getView().findViewById(R.id.toggleBtnSwitch);
 //        mapListSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -67,15 +69,18 @@ public class IncidentScreen extends Fragment {
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
+        Log.i("MAPS", "onPrepareOptionsMenu");
         super.onPrepareOptionsMenu(menu);
-
-        MenuItem item = menu.findItem(R.id.action_map_list);
-        setFragment(item);
+        if (!isLoaded) {
+            MenuItem item = menu.findItem(R.id.action_map_list);
+            setFragment(item);
+        }
+        isLoaded = true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        Log.i("MAPS", "in optionsitem selected");
         if (item.getItemId() == R.id.action_map_list) {
             item.setChecked(!item.isChecked());
 

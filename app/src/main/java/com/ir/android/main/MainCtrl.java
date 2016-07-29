@@ -2,6 +2,7 @@ package com.ir.android.main;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 
 import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.ViewModel;
@@ -29,26 +30,26 @@ public class MainCtrl extends Controller implements MainViewListener {
         super.init(intent);
 
         if (PreferencesManager.getInstance(getScreen()).isFirstRun())
-            selectFragment(2);
+            selectFragment(1);
         else
             selectFragment(0);
     }
 
     @Override
     public void selectFragment(int position) {
-
+        Log.i("MAPS", "select fragment");
         Fragment fragment = null;
         String title = null;
         String tag = null;
         switch (position) {
+//            case 0:
+//                tag = "screen.home";
+//                fragment = getScreen().getSupportFragmentManager().findFragmentByTag(tag);
+//                if (fragment == null)
+//                    fragment = new HomeScreen();
+//                title = getScreen().getString(R.string.home_title);
+//                break;
             case 0:
-                tag = "screen.home";
-                fragment = getScreen().getSupportFragmentManager().findFragmentByTag(tag);
-                if (fragment == null)
-                    fragment = new HomeScreen();
-                title = getScreen().getString(R.string.home_title);
-                break;
-            case 1:
                 tag = "screen.incident";
                 fragment = getScreen().getSupportFragmentManager().findFragmentByTag(tag);
                 if (fragment == null)
@@ -62,7 +63,7 @@ public class MainCtrl extends Controller implements MainViewListener {
 //                    fragment = new ActiveCallScreen();
 //                title = getScreen().getString(R.string.active_call_title);
 //                break;
-            case 2:
+            case 1:
                 tag = "screen.walkthrough";
                 fragment = getScreen().getSupportFragmentManager().findFragmentByTag(tag);
                 if (fragment == null)
@@ -70,7 +71,7 @@ public class MainCtrl extends Controller implements MainViewListener {
                 title = getScreen().getString(R.string.walkthrough_title);
 
                 break;
-            case 3:
+            case 2:
                 try {
                     UserResource.logout(getContext());
                     finish();
@@ -80,6 +81,7 @@ public class MainCtrl extends Controller implements MainViewListener {
                     //TODO: Please check exception handling
                     e.printStackTrace();
                 }
+                break;
         }
 
         if (fragment != null && title != null) {
