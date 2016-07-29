@@ -1,21 +1,17 @@
 package com.ir.android.incidents.popup;
 
-import android.media.Image;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.ViewModel;
-import com.ibm.android.kit.views.fragments.Fragment;
 import com.ir.android.R;
 import com.ir.android.model.Assault;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by bassam on 25-07-2016.
  */
-public class AssaultFragment extends Fragment {
+public class AssaultFragment extends PopupBaseFragment {
 
     private ImageView typeIcon;
     private ImageView weaponIcon;
@@ -26,7 +22,7 @@ public class AssaultFragment extends Fragment {
     private TextView securityLvlDescription;
     private TextView weaponDescription;
 
-    private Assault assualt;
+    private Assault assault;
 
     @Override
     protected Controller createController() {
@@ -45,6 +41,8 @@ public class AssaultFragment extends Fragment {
 
     @Override
     protected void initViews() {
+        super.initViews();
+
         typeIcon = (ImageView) getView().findViewById(R.id.type_icon);
         type = (TextView) getView().findViewById(R.id.type);
         status = (TextView) getView().findViewById(R.id.status);
@@ -54,11 +52,10 @@ public class AssaultFragment extends Fragment {
         securityLvlDescription = (TextView) getView().findViewById(R.id.severity_desc);
         weaponIcon = (ImageView) getView().findViewById(R.id.weapon_icon);
         weaponDescription = (TextView) getView().findViewById(R.id.weapon_desc);
-
     }
 
     public void setViewModel(Assault assault) {
-        this.assualt = assault;
+        this.assault = assault;
 //        if (controller == null)
 //            controller = new AssaultCtrl();
 //        controller.initViewModel();
@@ -79,18 +76,18 @@ public class AssaultFragment extends Fragment {
     @Override
     protected void bindViews(ViewModel viewModel) {
 
-        typeIcon.setImageResource(assualt.getDrawableId());
-        type.setText(assualt.getTypeName());
+        typeIcon.setImageResource(assault.getDrawableId());
+        type.setText(assault.getTypeName());
 //        type.setText(getContext().getString(R.string.assualt_label));
 
-        status.setText(assualt.getStatus());
-        distance.setText(assualt.getDistance());
+        status.setText(assault.getStatus());
+        distance.setText(assault.getDistance());
 
-        securityLvl.setText(assualt.getSeverityLevel());
-        securityLvlDescription.setText(assualt.getSeverityLvlDesc());
+        securityLvl.setText(assault.getSeverityLevel());
+        securityLvlDescription.setText(assault.getSeverityLvlDesc());
 
-        weaponIcon.setImageResource(assualt.getWeaponDrawableId());
-        weaponDescription.setText(assualt.getWeaponDescription());
+        weaponIcon.setImageResource(assault.getWeaponDrawableId());
+        weaponDescription.setText(assault.getWeaponDescription());
 
     }
 }
