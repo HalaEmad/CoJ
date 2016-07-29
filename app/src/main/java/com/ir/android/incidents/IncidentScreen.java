@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.ViewModel;
 import com.ibm.android.kit.views.fragments.Fragment;
-
 import com.ir.android.R;
 import com.ir.android.incidents.list.IncidentListFragment;
 import com.ir.android.incidents.map.IncidentMapFragment;
@@ -93,6 +92,9 @@ public class IncidentScreen extends Fragment {
     }
 
     private void setFragment(MenuItem item) {
+
+        clearFragmentBackStack();
+
         if (item.isChecked()) {
             item.setIcon(R.mipmap.map_selected_toggle);
             IncidentMapFragment incidentMapFragment = new IncidentMapFragment();
@@ -104,5 +106,14 @@ public class IncidentScreen extends Fragment {
             getActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, incidentListFragment).commit();
         }
+    }
+
+    private boolean clearFragmentBackStack() {
+        if (getActivity().getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getActivity().getSupportFragmentManager().popBackStack();
+            return true;
+        }
+
+        return false;
     }
 }

@@ -101,6 +101,8 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
 
         if (fragment != null) {
 
+            clearFragmentBackStack();
+
             // Insert the fragment by replacing any existing fragment
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
@@ -129,10 +131,17 @@ public class MainScreen extends Activity implements AdapterView.OnItemClickListe
 
     @Override
     public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            getSupportFragmentManager().popBackStack();
-        } else {
+        if (!clearFragmentBackStack()) {
             this.finish();
         }
+    }
+
+    private boolean clearFragmentBackStack() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+            return true;
+        }
+
+        return false;
     }
 }

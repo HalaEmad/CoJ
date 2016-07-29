@@ -21,12 +21,14 @@ public class LoginTask extends Task {
 
     @Override
     protected Result onTaskWork() {
-        try {
-            loginResource.invoke();
-            return new Result(0,loginResource);
-        } catch (Exception e) {
-            return new Result(1,e);
-        }
+//        try {
+//            loginResource.invoke();
+//            return new Result(0,loginResource);
+//        } catch (Exception e) {
+//            return new Result(1,e);
+//        }
+
+        return new Result(0);
     }
 
 }
