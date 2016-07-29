@@ -53,7 +53,7 @@ public class IncidentTask extends Task {
 
                         }
                     }
-                    incident.setTypeName(feature.getType());
+                    incident.setTypeName(feature.getProperties().getCallType());
 
                     incident.setDistance(feature.getProperties().getAddress());
                     incident.setStatus(feature.getProperties().getStatus());
@@ -88,7 +88,7 @@ public class IncidentTask extends Task {
 
                         }
                     }
-                    incident.setTypeName(feature.getType());
+                    incident.setTypeName(feature.getProperties().getCallType());
 
                     incident.setDistance(feature.getProperties().getAddress());
                     incident.setStatus(feature.getProperties().getStatus());
@@ -124,7 +124,7 @@ public class IncidentTask extends Task {
 
                         }
                     }
-                    incident.setTypeName(feature.getType());
+                    incident.setTypeName(feature.getProperties().getCallType());
 
                     incident.setDistance(feature.getProperties().getAddress());
 

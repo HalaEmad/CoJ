@@ -80,7 +80,9 @@ public class AssaultFragment extends Fragment {
     protected void bindViews(ViewModel viewModel) {
 
         typeIcon.setImageResource(assualt.getDrawableId());
-        type.setText(getContext().getString(R.string.assualt_label));
+        type.setText(assualt.getTypeName());
+//        type.setText(getContext().getString(R.string.assualt_label));
+
         status.setText(assualt.getStatus());
         distance.setText(assualt.getDistance());
 
