@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/*
+ * Licensed Materials - Property of IBM
+ *
+ * 5725-D69
+ *
+ * (C) Copyright IBM Corp. 2014 All rights reserved.
+ *
+ * US Government Users Restricted Rights - Use, duplication or
+ * disclosure restricted by GSA ADP Schedule Contract with
+ * IBM Corp.
+ *
+ * DISCLAIMER OF WARRANTIES. The following code is sample code
+ * created by IBM Corporation. This sample code is warranted to perform its
+ * intended function only if used unmodified. If you modify
+ * this code then it is considered provided "AS IS", without
+ * warranty of any kind. Notwithstanding the foregoing, IBM
+ * shall not be liable for any damages arising out of your use
+ * of the sample code, even if they have been advised of the
+ * possibility of such damages.
+ */
+-->
+<wl:adapter name="LoginServiceAdapter"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:wl="http://www.worklight.com/integration"
+	xmlns:http="http://www.worklight.com/integration/http">
+
+	<displayName>LoginServiceAdapter</displayName>
+	<description>LoginServiceAdapter</description>
+	<connectivity>
+		<connectionPolicy xsi:type="http:HTTPConnectionPolicyType" cookiePolicy="IGNORE_COOKIES">
+			<protocol>https</protocol>						
+			<domain>iocweb.ibmplatform.com</domain>
+			<port>443</port>
+		</connectionPolicy>
+		<loadConstraints maxConcurrentConnectionsPerNode="2" />
+	</connectivity>
+
+	<procedure connectAs="server" name="authenticateUser" securityTest="wl_unprotected"/>
+	<procedure connectAs="server" name="logout"/>
+	<procedure connectAs="server" name="register"/>
+	
+</wl:adapter>
