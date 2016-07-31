@@ -69,19 +69,20 @@ function getEvents(dataSourceId, basicauth,sessionId) {
 // }
 /* Mapping datasources params */
 
-function dataSourceMapping(dataSourceId) {
+function dataSourceMapping(dataSourceId, basicauth,sessionId) {
 
 	path = "/ibm/ioc/api/datasource-service/datasources/" + dataSourceId;
-	var user = WL.Server.getActiveUser(_Constants.REALM);
-	httpHeaders = {
-		Accept : "application/json",
-	Cookie : _Constants.LTPATOKEN + "=" + user.attributes.ltpaToken};
-	httpHeaders[_Constants.SESSIONID] = user.attributes.sessionId;
+	
 	var input = {
-		method : 'post',
+		method : 'get',
 		returnedContentType : 'json',
 		path : path,
-		headers : httpHeaders
+		headers :  {
+			Accept : "application/json",
+			Authorization : "Basic " + basicauth
+		}
 	};
+	
+	input.headers[_Constants.SESSIONID] = sessionId;
 	return WL.Server.invokeHttp(input);
 }
