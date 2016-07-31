@@ -3,8 +3,11 @@ package com.ir.android.incidents;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 
 import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.Result;
@@ -45,7 +48,8 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
         super.init(intent);
 
         if (!LocationUtility.isProviderEnabled(getScreen(), LocationManager.NETWORK_PROVIDER))
-            showOkCancelDialog(LOC_DLG, "Warning", "GPS is disabled, would you like to enable it?");
+//            getUserInputToEnableGPS();
+           showOkCancelDialog(LOC_DLG, "Warning", "GPS is disabled, would you like to enable it?");
 
         LocationService.start(getScreen());
 
@@ -56,12 +60,47 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
 
     @Override
     public void onDialogPositive(DialogInterface dialog, String tag) {
+        Log.i("log", "in dialog positive");
         super.onDialogPositive(dialog, tag);
 
-        if (tag.equals(LOC_DLG))
+        if (tag.equals(LOC_DLG)) {
             startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+
+        }
     }
 
+
+
+    private void getUserInputToEnableGPS() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getScreen());
+        alertDialog.setTitle("GPS is settings");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?");
+
+        // On pressing Settings button
+        alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+
+                //Settings.ACTION_LOCATION_SOURCE_SETTINGS == Activity Action: Show settings to allow configuration of current location sources.
+                // The Settings provider contains global system-level device preferences.
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+
+                //Every Activity is invoked by an Intent. therefore, we are going to start activity which allow to set location
+                getContext().startActivity(intent);
+            }
+        });
+
+        // on pressing cancel button
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
+    }
 
     @Override
     public void onTaskStarted(Task task) {
@@ -119,10 +158,10 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
 
         if (clickedIncident instanceof Assault) {
             popup = new AssaultFragment();
-            ((AssaultFragment)popup).setViewModel((Assault) clickedIncident);
+            ((AssaultFragment) popup).setViewModel((Assault) clickedIncident);
         } else if (clickedIncident instanceof Officer) {
             popup = new OfficerFragment();
-            ((OfficerFragment)popup).setData((Officer) clickedIncident);
+            ((OfficerFragment) popup).setData((Officer) clickedIncident);
         }
 
 

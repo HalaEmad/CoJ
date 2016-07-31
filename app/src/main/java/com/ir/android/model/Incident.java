@@ -17,6 +17,7 @@ public class Incident extends ViewModel {
     private String distance;
     private int drawableId;
 
+
     public int getType() {
         return type;
     }

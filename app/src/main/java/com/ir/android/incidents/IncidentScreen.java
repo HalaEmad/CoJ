@@ -35,7 +35,7 @@ public class IncidentScreen extends Fragment {
 
     @Override
     protected void initViews() {
-        Log.i("MAPS", "initviews incident screen");
+
         setHasOptionsMenu(true);
 //        mapListSwitch = (Switch) getView().findViewById(R.id.toggleBtnSwitch);
 //        mapListSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -68,7 +68,7 @@ public class IncidentScreen extends Fragment {
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        Log.i("MAPS", "onPrepareOptionsMenu");
+
         super.onPrepareOptionsMenu(menu);
         if (!isLoaded) {
             MenuItem item = menu.findItem(R.id.action_map_list);
@@ -79,7 +79,7 @@ public class IncidentScreen extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.i("MAPS", "in optionsitem selected");
+
         if (item.getItemId() == R.id.action_map_list) {
             item.setChecked(!item.isChecked());
 

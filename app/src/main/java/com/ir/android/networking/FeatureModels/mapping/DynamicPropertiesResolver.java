@@ -54,6 +54,7 @@ public class DynamicPropertiesResolver extends WLResource {
             WLResponse response = process();
 
             if(isSuccessed(response)){
+
                 resolveFeatures(response.getResponseJSON());
             }else{
                 throw new ResolvingFailedException(response.getResponseText());
@@ -66,6 +67,7 @@ public class DynamicPropertiesResolver extends WLResource {
     }
     private void resolveFeatures(JSONObject jsonObject) throws ResolvingFailedException{
         try {
+            Log.i("mapping","JOSN REs: "+ jsonObject.toString());
             HashMap<String,String> mapping=new HashMap<>();
             JSONArray columns=jsonObject.getJSONArray("columns");
             for (int i = 0; i < columns.length(); i++) {
