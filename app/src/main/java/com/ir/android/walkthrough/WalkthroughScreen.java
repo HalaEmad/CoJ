@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.ibm.android.kit.controllers.Controller;
 import com.ibm.android.kit.models.ViewModel;
 import com.ibm.android.kit.views.fragments.Fragment;
 import com.ir.android.R;
+import com.ir.android.main.MainScreen;
 
 /**
  * Created by bassam on 09-07-2016.
@@ -47,9 +49,12 @@ public class WalkthroughScreen extends Fragment {
 
     @Override
     protected void initViews() {
+
+        ActionBar actionBar = ((MainScreen)getActivity()).getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(false);
+
         mPager = (ViewPager) getView().findViewById(R.id.walkthrough_pager);
         mPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
-
         mPager.setAdapter(mPagerAdapter);
 
     }
