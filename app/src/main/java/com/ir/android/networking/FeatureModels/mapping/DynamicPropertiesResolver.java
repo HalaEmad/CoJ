@@ -7,14 +7,12 @@ import com.ir.android.networking.FeatureModels.DynamicProperty;
 import com.ir.android.networking.FeatureModels.Feature;
 import com.ir.android.networking.FeatureModels.Properties;
 import com.ir.android.networking.basicimplementation.WLResource;
+import com.ir.android.networking.login.UserResource;
 import com.worklight.wlclient.api.WLResponse;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -37,12 +35,12 @@ public class DynamicPropertiesResolver extends WLResource {
 
     @Override
     public String getAdapterName() {
-        return "IoCIntegrationAdapter";
+        return "Datasources";
     }
 
     @Override
     public String getProcedureName() {
-        return "getEvents";
+        return "dataSourceMapping";
     }
 
     @Override
@@ -50,8 +48,8 @@ public class DynamicPropertiesResolver extends WLResource {
         try {
 
             addParameter(datasourceID);//datasourceID
-            addParameter("");//boundaries
-            addParameter(getLtpaToken2(getContext()));//ltpaToken
+            addParameter(UserResource.getBase64(getContext()));//base64
+            addParameter(UserResource.getJSessionID(getContext()));//sessionID
 
             WLResponse response = process();
 
@@ -62,39 +60,6 @@ public class DynamicPropertiesResolver extends WLResource {
             }
 
         }catch (Exception e){
-
-            try {
-                String fileName=null;
-                switch (datasourceID){
-                    case 10:
-                        fileName="Incidents-DataSources-List-and-Attributes-Mapping.octet-stream";
-                        break;
-                    case 11:
-                        fileName="Observations DataSources-List-and-Attributes-Mapping.octet-stream";
-                        break;
-                    case 12:
-                        fileName="PoliceOfficers-DataSources-List-and-Attributes-Mapping.octet-stream";
-                        break;
-                }
-
-                InputStream inputStream = getContext().getAssets().open(fileName);
-
-                BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
-                StringBuilder string = new StringBuilder();
-                String line;
-                while ((line = r.readLine()) != null) {
-                    string.append(line).append('\n');
-                }
-
-                //read from stub
-                resolveFeatures(new JSONObject(string.toString()));
-
-                return;
-            }catch(Exception e1){
-                    /*it's stub please don't handle this*/
-                e1.printStackTrace();
-            }
-            //Stub end
 
             throw new ResolvingFailedException(e);
         }
