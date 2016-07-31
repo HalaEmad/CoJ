@@ -74,19 +74,19 @@ public class OfficerFragment extends PopupBaseFragment {
             int size = properties.size();
             if (size > 0) {
                 Log.i("mapping_ui" , properties.get(0).getName() + ": "+ properties.get(0).getValue());
-                type.setText(properties.get(0).getValue());
+                type.setText(properties.get(0).getName() + ": "+ properties.get(0).getValue());
                 type.setVisibility(View.VISIBLE);
             }
 
             if (size > 1) {
                 Log.i("mapping_ui" , properties.get(1).getName() + ": "+ properties.get(1).getValue());
-                rank.setText(properties.get(1).getValue());
+                rank.setText(properties.get(1).getName() + ": "+ properties.get(1).getValue());
                 rank.setVisibility(View.VISIBLE);
             }
 
             if (size > 2) {
                 Log.i("mapping_ui" , properties.get(2).getName() + ": "+ properties.get(2).getValue());
-                distance.setText(properties.get(2).getValue());
+                distance.setText(properties.get(2).getName() + ": "+ properties.get(2).getValue());
                 rank.setVisibility(View.VISIBLE);
             }
 
@@ -95,7 +95,7 @@ public class OfficerFragment extends PopupBaseFragment {
 
             if (size > 3) {
                 Log.i("mapping_ui" , properties.get(3).getName() + ": "+ properties.get(3).getValue());
-                name.setText(properties.get(3).getValue());
+                name.setText(properties.get(3).getName() + ": "+ properties.get(3).getValue());
                 name.setVisibility(View.VISIBLE);
             }
 
@@ -104,14 +104,14 @@ public class OfficerFragment extends PopupBaseFragment {
 
             if (size > 4) {
                 Log.i("mapping_ui" , properties.get(4).getName() + ": "+ properties.get(4).getValue());
-                unit.setText(properties.get(4).getValue());
+                unit.setText(properties.get(4).getName() + ": "+ properties.get(4).getValue());
                 unit.setVisibility(View.VISIBLE);
             }
 
 //            securityLvlDescription.setText(assault.getSeverityLvlDesc());
             if (size > 5) {
                 Log.i("mapping_ui" , properties.get(5).getName() + ": "+ properties.get(5).getValue());
-                speciality.setText(properties.get(5).getValue());
+                speciality.setText( properties.get(5).getName() + ": "+ properties.get(5).getValue());
                 speciality.setVisibility(View.VISIBLE);
             }
 

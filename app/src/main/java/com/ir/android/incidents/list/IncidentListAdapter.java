@@ -67,11 +67,11 @@ public class IncidentListAdapter extends com.ibm.android.kit.views.adapters.List
             int size = properties.size();
             if (size > 0) {
 
-                ((IncidentViewHolder) holder).incidentType.setText(properties.get(0).getValue());
+                ((IncidentViewHolder) holder).incidentType.setText(properties.get(0).getName() + ": "+ properties.get(0).getValue());
                 if (size > 1) {
-                    ((IncidentViewHolder) holder).incidentStatus.setText(properties.get(1).getValue());
+                    ((IncidentViewHolder) holder).incidentStatus.setText(properties.get(1).getName() + ": "+ properties.get(1).getValue());
                     if (size > 2) {
-                        ((IncidentViewHolder) holder).incidentLoc.setText(properties.get(2).getValue());
+                        ((IncidentViewHolder) holder).incidentLoc.setText(properties.get(2).getName() + ": "+ properties.get(2).getValue());
                     }
 
                 }

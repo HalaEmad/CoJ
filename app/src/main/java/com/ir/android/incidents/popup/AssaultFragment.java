@@ -99,7 +99,7 @@ public class AssaultFragment extends PopupBaseFragment {
             int size = properties.size();
             if (size > 0) {
                 Log.i("mapping_ui" , properties.get(0).getName() + ": "+ properties.get(0).getValue());
-                type.setText(properties.get(0).getValue());
+                type.setText(properties.get(0).getName() + ": "+ properties.get(0).getValue());
                 type.setVisibility(View.VISIBLE);
             }
 
@@ -108,7 +108,7 @@ public class AssaultFragment extends PopupBaseFragment {
 
             if (size > 1) {
                 Log.i("mapping_ui" , properties.get(1).getName() + ": "+ properties.get(1).getValue());
-                status.setText(properties.get(1).getValue());
+                status.setText(properties.get(1).getName() + ": "+properties.get(1).getValue());
                 status.setVisibility(View.VISIBLE);
             }
 
@@ -117,7 +117,7 @@ public class AssaultFragment extends PopupBaseFragment {
 
             if (size > 2) {
                 Log.i("mapping_ui" , properties.get(2).getName() + ": "+ properties.get(2).getValue());
-                distance.setText(properties.get(2).getValue());
+                distance.setText(properties.get(2).getName() + ": "+ properties.get(2).getValue());
                 distance.setVisibility(View.VISIBLE);
             }
 
@@ -126,7 +126,7 @@ public class AssaultFragment extends PopupBaseFragment {
 
             if (size > 3) {
                 Log.i("mapping_ui" , properties.get(3).getName() + ": "+ properties.get(3).getValue());
-                securityLvl.setText(properties.get(3).getValue());
+                securityLvl.setText(properties.get(3).getName() + ": "+ properties.get(3).getValue());
                 securityLvl.setVisibility(View.VISIBLE);
                 secondSection.setVisibility(View.VISIBLE);
             }
@@ -136,7 +136,7 @@ public class AssaultFragment extends PopupBaseFragment {
 
             if (size > 4) {
                 Log.i("mapping_ui" , properties.get(4).getName() + ": "+ properties.get(4).getValue());
-                securityLvlDescription.setText(properties.get(4).getValue());
+                securityLvlDescription.setText(properties.get(4).getName() + ": "+ properties.get(4).getValue());
                 securityLvlDescription.setVisibility(View.VISIBLE);
                 secondSection.setVisibility(View.VISIBLE);
 
@@ -145,14 +145,14 @@ public class AssaultFragment extends PopupBaseFragment {
 //            securityLvlDescription.setText(assault.getSeverityLvlDesc());
             if (size > 5) {
                 Log.i("mapping_ui" , properties.get(5).getName() + ": "+ properties.get(5).getValue());
-                weapon.setText(properties.get(5).getValue());
+                weapon.setText(properties.get(5).getName() + ": "+ properties.get(5).getValue());
                 third.setVisibility(View.VISIBLE);
                 weapon.setVisibility(View.VISIBLE);
             }
 
             if (size > 6) {
                 Log.i("mapping_ui" , properties.get(6).getName() + ": "+ properties.get(6).getValue());
-                weaponDescription.setText(properties.get(6).getValue());
+                weaponDescription.setText(properties.get(6).getName() + ": "+ properties.get(6).getValue());
                 weaponDescription.setVisibility(View.VISIBLE);
             }
 //            weaponIcon.setImageResource(assault.getWeaponDrawableId());
