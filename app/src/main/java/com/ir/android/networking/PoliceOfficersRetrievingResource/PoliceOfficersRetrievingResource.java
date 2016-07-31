@@ -2,15 +2,14 @@ package com.ir.android.networking.PoliceOfficersRetrievingResource;
 
 import android.content.Context;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ir.android.networking.FeatureModels.Feature;
 import com.ir.android.networking.FeatureModels.mapping.DynamicPropertiesResolver;
 import com.ir.android.networking.basicimplementation.WLResource;
+import com.ir.android.networking.login.UserResource;
 import com.worklight.wlclient.api.WLResponse;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -80,7 +79,7 @@ public class PoliceOfficersRetrievingResource extends WLResource {
 
     @Override
     public String getAdapterName() {
-        return "IoCIntegrationAdapter";
+        return "Datasources";
     }
 
     @Override
@@ -93,13 +92,13 @@ public class PoliceOfficersRetrievingResource extends WLResource {
         try {
 
             addParameter(12);//datasourceID
-            addParameter("");//boundaries
-            addParameter(getLtpaToken2(getContext()));//ltpaToken
+            addParameter(UserResource.getBase64(getContext()));//base64
+            addParameter(UserResource.getJSessionID(getContext()));//sessionID
 
             WLResponse response = process();
 
             if(isSuccessed(response)){
-                ObjectMapper objectMapper = new ObjectMapper();
+                ObjectMapper objectMapper = new ObjectMapper().disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
                 objectMapper.readerForUpdating(this).readValue(response.getResponseJSON().toString());
 
                 DynamicPropertiesResolver dynamicPropertiesResolver=new DynamicPropertiesResolver(getContext(),12,getFeatures());
@@ -109,29 +108,6 @@ public class PoliceOfficersRetrievingResource extends WLResource {
             }
 
         }catch (Exception e){
-
-            try {
-                InputStream inputStream = getContext().getAssets().open("PoliceOfficers-Response.octet-stream");
-
-                BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
-                StringBuilder string = new StringBuilder();
-                String line;
-                while ((line = r.readLine()) != null) {
-                    string.append(line).append('\n');
-                }
-
-                ObjectMapper objectMapper = new ObjectMapper();
-                objectMapper.readerForUpdating(this).readValue(string.toString());
-
-                DynamicPropertiesResolver dynamicPropertiesResolver=new DynamicPropertiesResolver(getContext(),12,getFeatures());
-                dynamicPropertiesResolver.invoke();
-
-                return;
-            }catch(Exception e1){
-                    /*it's stub please don't handle this*/
-                e1.printStackTrace();
-            }
-            //Stub end
 
             throw new PoliceOfficersRetrievingFailedException(e);
         }

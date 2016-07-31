@@ -4,9 +4,8 @@ import android.content.Context;
 import android.location.Location;
 
 import com.ir.android.networking.basicimplementation.WLResource;
+import com.ir.android.networking.login.UserResource;
 import com.worklight.wlclient.api.WLResponse;
-
-import java.util.TimeZone;
 
 /**
  * Created by Henawey on 7/11/16.
@@ -24,32 +23,23 @@ public class LocationReportingResource extends WLResource {
 
     @Override
     public String getAdapterName() {
-        return "IoCIntegrationAdapter";
+        return "LocationControlAdapter";
     }
 
     @Override
     public String getProcedureName() {
-        return "reportEvent";
+        return "updateOfficerLocation";
     }
 
     @Override
     public void invoke() throws LocationReportingException {
         try {
-            addParameter(System.currentTimeMillis());//startDate
-            addParameter(System.currentTimeMillis());//endDate
-            addParameter(System.currentTimeMillis());//lastUpdate
-            addParameter("Point("+location.getLatitude()+" "+location.getLongitude()+")");//location
-            addParameter("Report New Location");//name
-            addParameter("");//severity
-            addParameter("");//sentBy
+            addParameter(UserResource.getCurrentUserID(getContext()));//uid
+            addParameter(location.getLatitude());//latitude
+            addParameter(location.getLongitude());//longitude
+            addParameter(UserResource.getBase64(getContext()));//base64
+            addParameter(UserResource.getJSessionID(getContext()));//sessionID
 
-            TimeZone timeZone=TimeZone.getDefault();
-            long timezoneInMinutes = (timeZone.getRawOffset() / 1000)  / 60;
-            addParameter(timezoneInMinutes);//timezone
-
-            addParameter(userID);//id
-            addParameter(12);//datasourceID
-            addParameter(getLtpaToken2(getContext()));//ltpaToken
             WLResponse response = process();
 
             if(isSuccessed(response)==false){
