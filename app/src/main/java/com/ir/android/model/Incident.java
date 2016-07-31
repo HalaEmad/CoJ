@@ -2,6 +2,10 @@ package com.ir.android.model;
 
 import com.ibm.android.kit.models.ViewModel;
 import com.ir.android.R;
+import com.ir.android.networking.FeatureModels.DynamicProperty;
+import com.ir.android.networking.FeatureModels.Properties;
+
+import java.util.ArrayList;
 
 /**
  * Created by emanhassan on 7/19/16.
@@ -17,6 +21,7 @@ public class Incident extends ViewModel {
     private String distance;
     private int drawableId;
 
+    private ArrayList<DynamicProperty> properties ;
 
     public int getType() {
         return type;
@@ -65,5 +70,13 @@ public class Incident extends ViewModel {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
+    }
+
+    public ArrayList<DynamicProperty> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(ArrayList<DynamicProperty> properties) {
+        this.properties = properties;
     }
 }

@@ -120,6 +120,8 @@ public class IncidentScreen extends Fragment {
 
     private void setFragment(boolean mapChecked) {
 
+        clearFragmentBackStack();
+
         if (mapChecked) {
             IncidentMapFragment incidentMapFragment = new IncidentMapFragment();
             getActivity().getSupportFragmentManager().beginTransaction()

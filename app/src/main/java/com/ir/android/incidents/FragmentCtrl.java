@@ -49,7 +49,7 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
 
         if (!LocationUtility.isProviderEnabled(getScreen(), LocationManager.NETWORK_PROVIDER))
 //            getUserInputToEnableGPS();
-           showOkCancelDialog(LOC_DLG, "Warning", "GPS is disabled, would you like to enable it?");
+            showOkCancelDialog(LOC_DLG, "Warning", "GPS is disabled, would you like to enable it?");
 
         LocationService.start(getScreen());
 
@@ -68,7 +68,6 @@ public class FragmentCtrl extends Controller implements IncidentMapListener {
 
         }
     }
-
 
 
     private void getUserInputToEnableGPS() {

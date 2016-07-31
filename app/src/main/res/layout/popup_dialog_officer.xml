@@ -50,20 +50,20 @@
                         android:id="@+id/type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="JMPD OFFICER"
+                        android:visibility="gone"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Name surename" />
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/distance"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="200m" />
+                        android:visibility="gone"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -76,20 +76,20 @@
                         android:id="@+id/unit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Foot Patrol"
+                        android:visibility="gone"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/rank"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Constable" />
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@+id/speciality"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Speciality - Croud Control" />
+                        android:visibility="gone" />
 
                 </LinearLayout>
             </LinearLayout>

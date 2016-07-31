@@ -10,6 +10,7 @@ import com.ibm.android.kit.views.adapters.AbstractViewHolder;
 import com.ir.android.R;
 import com.ir.android.model.Assault;
 import com.ir.android.model.Incident;
+import com.ir.android.networking.FeatureModels.DynamicProperty;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,8 @@ import java.util.ArrayList;
  */
 public class IncidentListAdapter extends com.ibm.android.kit.views.adapters.ListAdapter {
     private ArrayList<Incident> incidents;
-    private ItemListener listener ;
+    private ItemListener listener;
+
     public IncidentListAdapter(Context context, ArrayList<Incident> incidents, ItemListener listener) {
         super(context);
         this.incidents = incidents;
@@ -33,7 +35,7 @@ public class IncidentListAdapter extends com.ibm.android.kit.views.adapters.List
 
     @Override
     protected View inflateLayout(ViewGroup parent, final int position) {
-        View v = layoutInflater.inflate(R.layout.incident_list_item,  null);
+        View v = layoutInflater.inflate(R.layout.incident_list_item, null);
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,14 +59,34 @@ public class IncidentListAdapter extends com.ibm.android.kit.views.adapters.List
     @Override
     protected void bindView(AbstractViewHolder holder, int position) {
         Assault incident = (Assault) incidents.get(position);
-        ((IncidentViewHolder)holder).incidentType.setText(context.getResources().getString(R.string.assualt_label));
-        ((IncidentViewHolder)holder).incidentStatus.setText(incident.getStatus());
 
-        ((IncidentViewHolder)holder).incidentLoc.setText(incident.getDistance());
 
-        ((IncidentViewHolder)holder).incidentTypeImage.setImageResource(incident.getDrawableId());
+        ArrayList<DynamicProperty> properties = incident.getProperties();
 
-        ((IncidentViewHolder)holder).severityIcon.setImageResource(R.mipmap.severity_icon);
+        if (properties != null) {
+            int size = properties.size();
+            if (size > 0) {
+
+                ((IncidentViewHolder) holder).incidentType.setText(properties.get(0).getValue());
+                if (size > 1) {
+                    ((IncidentViewHolder) holder).incidentStatus.setText(properties.get(1).getValue());
+                    if (size > 2) {
+                        ((IncidentViewHolder) holder).incidentLoc.setText(properties.get(2).getValue());
+                    }
+
+                }
+
+            }
+        }
+
+//        ((IncidentViewHolder)holder).incidentType.setText(incident.getTypeName());
+//        ((IncidentViewHolder)holder).incidentStatus.setText(incident.getStatus());
+//
+//        ((IncidentViewHolder)holder).incidentLoc.setText(incident.getDistance());
+
+        ((IncidentViewHolder) holder).incidentTypeImage.setImageResource(incident.getDrawableId());
+
+        ((IncidentViewHolder) holder).severityIcon.setImageResource(R.mipmap.severity_icon);
 
 
     }

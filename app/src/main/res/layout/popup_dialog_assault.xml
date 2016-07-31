@@ -47,20 +47,21 @@
                     android:id="@+id/type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/assualt_label"
-                    android:textStyle="bold" />
+
+                    android:textStyle="bold"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="pending Dispatch" />
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/distance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="200 m" />
+                   android:visibility="gone" />
 
             </LinearLayout>
 
@@ -70,6 +71,8 @@
         <!-- Second section-->
 
         <LinearLayout
+            android:id="@+id/second_section"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
@@ -83,7 +86,8 @@
                 android:layout_height="72dp"
                 android:padding="8dp"
                 android:scaleType="centerInside"
-                android:src="@mipmap/severity_icon" />
+                android:src="@mipmap/severity_icon"
+                android:visibility="invisible"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -97,14 +101,14 @@
                     android:id="@+id/severity_level"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Severity - Level 2"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/severity_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Major Injuries, EMS Dispatched" />
+                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -116,6 +120,7 @@
 
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/weapon_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -130,7 +135,8 @@
                 android:layout_height="72dp"
                 android:padding="8dp"
                 android:scaleType="centerInside"
-                android:src="@mipmap/weapons_icon" />
+                android:src="@mipmap/weapons_icon"
+                android:visibility="invisible"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -144,14 +150,15 @@
                     android:id="@+id/weapon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/weapons_label"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    />
 
                 <TextView
                     android:id="@+id/weapon_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Suspect with knife" />
+                    android:visibility="gone" />
 
             </LinearLayout>
         </LinearLayout>
